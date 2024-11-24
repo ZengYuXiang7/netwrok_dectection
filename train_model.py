@@ -10,6 +10,8 @@ import pickle
 import sys
 import os
 from tqdm import *
+
+from modules.predictor import Predictor
 from train_efficiency import get_efficiency
 from utils.metrics import ErrorMetrics
 from utils.monitor import EarlyStopping
@@ -19,24 +21,6 @@ from torchvision import models
 
 global log, config
 torch.set_default_dtype(torch.float32)
-
-
-class Predictor(torch.nn.Module):
-    def __init__(self, input_dim, hidden_dim, output_dim):
-        super(Predictor, self).__init__()
-        self.NeuCF = torch.nn.Sequential(
-            torch.nn.Linear(input_dim, hidden_dim // 2),  # FFN
-            torch.nn.LayerNorm(hidden_dim // 2),  # LayerNorm
-            torch.nn.ReLU(),  # ReLU
-            torch.nn.Linear(hidden_dim // 2, hidden_dim // 2),  # FFN
-            torch.nn.LayerNorm(hidden_dim // 2),  # LayerNorm
-            torch.nn.ReLU(),  # ReLU
-            torch.nn.Linear(hidden_dim // 2, output_dim)  # y
-        )
-
-    def forward(self, x):
-        y = self.NeuCF(x)
-        return y
 
 
 class Model(torch.nn.Module):
@@ -109,7 +93,6 @@ class Model(torch.nn.Module):
             self.scheduler.step(val_loss)
         metrics_error = ErrorMetrics(reals * dataModule.max_value, preds * dataModule.max_value, self.config)
         return metrics_error
-
 
 
 def RunOnce(config, runId, log):

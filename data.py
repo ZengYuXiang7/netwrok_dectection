@@ -141,46 +141,26 @@ def _convert_to_rgb(image):
     return image.convert('RGB')
 
 class TensorDataset(torch.utils.data.Dataset):
-    def __init__(self, all_image_address, all_y, config):
+    def __init__(self, all_x, all_y, config):
         self.config = config
-        self.all_image_address = all_image_address
+        self.all_x = all_x
         self.all_y = all_y
-        self.preprocess = self.get_preprocess()
-
-    def get_preprocess(self):
-        transform = Compose([
-            Resize(256, interpolation=InterpolationMode.BICUBIC),  # Resize to _RESIZE_SIDE_MIN
-            CenterCrop((224, 224)),  # Center crop to HEIGHT and WIDTH
-            RandomHorizontalFlip(),  # Apply random horizontal flip
-            RandomResizedCrop((224, 224), scale=(0.5, 1.0), ratio=(1.0, 1.0)),  # Random crop and resize
-            ToTensor(),  # Convert to tensor
-            Normalize(mean=[123.68 / 255, 116.78 / 255, 103.94 / 255], std=[1.0 / 255, 1.0 / 255, 1.0 / 255])
-            # Normalize with _R_MEAN, _G_MEAN, _B_MEAN and _R_STD, _G_STD, _B_STD
-        ])
-        # transform = Compose([
-        #     Resize((224, 224), interpolation=InterpolationMode.BICUBIC),
-        #     _convert_to_rgb,
-        #     ToTensor(),
-        #     Normalize((0.48145466, 0.4578275, 0.40821073), (0.26862954, 0.26130258, 0.27577711)),
-        # ])
-        return transform
 
     def __len__(self):
-        return len(self.all_image_address)
+        return len(self.all_x)
 
     def __getitem__(self, idx):
-        file_name = self.all_image_address[idx]
-        raw_image = Image.open(file_name)
-        image_tensor = self.preprocess(raw_image)
-        label = self.all_y[idx]
-        return image_tensor, label
+        inputs = self.all_x[idx]
+        values = self.all_y[idx]
+        return inputs, values
+
 
 def custom_collate_fn(batch, config):
     from torch.utils.data.dataloader import default_collate
-    image_tensor, label = zip(*batch)
-    image_tensor = default_collate(image_tensor)
-    label = torch.as_tensor(label, dtype=torch.long)
-    return image_tensor, label
+    inputs, values = zip(*batch)
+    inputs = torch.as_tensor(inputs, dtype=torch.float32)
+    values = torch.as_tensor(values, dtype=torch.long)
+    return inputs, values
 
 
 def get_dataloaders(train_set, valid_set, test_set, config):
