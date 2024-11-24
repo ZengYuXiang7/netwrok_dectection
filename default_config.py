@@ -38,7 +38,6 @@ class DatasetInfo:
     eval_set: bool = True
 
 
-
 @dataclass
 class TrainingConfig:
     bs: int = 32

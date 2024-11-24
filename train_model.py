@@ -1,22 +1,20 @@
 # coding : utf-8
 # Author : yuxiang Zeng
-import collections
+import os
+import sys
 import time
 import torch
-
-import numpy as np
 import pickle
-import sys
-import os
+import collections
 from tqdm import *
+import numpy as np
 
 from modules.backbone import Backbone
-from modules.predictor import Predictor
 
 from utils.metrics import ErrorMetrics
 from utils.monitor import EarlyStopping
 from utils.trainer import get_loss_function, get_optimizer
-from utils.utils import makedir, set_seed
+from utils.utils import set_seed
 from train_efficiency import get_efficiency
 
 global log, config
@@ -54,9 +52,9 @@ class Model(torch.nn.Module):
         t1 = time.time()
         for train_Batch in (dataModule.train_loader):
             # 这个写法能够直接免掉右边的一切，左边复制好就行
-            image_tensor, label = tuple(item.to(self.config.device) for item in train_Batch)
-            pred = self.forward(image_tensor)
-            loss = self.loss_function(pred, label)
+            inputs, labels = tuple(item.to(self.config.device) for item in train_Batch)
+            preds = self.forward(inputs)
+            loss = self.loss_function(preds, labels)
             self.optimizer.zero_grad()
             loss.backward()
             self.optimizer.step()
@@ -66,22 +64,17 @@ class Model(torch.nn.Module):
         return loss, t2 - t1
 
     def evaluate_one_epoch(self, dataModule, mode='valid'):
-        self.eval()
-        torch.set_grad_enabled(False)
         dataloader = dataModule.valid_loader if mode == 'valid' and len(dataModule.valid_loader.dataset) != 0 else dataModule.test_loader
-        val_loss = 0.
-        preds = []
-        reals = []
-
+        preds, reals, val_loss = [], [], 0.
         for batch in (dataloader):
-            image_tensor, label = tuple(item.to(self.config.device) for item in batch)
-            pred = self.forward(image_tensor)
+            inputs, label = tuple(item.to(self.config.device) for item in batch)
+            pred = self.forward(inputs)
             if mode == 'valid':
                 val_loss += self.loss_function(pred, label)
             if self.config.classification:
                 pred = torch.max(pred, 1)[1]  # 获取预测的类别标签
-            preds.append(pred)
             reals.append(label)
+            preds.append(pred)
         reals = torch.cat(reals, dim=0)
         preds = torch.cat(preds, dim=0)
         if mode == 'valid':
@@ -91,19 +84,19 @@ class Model(torch.nn.Module):
 
 
 def RunOnce(config, runId, log):
-    # Set seed
+    # Set seed of this round
     set_seed(config.seed + runId)
 
-    # Initialize
+    # Initialize the data and the model
     from data import experiment, DataModule
     exper = experiment(config)
     datamodule = DataModule(exper, config)
     model = Model(datamodule, config)
-    # model.compile()
+    model.compile()
 
     # Setting
     monitor = EarlyStopping(config)
-    makedir(f'./checkpoints/{config.model}')
+    os.makedirs(f'./checkpoints/{config.model}', exist_ok=True)
     model_path = f'./checkpoints/{config.model}/{log.filename}_round_{runId}.pt'
 
     # Check if retrain is required or if model file exists
@@ -198,6 +191,7 @@ def run(config):
         sys.exit(1)  # 终止程序，并返回一个非零的退出状态码，表示程序出错
 
     return metrics
+
 
 if __name__ == '__main__':
     # Experiment Settings, logger, plotter

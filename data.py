@@ -105,31 +105,25 @@ class DataModule:
         x, y = np.array(x), np.array(y)
         from collections import defaultdict
         class_data = defaultdict(list)
-        for img, label in zip(x, y):
-            class_data[label].append(img)
-        train_images, train_labels = [], []
-        valid_images, valid_labels = [], []
-        test_images, test_labels = [], []
+        for now_x, now_label in zip(x, y):
+            class_data[now_label].append(now_x)
+        train_x, train_y = [], []
+        valid_x, valid_y = [], []
+        test_x, test_y = [], []
         for label, images in class_data.items():
             images = np.array(images)
             np.random.shuffle(images)
             train_size = int(len(images) * config.density)
             valid_size = int(len(images) * 0.10) if config.eval_set else 0
-            train_images.extend(images[:train_size])
-            train_labels.extend([label] * train_size)
-            valid_images.extend(images[train_size:train_size + valid_size])
-            valid_labels.extend([label] * valid_size)
-            test_images.extend(images[train_size + valid_size:])
-            test_labels.extend([label] * (len(images) - train_size - valid_size))
-        train_x = np.array(train_images)
-        train_y = np.array(train_labels)
-        valid_x = np.array(valid_images)
-        valid_y = np.array(valid_labels)
-        test_x = np.array(test_images)
-        test_y = np.array(test_labels)
+            train_x.extend(images[:train_size])
+            train_y.extend([label] * train_size)
+            valid_x.extend(images[train_size:train_size + valid_size])
+            valid_y.extend([label] * valid_size)
+            test_x.extend(images[train_size + valid_size:])
+            test_y.extend([label] * (len(images) - train_size - valid_size))
+        train_x, train_y, valid_x, valid_y, test_x, test_y = map(np.array, [train_x, train_y, valid_x, valid_y, test_x, test_y])
         max_value = 1
         return train_x, train_y, valid_x, valid_y, test_x, test_y, max_value
-
 
 
 class TensorDataset(torch.utils.data.Dataset):
@@ -143,16 +137,16 @@ class TensorDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, idx):
         inputs = self.all_x[idx]
-        values = self.all_y[idx]
-        return inputs, values
+        labels = self.all_y[idx]
+        return inputs, labels
 
 
 def custom_collate_fn(batch, config):
     from torch.utils.data.dataloader import default_collate
-    inputs, values = zip(*batch)
+    inputs, labels = zip(*batch)
     inputs = torch.as_tensor(inputs, dtype=torch.float32)
-    values = torch.as_tensor(values, dtype=torch.long)
-    return inputs, values
+    labels = torch.as_tensor(labels, dtype=torch.long if config.classification else torch.float32)
+    return inputs, labels
 
 
 def get_dataloaders(train_set, valid_set, test_set, config):
