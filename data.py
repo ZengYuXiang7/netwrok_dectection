@@ -1,18 +1,12 @@
 # coding : utf-8
 # Author : yuxiang Zeng
 
-import numpy as np
 import torch
-
+import numpy as np
 from utils.config import get_config
 from utils.logger import Logger
 from utils.plotter import MetricsPlotter
 from utils.utils import set_settings
-from scipy.sparse import csr_matrix
-from PIL import Image
-import os
-from torchvision.transforms import Compose, ToTensor, Normalize, Resize, InterpolationMode
-from torchvision.transforms import Compose, Resize, CenterCrop, RandomHorizontalFlip, RandomResizedCrop, ToTensor, Normalize, InterpolationMode
 
 class experiment:
     def __init__(self, config):
@@ -66,23 +60,23 @@ class DataModule:
         self.x, self.y = exper_type.load_data(config)
         if config.debug:
             self.x, self.y = self.x[:300], self.y[:300]
-        self.train_image_tensor, self.train_y_tensor, self.valid_image_tensor, self.valid_y_tensor, self.test_image_tensor, self.test_y_tensor, self.max_value = self.get_train_valid_test_dataset(
-            self.x, self.y, config) if not config.classification else self.get_train_valid_test_classification_dataset(self.x, self.y, config)
-        self.train_set, self.valid_set, self.test_set = self.get_dataset(self.train_image_tensor, self.train_y_tensor, self.valid_image_tensor, self.valid_y_tensor, self.test_image_tensor, self.test_y_tensor, config)
+        self.train_x, self.train_y, self.valid_x, self.valid_y, self.test_x, self.test_y, self.max_value = (
+            self.get_train_valid_test_dataset(self.x, self.y, config)) if not config.classification else self.get_train_valid_test_classification_dataset(self.x, self.y, config)
+        self.train_set, self.valid_set, self.test_set = self.get_dataset(self.train_x, self.train_y, self.valid_x, self.valid_y, self.test_x, self.test_y, config)
         self.train_loader, self.valid_loader, self.test_loader = get_dataloaders(self.train_set, self.valid_set, self.test_set, config)
         config.log.only_print(f'Train_length : {len(self.train_loader.dataset)} Valid_length : {len(self.valid_loader.dataset)} Test_length : {len(self.test_loader.dataset)} Max_value : {self.max_value:.2f}')
 
-    def get_dataset(self, train_image_tensor, train_y_tensor, valid_image_tensor, valid_y_tensor, test_image_tensor, test_y_tensor, config):
+    def get_dataset(self, train_x, train_y, valid_x, valid_y, test_x, test_y, config):
         return (
-            TensorDataset(train_image_tensor, train_y_tensor, config),
-            TensorDataset(valid_image_tensor, valid_y_tensor, config),
-            TensorDataset(test_image_tensor, test_y_tensor, config)
+            TensorDataset(train_x, train_y, config),
+            TensorDataset(valid_x, valid_y, config),
+            TensorDataset(test_x, test_y, config)
         )
 
-    def get_train_valid_test_dataset(self, image_tensor, y, config):
-        image_tensor, y = np.array(image_tensor), np.array(y)
-        indices = np.random.permutation(len(image_tensor))
-        image_tensor, y = image_tensor[indices], y[indices]
+    def get_train_valid_test_dataset(self, x, y, config):
+        x, y = np.array(x), np.array(y)
+        indices = np.random.permutation(len(x))
+        x, y = x[indices], y[indices]
 
         if not config.classification:
             max_value = y.max()
@@ -90,22 +84,22 @@ class DataModule:
         else:
             max_value = 1
 
-        train_size = int(len(image_tensor) * config.density)
+        train_size = int(len(x) * config.density)
         if config.eval_set:
-            valid_size = int(len(image_tensor) * 0.10)
+            valid_size = int(len(x) * 0.10)
         else:
             valid_size = 0
 
-        train_image_tensor = image_tensor[:train_size]
-        train_y_tensor = y[:train_size]
+        train_x = x[:train_size]
+        train_y = y[:train_size]
 
-        valid_image_tensor = image_tensor[train_size:train_size + valid_size]
-        valid_y_tensor = y[train_size:train_size + valid_size]
+        valid_x = x[train_size:train_size + valid_size]
+        valid_y = y[train_size:train_size + valid_size]
 
-        test_image_tensor = image_tensor[train_size + valid_size:]
-        test_y_tensor = y[train_size + valid_size:]
+        test_x = x[train_size + valid_size:]
+        test_y = y[train_size + valid_size:]
 
-        return train_image_tensor, train_y_tensor, valid_image_tensor, valid_y_tensor, test_image_tensor, test_y_tensor, max_value
+        return train_x, train_y, valid_x, valid_y, test_x, test_y, max_value
 
     def get_train_valid_test_classification_dataset(self, x, y, config):
         x, y = np.array(x), np.array(y)
@@ -127,18 +121,16 @@ class DataModule:
             valid_labels.extend([label] * valid_size)
             test_images.extend(images[train_size + valid_size:])
             test_labels.extend([label] * (len(images) - train_size - valid_size))
-        train_image_tensor = np.array(train_images)
-        train_y_tensor = np.array(train_labels)
-        valid_image_tensor = np.array(valid_images)
-        valid_y_tensor = np.array(valid_labels)
-        test_image_tensor = np.array(test_images)
-        test_y_tensor = np.array(test_labels)
+        train_x = np.array(train_images)
+        train_y = np.array(train_labels)
+        valid_x = np.array(valid_images)
+        valid_y = np.array(valid_labels)
+        test_x = np.array(test_images)
+        test_y = np.array(test_labels)
         max_value = 1
-        return train_image_tensor, train_y_tensor, valid_image_tensor, valid_y_tensor, test_image_tensor, test_y_tensor, max_value
+        return train_x, train_y, valid_x, valid_y, test_x, test_y, max_value
 
 
-def _convert_to_rgb(image):
-    return image.convert('RGB')
 
 class TensorDataset(torch.utils.data.Dataset):
     def __init__(self, all_x, all_y, config):

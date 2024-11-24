@@ -1,19 +1,14 @@
 # coding : utf-8
 # Author : yuxiang Zeng
 import collections
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
-import matplotlib.dates as mdates
-import matplotlib.animation as animation
 from utils.utils import *
 import textwrap
 
 
 class MetricsPlotter:
-    def __init__(self, filename, args):
-        self.args = args
-        self.fileroot = f'./results/{args.model}/' + time.strftime('%Y%m%d', time.localtime(time.time())) + '/fig/'
+    def __init__(self, filename, config):
+        self.config = config
+        self.fileroot = f'./results/{config.model}/' + time.strftime('%Y%m%d', time.localtime(time.time())) + '/fig/'
         makedir(self.fileroot)
         exper_time = time.strftime('%H_%M_%S', time.localtime(time.time())) + '_'
         self.filename = filename
@@ -50,13 +45,13 @@ class MetricsPlotter:
 
         # 处理要显示的文本，实现自动换行
         wrapper = textwrap.TextWrapper(width=90)  # 每行最多90个字符
-        # args_text = "\n".join(wrapper.wrap(str(self.config.__dict__)))
+        # config_text = "\n".join(wrapper.wrap(str(self.config.__dict__)))
 
         metrics_text = "\n".join(
             [f'{key}: {np.mean(metrics[key]):.4f} ± {np.std(metrics[key]):.4f}' for key in metrics]
         )
 
-        # combined_text = f"{args_text}\n\n{metrics_text}"
+        # combined_text = f"{config_text}\n\n{metrics_text}"
         combined_text = f"{metrics_text}"
 
         plt.rcParams['font.size'] = 24  # 设置全局字体大小为 24

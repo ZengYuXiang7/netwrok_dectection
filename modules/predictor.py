@@ -26,7 +26,7 @@ class Predictor(torch.nn.Module):
         layers.append(torch.nn.Linear(current_dim, output_dim))
 
         # Combine layers into a sequential module
-        self.NeuCF = torch.nn.Sequential(*layers)
+        self.mlp = torch.nn.Sequential(*layers)
 
         # Initialize weights
         self.init_weights()
@@ -51,4 +51,5 @@ class Predictor(torch.nn.Module):
                     raise ValueError(f"Unknown initialization method: {self.init_method}")
 
     def forward(self, x):
-        return self.NeuCF(x)
+        return self.mlp(x)
+    

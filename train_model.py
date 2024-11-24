@@ -2,22 +2,22 @@
 # Author : yuxiang Zeng
 import collections
 import time
+import torch
 
 import numpy as np
-import pandas as pd
-import torch
 import pickle
 import sys
 import os
 from tqdm import *
 
+from modules.backbone import Backbone
 from modules.predictor import Predictor
-from train_efficiency import get_efficiency
+
 from utils.metrics import ErrorMetrics
 from utils.monitor import EarlyStopping
 from utils.trainer import get_loss_function, get_optimizer
 from utils.utils import makedir, set_seed
-from torchvision import models
+from train_efficiency import get_efficiency
 
 global log, config
 torch.set_default_dtype(torch.float32)
@@ -32,25 +32,20 @@ class Model(torch.nn.Module):
         self.pretrain = True
 
         if config.model == 'ours':
-            input_dim = 1024
-            weights = models.DenseNet121_Weights.IMAGENET1K_V1 if self.pretrain else None
-            self.encoder = models.densenet121(weights=weights)
-            self.encoder.classifier = torch.nn.Linear(input_dim, self.hidden_size)
+            self.model = Backbone(config)
         else:
             raise ValueError(f"Unsupported model type: {config.model}")
 
-        self.predictor = Predictor(self.hidden_size, config.rank, 5)
 
     def forward(self, x):
-        hidden = self.encoder(x)
-        y = self.predictor(hidden)
+        y = self.model(x)
         return y
 
-    def setup_optimizer(self, args):
-        self.to(args.device)
-        self.loss_function = get_loss_function(args).to(args.device)
-        self.optimizer = get_optimizer(self.parameters(), lr=args.lr, decay=args.decay, args=args)
-        self.scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(self.optimizer, mode='min' if args.classification else 'max', factor=0.5, patience=args.patience // 1.5, threshold=0.0)
+    def setup_optimizer(self, config):
+        self.to(config.device)
+        self.loss_function = get_loss_function(config).to(config.device)
+        self.optimizer = get_optimizer(self.parameters(), lr=config.lr, decay=config.decay, config=config)
+        self.scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(self.optimizer, mode='min' if config.classification else 'max', factor=0.5, patience=config.patience // 1.5, threshold=0.0)
 
     def train_one_epoch(self, dataModule):
         loss = None
@@ -172,10 +167,10 @@ def RunExperiments(log, config):
     log('*' * 20 + 'Experiment Results:' + '*' * 20)
     for key in metrics:
         log(f'{key}: {np.mean(metrics[key]):.4f} ± {np.std(metrics[key]):.4f}')
-    # flops, params, inference_time = get_efficiency(config)
-    # log(f"Flops: {flops:.0f}")
-    # log(f"Params: {params:.0f}")
-    # log(f"Inference time: {inference_time:.2f} ms")
+    flops, params, inference_time = get_efficiency(config)
+    log(f"Flops: {flops:.0f}")
+    log(f"Params: {params:.0f}")
+    log(f"Inference time: {inference_time:.2f} ms")
     if config.record:
         log.save_result(metrics)
         log.plotter.record_metric(metrics)

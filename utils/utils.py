@@ -9,15 +9,17 @@ import platform
 import torch as t
 import numpy as np
 
-def set_settings(args):
-    if args.debug:
-        args.rounds = 2
-        args.epochs = 1
-        args.lr = 1e-3
-        args.decay = 1e-3
+def set_settings(config):
+    if config.debug:
+        config.rounds = 2
+        config.epochs = 1
+        config.lr = 1e-3
+        config.decay = 1e-3
 
-    if args.classification:
-        args.loss_func = 'CrossEntropyLoss'
+    if config.classification:
+        config.loss_func = 'CrossEntropyLoss'
+    else:
+        config.num_classes = 1
 
     def find_closest_power_of_2(train_size, percentage=0.10):
         # 计算目标 batch size
@@ -37,14 +39,14 @@ def set_settings(args):
 
     # 检查操作系统
     if platform.system() == "Darwin":  # "Darwin" 是 macOS 的系统标识
-        args.device = 'cpu' if args.device != 'mps' else 'mps'
+        config.device = 'cpu' if config.device != 'mps' else 'mps'
 
     else:
         # 如果不是 macOS，你可以选择默认设置为 CPU 或 GPU
-        args.device = "cuda" if t.cuda.is_available() else "cpu"
+        config.device = "cuda" if t.cuda.is_available() else "cpu"
 
     
-    return args
+    return config
 
 
 # 时间种子

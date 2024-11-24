@@ -3,21 +3,21 @@
 import torch as t
 import torch.optim
 
-def get_loss_function(args):
+def get_loss_function(config):
     loss_function = None
-    if args.loss_func == 'L1Loss':
+    if config.loss_func == 'L1Loss':
         loss_function = t.nn.L1Loss()
-    elif args.loss_func == 'MSELoss':
+    elif config.loss_func == 'MSELoss':
         loss_function = t.nn.MSELoss()
-    elif args.loss_func == 'SmoothL1Loss':
+    elif config.loss_func == 'SmoothL1Loss':
         loss_function = t.nn.SmoothL1Loss()
-    elif args.loss_func == 'CrossEntropyLoss':
+    elif config.loss_func == 'CrossEntropyLoss':
         loss_function = t.nn.CrossEntropyLoss()
     return loss_function
 
 
-def get_optimizer(parameters, lr, decay, args):
-    optimizer_name = args.optim
+def get_optimizer(parameters, lr, decay, config):
+    optimizer_name = config.optim
     learning_rate = lr
     weight_decay = decay
 

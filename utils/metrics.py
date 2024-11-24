@@ -6,7 +6,7 @@ import numpy as np
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
 
-def ErrorMetrics(realVec, estiVec, args):
+def ErrorMetrics(realVec, estiVec, config):
     if isinstance(realVec, np.ndarray):
         realVec = realVec.astype(float)
     elif isinstance(realVec, t.Tensor):
@@ -15,7 +15,7 @@ def ErrorMetrics(realVec, estiVec, args):
         estiVec = estiVec.astype(float)
     elif isinstance(estiVec, t.Tensor):
         estiVec = estiVec.cpu().detach().numpy().astype(float)
-    if not args.classification:
+    if not config.classification:
         absError = np.abs(estiVec - realVec)
         MAE = np.mean(absError)
         RMSE = np.linalg.norm(absError) / np.sqrt(np.array(absError.shape[0]))
