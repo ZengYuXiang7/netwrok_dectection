@@ -19,7 +19,7 @@ class Logger:
     ):
         self.clear_the_useless_logs()
         self.plotter = plotter
-        self.exper_detail = f"Dataset : {config.dataset.upper()}, Model : {config.model}, Density : {config.density}, Bs : {config.bs}, Rank : {config.rank}, "
+        self.exper_detail = f"Dataset : {config.dataset.upper()}, Model : {config.model}, Density : {config.density:.3f}, Bs : {config.bs}, Rank : {config.rank}, "
         self.fileroot = f'./results/{config.model}/' + time.strftime('%Y%m%d', time.localtime(time.time())) + '/log/'
         self.filename = filename
         makedir(self.fileroot)
