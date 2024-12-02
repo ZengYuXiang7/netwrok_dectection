@@ -15,4 +15,5 @@ class TestConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, T
     epochs: int = 250
     patience: int = 45
     classification: bool = True
-    debug: bool = True
+    debug: bool = False
+    window_size: int = 10
