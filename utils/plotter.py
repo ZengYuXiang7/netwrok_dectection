@@ -16,7 +16,9 @@ class MetricsPlotter:
         self.all_rounds_results = []
         self.one_round_results = collections.defaultdict(list)
 
-    def append_epochs(self, metrics):
+    def append_epochs(self, train_loss, metrics):
+        metrics['train_loss'] = train_loss
+        metrics = {'train_loss': metrics['train_loss'], **metrics}
         for key, values in metrics.items():
             self.one_round_results[key].append(values)
 

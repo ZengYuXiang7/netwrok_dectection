@@ -92,7 +92,10 @@ def RunOnce(config, runId, log):
     exper = experiment(config)
     datamodule = DataModule(exper, config)
     model = Model(datamodule, config)
-    model.compile()
+    try:
+        model.compile()
+    except Exception as e:
+        print('Skip the model.compile()')
 
     # Setting
     monitor = EarlyStopping(config)
@@ -124,12 +127,12 @@ def RunOnce(config, runId, log):
         for epoch in trange(config.epochs):
             if monitor.early_stop:
                 break
-            epoch_loss, time_cost = model.train_one_epoch(datamodule)
+            train_loss, time_cost = model.train_one_epoch(datamodule)
             valid_error = model.evaluate_one_epoch(datamodule, 'valid')
             monitor.track_one_epoch(epoch, model, valid_error, 'NRMSE' if not config.classification else 'Acc')
-            log.show_epoch_error(runId, epoch, monitor, epoch_loss, valid_error, train_time)
+            log.show_epoch_error(runId, epoch, monitor, train_loss, valid_error, train_time)
             train_time.append(time_cost)
-            log.plotter.append_epochs(valid_error)
+            log.plotter.append_epochs(train_loss, valid_error)
         model.load_state_dict(monitor.best_model)
         sum_time = sum(train_time[: monitor.best_epoch])
         results = model.evaluate_one_epoch(datamodule, 'test')
