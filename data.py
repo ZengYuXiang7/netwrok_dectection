@@ -101,6 +101,7 @@ class DataModule:
 
         return train_x, train_y, valid_x, valid_y, test_x, test_y, max_value
 
+
     def get_train_valid_test_classification_dataset(self, x, y, config):
         x, y = np.array(x), np.array(y)
         from collections import defaultdict
@@ -138,7 +139,10 @@ class TensorDataset(torch.utils.data.Dataset):
     def __getitem__(self, idx):
         inputs = self.all_x[idx]
         labels = self.all_y[idx]
-        return inputs, labels
+        # 对于一个样本 x
+        context_info, seq_input = self.all_x[idx]
+        labels = self.all_y[idx]
+        return context_info, seq_input, labels
 
 
 def custom_collate_fn(batch, config):

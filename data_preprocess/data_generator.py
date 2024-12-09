@@ -4,13 +4,14 @@ import pyshark
 import csv
 import logging
 
-time_interval = 10
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 log = logging.getLogger(__name__)
 
-def pcap_to_csv(pcap_file, csv_file):
+# pyshark.FileCapture()
+
+def pcap_to_csv(pcap_file, csv_file, time_interval):
     """
     将pcap文件转换为csv文件,提取五元组、数据包真实长度和时间戳
     """
@@ -24,7 +25,7 @@ def pcap_to_csv(pcap_file, csv_file):
         #cap = pyshark.FileCapture(pcap_file)  # 使用过滤器提取IP层的数据包
         log.debug('after cap')
         first_timestamp = None #第一个数据包的时间戳
-        
+        writer.writerow(["timestamp", "source_ip", "destination_ip", "source_port", "destination_port", "protocol", "length"])
         for packet in cap:
             # 提取五元组信息
             try:
@@ -63,8 +64,9 @@ def pcap_to_csv(pcap_file, csv_file):
                 # 如果包中缺少某些属性（如非IP包），跳过
                 continue
         cap.close()
+    f.close()
 
-def process_pcap_files_in_directory(input_dir, csv_dir):
+def process_pcap_files_in_directory(input_dir, csv_dir, time_interval):
     """
     遍历指定文件夹中的所有pcap文件，并将其转换为csv文件
     """
@@ -73,6 +75,7 @@ def process_pcap_files_in_directory(input_dir, csv_dir):
 
     # with concurrent.futures.ThreadPoolExecutor() as executor:
     #     futures = []
+    os.makedirs('../datasets/MedBIoT_csv', exist_ok=True)
     for pcap_file in pcap_files:
         print(f"Processing pcap file: {pcap_file}")
         output_dir = csv_dir + f'{time_interval}s/'
@@ -86,13 +89,20 @@ def process_pcap_files_in_directory(input_dir, csv_dir):
         csv_file = os.path.join(output_dir, base_name + '_' + str(time_interval) + 's' + '.csv')
 
         # 将pcap文件转换为csv文件
-        pcap_to_csv(pcap_file, csv_file)
+        pcap_to_csv(pcap_file, csv_file, time_interval)
         # futures.append(executor.submit(pcap_to_csv, pcap_file, csv_file))
         
         print(f"Converted pcap file to csv: {csv_file}")
+
         # concurrent.futures.wait(futures)
 
-# 将文件夹`././datasets/MedBIoT_pcap/`中的所有pcap文件转换为csv文件
-input_directory = './datasets/MedBIoT_pcap/'    # 输入pcap文件夹路径
-output_directory = './datasets/MedBIoT/csv/'    # 输出csv文件夹路径
-process_pcap_files_in_directory(input_directory, output_directory)
+
+if __name__ == '__main__':
+    # 将文件夹`././datasets/MedBIoT_pcap/`中的所有pcap文件转换为csv文件
+    input_directory = '../datasets/MedBIoT_pcap/'    # 输入pcap文件夹路径
+    output_directory = '../datasets/MedBIoT_csv/'    # 输出csv文件夹路径
+    process_pcap_files_in_directory(input_directory, output_directory, 10)
+    process_pcap_files_in_directory(input_directory, output_directory, 50)
+    process_pcap_files_in_directory(input_directory, output_directory, 100)
+    process_pcap_files_in_directory(input_directory, output_directory, 500)
+    process_pcap_files_in_directory(input_directory, output_directory, 1000)
