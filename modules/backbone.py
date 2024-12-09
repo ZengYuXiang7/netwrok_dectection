@@ -1,6 +1,7 @@
 # coding : utf-8
 # Author : Yuxiang Zeng
 import torch
+from dask.cli import config_get
 
 from modules.predictor import Predictor
 
@@ -10,6 +11,8 @@ class Backbone(torch.nn.Module):
         super(Backbone, self).__init__()
         self.config = config
         # First Step
+        self.transfer = torch.nn.Linear(5, config.rank)
+        self.lstm = torch.nn.LSTM()
 
         self.predictor = Predictor(
             input_dim=config.rank,
@@ -19,6 +22,9 @@ class Backbone(torch.nn.Module):
             init_method='xavier'
         )
 
-    def forward(self, x):
-        y = self.predictor(x)
+    def forward(self, context_info, seq_input):
+        context_embeds = self.transfer(context_info)
+        seq_embeds = self.lstm(seq_input)
+        final_inputs = torch.cat([context_embeds, seq_embeds], dim = -1)
+        y = self.predictor(final_inputs)
         return y

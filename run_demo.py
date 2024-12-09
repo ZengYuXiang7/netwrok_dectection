@@ -8,7 +8,8 @@ from datetime import datetime
 
 sys.dont_write_bytecode = True
 
-
+######################################################################################################
+# 在这里写执行实验逻辑
 def debug(commands):
     commands.append(f"python train_model.py --config_path ./exper_config.py --exp_name TestConfig "
                     f"--density 100 --retrain 1 --device cpu --rank 300 --rounds 2")
@@ -26,8 +27,8 @@ def Ablation(commands, hyper=None):
 
 
 def Our_model(commands, hyper=None):
-    command = f"python train_model.py --config_path ./exper_config.py --exp_name TestConfig " \
-              f"--retrain 1 --rounds 1  --dataset food --eval_set 1"
+    command = f"python train_model.py --exp_name TestConfig " \
+              f"--retrain 1 --rounds 1 --dataset huawei --eval_set 1"
     commands.append(command)
 
     if hyper:
@@ -35,39 +36,76 @@ def Our_model(commands, hyper=None):
     return commands
 
 
+def only_once_experiment(commands, exper_name, hyper=None):
+    command = f"python train_model.py --exp_name {exper_name} " \
+              f"--retrain 1 --dataset huawei"
+    commands.append(command)
+
+    if hyper:
+        commands = [add_parameter(command, hyper) for command in commands]
+    return commands
+
+######################################################################################################
+# 在这里写执行顺序
 def experiment_command():
     commands = []
-    # commands = Our_model(commands)
-    # If we have hyper search, use this
-    best_hyper = hyper_once('rank', [30, 50, 100])
-    commands = Our_model(commands, best_hyper)
+    hyper_dict = {
+        'window_size': [200],
+        'rank': [30, 50, 70]
+    }
+    # best_hyper = hyper_search('TestConfig', hyper_dict)
+    # commands = only_once_experiment(commands, 'TestConfig', best_hyper)
+    # best_hyper = hyper_search('Seq2SeqConfig', hyper_dict)
+    # commands = only_once_experiment(commands, 'Seq2SeqConfig', best_hyper)
+    best_hyper = hyper_search('AttConfig', hyper_dict)
+    commands = only_once_experiment(commands, 'AttConfig', best_hyper)
+    # best_hyper = hyper_search('MLPConfig', hyper_dict)
+    # commands = only_once_experiment(commands, 'MLPConfig', best_hyper)
     return commands
 
 
-# 一次性能的极致探索，采用这个实验
-def final_experiment():
-    commands = []
-    best_hyper = hyper_once('rank', [10, 30, 50, 100])
-    commands = Ablation(commands, best_hyper)
-    commands = Our_model(commands, best_hyper)
-    return commands
-
-
-def hyper_once(hyper_name, different_hypers):
+def hyper_search(exp_name, hyper_dict):
+    """
+    多超参数逐步优化
+    :param hyper_dict: 字典形式的超参数和其对应搜索范围，例如：
+                       {'Rank': [10, 50, 100], 'Order': [0.1, 0.5, 1.0]}
+    :return: 最优超参数字典
+    """
     from train_model import run
     from utils.config import get_config
-    config = get_config()
-    best_hyper, best_metric = None, 0 if config.classification else 1e9
-    for hyper in different_hypers:
-        config.__dict__[hyper_name] = hyper
-        metrics = run(config)
-        metric = 'Acc' if config.classification else 'MAE'
-        if np.mean(metrics[metric]) > best_metric:
-            best_metric = np.mean(metrics[metric])
-            best_hyper = hyper
-        print(metrics)
-    print(f"The Best Hyper{hyper_name}, is {best_hyper}")
-    best_hyper = {hyper_name: best_hyper}
+
+    config = get_config(exp_name)
+    best_hyper = {}
+    with open(log_file, 'a') as f:
+        for hyper_name, hyper_values in hyper_dict.items():
+            current_best_value = None
+            best_metric = 0 if config.classification else 1e9
+            for value in hyper_values:
+                # 设置当前超参数值，同时保留之前优化的最佳值
+                config.__dict__.update(best_hyper)
+                config.__dict__[hyper_name] = value
+                # 运行实验
+                metrics = run(config)
+                # 根据任务选择优化目标
+                if config.classification:
+                    metric = 'Acc'
+                    current_metric = np.mean(metrics[metric])
+                    if current_metric > best_metric:
+                        best_metric = current_metric
+                        current_best_value = value
+                else:
+                    metric = 'MAE'
+                    current_metric = np.mean(metrics[metric])
+                    if current_metric < best_metric:
+                        best_metric = current_metric
+                        current_best_value = value
+                f.write(f"Hyperparameter: {hyper_name}, Value: {value}, Metrics: {current_metric}\n")
+            # 更新最优超参数
+            print(hyper_name, current_best_value)
+            best_hyper[hyper_name] = current_best_value
+            f.write(f"Best {hyper_name}: {current_best_value}\n")
+        f.write(f"The Best Hyperparameters: {best_hyper}\n")
+    print(best_hyper)
     return best_hyper
 
 
@@ -107,7 +145,6 @@ def run_command(command, log_file, retry_count=0):
 
 
 def main():
-    log_file = "run.log"
 
     # 清空日志文件的内容
     with open(log_file, 'a') as f:
@@ -120,8 +157,9 @@ def main():
         run_command(command, log_file)
 
     with open(log_file, 'a') as f:
-        f.write(f"All commands executed successfully.\n")
+        f.write(f"All commands executed successfully.\n\n")
 
 
 if __name__ == "__main__":
+    log_file = "run.log"
     main()
