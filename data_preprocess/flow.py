@@ -73,7 +73,7 @@ def flow_to_item(flows_array):
 
 
 def get_all_input(dataset, time_interval, label):
-    csv_file = f'../datasets/MedBIoT_csv/{time_interval}s/{dataset}.csv'
+    csv_file = f'./datasets/MedBIoT_csv/{time_interval}s/{dataset}.csv'
     try:
         df = pd.read_csv(csv_file)
         flows_array = split_csv_to_flows(df)

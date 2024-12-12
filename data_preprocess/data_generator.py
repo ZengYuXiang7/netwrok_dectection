@@ -91,8 +91,8 @@ def process_pcap_files_in_directory(input_dir, csv_dir, time_interval):
 
 
 def get_one_datasets(label, time_interval):
-    input_directory = '../datasets/MedBIoT_pcap/'  # 输入pcap文件夹路径
-    output_directory = '../datasets/MedBIoT_csv/'  # 输出csv文件夹路径
+    input_directory = './datasets/MedBIoT_pcap/'  # 输入pcap文件夹路径
+    output_directory = './datasets/MedBIoT_csv/'  # 输出csv文件夹路径
     pcap_file = os.path.join(input_directory, f'{label}.pcap')  # 匹配所有.pcap文件
     os.makedirs('../datasets/MedBIoT_csv', exist_ok=True)
     print(f"Processing pcap file: {pcap_file}")

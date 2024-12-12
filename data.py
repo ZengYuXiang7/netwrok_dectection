@@ -3,6 +3,8 @@
 
 import torch
 import numpy as np
+
+from data_preprocess.flow import get_all_input
 from utils.config import get_config
 from utils.logger import Logger
 from utils.plotter import MetricsPlotter
@@ -14,38 +16,28 @@ class experiment:
 
     @staticmethod
     def load_data(config):
-        import os
-        from sklearn.preprocessing import LabelEncoder
-
-        # Set the path to the root folder of the dataset
-        root_dir = 'datasets/foods'
-
-        # Lists to store image paths and corresponding labels
+        labels = {
+            'bashlite_leg': 0,
+            'mirai_leg': 0,
+            'torii_leg': 0,
+            'bashlite_mal_spread_all': 1,
+            'bashlite_mal_CC_all': 2,
+            'mirai_mal_spread_all': 3,
+            'mirai_mal_CC_all': 4,
+            'torii_mal_all': 5,
+        }
         x = []
-        label = []
-
-        # Iterate over each folder in the dataset directory
-        for lbl in os.listdir(root_dir):
-            label_dir = os.path.join(root_dir, lbl)
-
-            # Check if it's a directory (to ignore files like foods.zip)
-            if os.path.isdir(label_dir):
-                # Iterate over each image in the label directory
-                for image_name in os.listdir(label_dir):
-                    image_path = os.path.join(label_dir, image_name)
-
-                    # Append the image path and label to their respective lists
-                    x.append(image_path)
-                    label.append(lbl)
-
-        # Perform label encoding on the labels
-        label_encoder = LabelEncoder()
-        y = label_encoder.fit_transform(label)
-
+        y = []
+        for dataset, item in labels.items():
+            all_five_tuple, all_seq, all_labels = get_all_input(dataset, config.time_interval, labels[dataset])
+            x.append([all_five_tuple, all_seq])
+            y.append(all_labels)
+        exit()
         return x, y
 
     @staticmethod
     def preprocess_data(data, config):
+
         return data
 
     def get_pytorch_index(self, data):
