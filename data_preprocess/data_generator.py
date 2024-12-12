@@ -20,10 +20,10 @@ def pcap_to_csv(pcap_file, csv_file, time_interval):
         writer = csv.writer(f)
         
         # 使用pyshark读取pcap文件
-        log.debug('before cap')
+        log.info('before cap')
         cap = pyshark.FileCapture(pcap_file, display_filter='ip')  # 使用过滤器提取IP层的数据包
         #cap = pyshark.FileCapture(pcap_file)  # 使用过滤器提取IP层的数据包
-        log.debug('after cap')
+        log.info('after cap')
         first_timestamp = None #第一个数据包的时间戳
         writer.writerow(["timestamp", "source_ip", "destination_ip", "source_port", "destination_port", "protocol", "length"])
         for packet in cap:
@@ -86,7 +86,7 @@ def process_pcap_files_in_directory(input_dir, csv_dir, time_interval):
         base_name = os.path.splitext(os.path.basename(pcap_file))[0]
         
         # 构建csv文件的输出路径（与pcap文件同名，但扩展名为.csv）
-        csv_file = os.path.join(output_dir, base_name + '_' + str(time_interval) + 's' + '.csv')
+        csv_file = os.path.join(output_dir, base_name + '.csv')
 
         # 将pcap文件转换为csv文件
         pcap_to_csv(pcap_file, csv_file, time_interval)
