@@ -3,13 +3,11 @@ import glob
 import pyshark
 import csv
 import logging
+import pandas as pd
 
 
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 log = logging.getLogger(__name__)
-
-# pyshark.FileCapture()
 
 def pcap_to_csv(pcap_file, csv_file, time_interval):
     """
@@ -72,19 +70,15 @@ def process_pcap_files_in_directory(input_dir, csv_dir, time_interval):
     """
     input_pattern = os.path.join(input_dir, '*.pcap')  # 匹配所有.pcap文件
     pcap_files = glob.glob(input_pattern)  # 获取所有匹配的pcap文件
-
-    # with concurrent.futures.ThreadPoolExecutor() as executor:
-    #     futures = []
     os.makedirs('../datasets/MedBIoT_csv', exist_ok=True)
     for pcap_file in pcap_files:
         print(f"Processing pcap file: {pcap_file}")
         output_dir = csv_dir + f'{time_interval}s/'
         if not os.path.exists(output_dir):
             os.mkdir(output_dir)
-        
         # 获取不带扩展名的文件名
         base_name = os.path.splitext(os.path.basename(pcap_file))[0]
-        
+
         # 构建csv文件的输出路径（与pcap文件同名，但扩展名为.csv）
         csv_file = os.path.join(output_dir, base_name + '.csv')
 
@@ -93,11 +87,27 @@ def process_pcap_files_in_directory(input_dir, csv_dir, time_interval):
         # futures.append(executor.submit(pcap_to_csv, pcap_file, csv_file))
         
         print(f"Converted pcap file to csv: {csv_file}")
-
         # concurrent.futures.wait(futures)
 
 
+def get_one_datasets(label, time_interval):
+    input_directory = '../datasets/MedBIoT_pcap/'  # 输入pcap文件夹路径
+    output_directory = '../datasets/MedBIoT_csv/'  # 输出csv文件夹路径
+    pcap_file = os.path.join(input_directory, f'{label}.pcap')  # 匹配所有.pcap文件
+    os.makedirs('../datasets/MedBIoT_csv', exist_ok=True)
+    print(f"Processing pcap file: {pcap_file}")
+    output_dir = output_directory + f'{time_interval}s/'
+    if not os.path.exists(output_dir):
+        os.mkdir(output_dir)
+    base_name = os.path.splitext(os.path.basename(pcap_file))[0]
+    csv_file = os.path.join(output_dir, base_name + '.csv')
+    pcap_to_csv(pcap_file, csv_file, time_interval)
+    print(f"Converted pcap file to csv: {csv_file}")
+    df = pd.read_csv(csv_file)
+    return df
+
 if __name__ == '__main__':
+
     # 将文件夹`././datasets/MedBIoT_pcap/`中的所有pcap文件转换为csv文件
     input_directory = '../datasets/MedBIoT_pcap/'    # 输入pcap文件夹路径
     output_directory = '../datasets/MedBIoT_csv/'    # 输出csv文件夹路径
