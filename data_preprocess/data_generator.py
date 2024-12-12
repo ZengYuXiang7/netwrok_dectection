@@ -70,7 +70,7 @@ def process_pcap_files_in_directory(input_dir, csv_dir, time_interval):
     """
     input_pattern = os.path.join(input_dir, '*.pcap')  # 匹配所有.pcap文件
     pcap_files = glob.glob(input_pattern)  # 获取所有匹配的pcap文件
-    os.makedirs('../datasets/MedBIoT_csv', exist_ok=True)
+    os.makedirs('./datasets/MedBIoT_csv', exist_ok=True)
     for pcap_file in pcap_files:
         print(f"Processing pcap file: {pcap_file}")
         output_dir = csv_dir + f'{time_interval}s/'
@@ -109,10 +109,13 @@ def get_one_datasets(label, time_interval):
 if __name__ == '__main__':
 
     # 将文件夹`././datasets/MedBIoT_pcap/`中的所有pcap文件转换为csv文件
-    input_directory = '../datasets/MedBIoT_pcap/'    # 输入pcap文件夹路径
-    output_directory = '../datasets/MedBIoT_csv/'    # 输出csv文件夹路径
+    input_directory = './datasets/MedBIoT_pcap/'    # 输入pcap文件夹路径
+    output_directory = './datasets/MedBIoT_csv/'    # 输出csv文件夹路径
     process_pcap_files_in_directory(input_directory, output_directory, 10)
     process_pcap_files_in_directory(input_directory, output_directory, 50)
     process_pcap_files_in_directory(input_directory, output_directory, 100)
     process_pcap_files_in_directory(input_directory, output_directory, 500)
     process_pcap_files_in_directory(input_directory, output_directory, 1000)
+    process_pcap_files_in_directory(input_directory, output_directory, 2000)
+    process_pcap_files_in_directory(input_directory, output_directory, 5000)
+    process_pcap_files_in_directory(input_directory, output_directory, 10000)

@@ -1,0 +1,71 @@
+Experiment Start!!!
+Running at 2024-12-12 23:46: python train_model.py --exp_name TestConfig --time_interval 10--retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10--retrain 1 --dataset malware
+Retrying at 2024-12-12 23:46: python train_model.py --exp_name TestConfig --time_interval 10--retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10--retrain 1 --dataset malware
+Retrying at 2024-12-12 23:46: python train_model.py --exp_name TestConfig --time_interval 10--retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10--retrain 1 --dataset malware
+Experiment Start!!!
+Running at 2024-12-12 23:46: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:46: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:46: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:46: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:46: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:46: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:46: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:46: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:46: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:46: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:46: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:47: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:47: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Experiment Start!!!
+Running at 2024-12-12 23:50: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:50: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:50: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Experiment Start!!!
+Running at 2024-12-12 23:51: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:51: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Experiment Start!!!
+Running at 2024-12-12 23:51: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:51: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:51: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:51: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Experiment Start!!!
+Running at 2024-12-12 23:52: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:52: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:52: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:52: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Retrying at 2024-12-12 23:52: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Experiment Start!!!
+Running at 2024-12-12 23:52: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Experiment Start!!!
+Running at 2024-12-12 23:53: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware
+Experiment Start!!!
+Running at 2024-12-12 23:54: python train_model.py --exp_name TestConfig --time_interval 10 --retrain 1 --dataset malware --verbose 1

@@ -3,11 +3,11 @@
 import os
 import sys
 import time
-import torch
 import pickle
 import collections
 from tqdm import *
 import numpy as np
+import torch
 
 from modules.backbone import Backbone
 
@@ -35,8 +35,8 @@ class Model(torch.nn.Module):
             raise ValueError(f"Unsupported model type: {config.model}")
 
 
-    def forward(self, x):
-        y = self.model(x)
+    def forward(self, context_info, seq_input):
+        y = self.model(context_info, seq_input)
         return y
 
     def setup_optimizer(self, config):
@@ -52,9 +52,10 @@ class Model(torch.nn.Module):
         t1 = time.time()
         for train_Batch in (dataModule.train_loader):
             # 这个写法能够直接免掉右边的一切，左边复制好就行
-            inputs, labels = tuple(item.to(self.config.device) for item in train_Batch)
-            preds = self.forward(inputs)
-            loss = self.loss_function(preds, labels)
+            # context_info, seq_input, labels = tuple(item.to(self.config.device) if not isinstance(item, list) else item for item in train_Batch)
+            context_info, seq_input, label = tuple(item.to(self.config.device) for item in train_Batch)
+            preds = self.forward(context_info, seq_input)
+            loss = self.loss_function(preds, label)
             self.optimizer.zero_grad()
             loss.backward()
             self.optimizer.step()
@@ -67,8 +68,8 @@ class Model(torch.nn.Module):
         dataloader = dataModule.valid_loader if mode == 'valid' and len(dataModule.valid_loader.dataset) != 0 else dataModule.test_loader
         preds, reals, val_loss = [], [], 0.
         for batch in (dataloader):
-            inputs, label = tuple(item.to(self.config.device) for item in batch)
-            pred = self.forward(inputs)
+            context_info, seq_input, label = tuple(item.to(self.config.device) for item in batch)
+            pred = self.forward(context_info, seq_input)
             if mode == 'valid':
                 val_loss += self.loss_function(pred, label)
             if self.config.classification:

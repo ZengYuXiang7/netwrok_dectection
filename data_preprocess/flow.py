@@ -85,8 +85,8 @@ def get_all_input(dataset, time_interval, label):
         flows_array = split_csv_to_flows(df)
         all_five_tuple, all_seq = flow_to_item(flows_array)
     all_labels = np.zeros(len(all_seq), dtype=np.int32) + int(label)
-    for i in range(len(all_five_tuple)):
-        print(all_five_tuple[i], all_seq[i], all_labels[i])
+    # for i in range(len(all_five_tuple)):
+    #     print(all_five_tuple[i], all_seq[i], all_labels[i])
     return all_five_tuple, all_seq, all_labels
 
 
