@@ -161,10 +161,13 @@ def RunExperiments(log, config):
     log('*' * 20 + 'Experiment Results:' + '*' * 20)
     for key in metrics:
         log(f'{key}: {np.mean(metrics[key]):.4f} ± {np.std(metrics[key]):.4f}')
-    flops, params, inference_time = get_efficiency(config)
-    log(f"Flops: {flops:.0f}")
-    log(f"Params: {params:.0f}")
-    log(f"Inference time: {inference_time:.2f} ms")
+    try:
+        flops, params, inference_time = get_efficiency(config)
+        log(f"Flops: {flops:.0f}")
+        log(f"Params: {params:.0f}")
+        log(f"Inference time: {inference_time:.2f} ms")
+    except Exception as e:
+        log('Skip the efficiency calculation')
     if config.record:
         log.save_result(metrics)
         log.plotter.record_metric(metrics)
@@ -177,7 +180,7 @@ def run(config):
     from utils.plotter import MetricsPlotter
     from utils.utils import set_settings, set_seed
     set_settings(config)
-    log_filename = f'Model_{config.model}_Dataset_{config.dataset}_D{config.density:.3f}_R{config.rank}'
+    log_filename = f'Model_{config.model}_Dataset_{config.dataset}_W{config.time_interval:d}_R{config.rank}'
     plotter = MetricsPlotter(log_filename, config)
     log = Logger(log_filename, plotter, config)
     try:

@@ -35,9 +35,11 @@ def Our_model(commands, hyper=None):
 
 
 def only_once_experiment(commands, exper_name, hyper=None):
-    for time_interval in [10, 50, 100, 500, 1000, 2000, 5000, 10000]:
+    # command = f"python ./data_preprocess/data_generator.py"
+    # commands.append(command)
+    for time_interval in [10, 50, 100, 500, 1000, 2000]:
         command = f"python train_model.py --exp_name {exper_name} --time_interval {time_interval} " \
-                  f"--retrain 1 --dataset malware --verbose 1"
+                  f"--retrain 1 --dataset malware"
         commands.append(command)
 
     if hyper:

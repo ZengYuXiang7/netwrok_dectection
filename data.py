@@ -114,8 +114,10 @@ class DataModule:
 
         # 对序列做归一化
         max_value = 0.0
+        max_length = 0
         print(max(all_seq))
         for i in range(len(all_seq)):
+            max_length = max(max_length, len(all_seq[i]))
             for j in range(len(all_seq[i])):
                 # print(all_seq[i][j][1])
                 max_value = max(all_seq[i][j][1], max_value)
@@ -124,7 +126,8 @@ class DataModule:
                 # print(all_seq[i][j])
                 all_seq[i][j][1] /= max_value
                 # print(all_seq[i][j])
-        print(max(all_seq))
+        print(max(all_seq), max_length)
+        config.max_length = max_length
         x = all_five_tuple_encoded, all_seq
         return x, y
 
@@ -206,7 +209,7 @@ class TensorDataset(torch.utils.data.Dataset):
         timestamp = torch.as_tensor(seq_input)[:, 0]
         seq_input = torch.as_tensor(seq_input)[:,-1]
         # 0 Padding，注意这里是否有误
-        padded_seq = torch.zeros(500, dtype=seq_input.dtype)
+        padded_seq = torch.zeros(self.config.max_length, dtype=seq_input.dtype)
         padded_seq[:seq_input.size(0)] = seq_input
         seq_input = padded_seq
         labels = self.all_y[idx]

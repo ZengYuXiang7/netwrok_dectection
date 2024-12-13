@@ -14,7 +14,7 @@ class Backbone(torch.nn.Module):
         # First Step
         self.transfer = torch.nn.Linear(5, self.rank)
         # self.lstm = torch.nn.LSTM(self.rank, self.rank, num_layers=1, bias=True, batch_first=False, dropout=0, bidirectional=False)
-        self.lstm = torch.nn.Linear(500, self.rank)
+        self.lstm = torch.nn.Linear(self.config.max_length, self.rank)
 
         self.predictor = Predictor(
             input_dim=config.rank * 2,
