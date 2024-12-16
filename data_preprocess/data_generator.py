@@ -9,7 +9,6 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(leve
 
 log = logging.getLogger(__name__)
 
-# pyshark.FileCapture()
 
 def pcap_to_csv(pcap_file, csv_file, time_interval):
     """
@@ -75,7 +74,6 @@ def process_pcap_files_in_directory(input_dir, csv_dir, time_interval):
 
     # with concurrent.futures.ThreadPoolExecutor() as executor:
     #     futures = []
-    os.makedirs('../datasets/MedBIoT_csv', exist_ok=True)
     for pcap_file in pcap_files:
         print(f"Processing pcap file: {pcap_file}")
         output_dir = csv_dir + f'{time_interval}s/'
@@ -96,13 +94,18 @@ def process_pcap_files_in_directory(input_dir, csv_dir, time_interval):
 
         # concurrent.futures.wait(futures)
 
+def process_single_pcap_file(pcap_file, csv_dir, time_interval):
+    output_directory = csv_dir + f'{time_interval}s/'
+    csv_file = os.path.join(output_directory, os.path.basename(pcap_file).replace('.pcap', '_' + str(time_interval) + 's.csv'))
+    pcap_to_csv(pcap_file, csv_file, time_interval)
 
 if __name__ == '__main__':
     # 将文件夹`././datasets/MedBIoT_pcap/`中的所有pcap文件转换为csv文件
-    input_directory = '../datasets/MedBIoT_pcap/'    # 输入pcap文件夹路径
-    output_directory = '../datasets/MedBIoT_csv/'    # 输出csv文件夹路径
-    process_pcap_files_in_directory(input_directory, output_directory, 10)
-    process_pcap_files_in_directory(input_directory, output_directory, 50)
-    process_pcap_files_in_directory(input_directory, output_directory, 100)
-    process_pcap_files_in_directory(input_directory, output_directory, 500)
-    process_pcap_files_in_directory(input_directory, output_directory, 1000)
+    input_directory = './datasets/MedBIoT_pcap/'    # 输入pcap文件夹路径
+    output_directory = './datasets/MedBIoT/csv/'    # 输出csv文件夹路径
+    process_single_pcap_file(input_directory, output_directory, 100)
+    # process_pcap_files_in_directory(input_directory, output_directory, 10)
+    # process_pcap_files_in_directory(input_directory, output_directory, 50)
+    # process_pcap_files_in_directory(input_directory, output_directory, 100)
+    # process_pcap_files_in_directory(input_directory, output_directory, 500)
+    # process_pcap_files_in_directory(input_directory, output_directory, 1000)

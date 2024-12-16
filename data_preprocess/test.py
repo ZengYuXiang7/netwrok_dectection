@@ -54,5 +54,5 @@ def cluster_and_plot(csv_file, n_classes):
     plt.show()
 
 # 示例用法
-csv_file = './datasets/MedBIoT/csv/1000s/mirai_mal_spread_all_1000s.csv'  # 替换为您的 CSV 文件路径
+csv_file = './datasets/MedBIoT/csv/100s/bilibili_100s.csv'  # 替换为您的 CSV 文件路径
 cluster_and_plot(csv_file, n_classes=8)  # n_classes 是聚类数量
