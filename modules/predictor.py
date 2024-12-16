@@ -36,7 +36,7 @@ class Predictor(torch.nn.Module):
         Initialize weights of the layers based on the specified method.
         Available methods: 'xavier', 'kaiming', 'normal'.
         """
-        for module in self.NeuCF:
+        for module in self.mlp:
             if isinstance(module, torch.nn.Linear):
                 if self.init_method == 'xavier':
                     torch.nn.init.xavier_uniform_(module.weight)

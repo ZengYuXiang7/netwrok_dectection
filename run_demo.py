@@ -6,8 +6,6 @@ import subprocess
 import numpy as np
 from datetime import datetime
 
-sys.dont_write_bytecode = True
-
 ######################################################################################################
 # 在这里写执行实验逻辑
 def debug(commands):
@@ -37,9 +35,12 @@ def Our_model(commands, hyper=None):
 
 
 def only_once_experiment(commands, exper_name, hyper=None):
-    command = f"python train_model.py --exp_name {exper_name} " \
-              f"--retrain 1 --dataset huawei"
-    commands.append(command)
+    # command = f"python ./data_preprocess/data_generator.py"
+    # commands.append(command)
+    for time_interval in [10, 50, 100, 500, 1000, 2000]:
+        command = f"python train_model.py --exp_name {exper_name} --time_interval {time_interval} " \
+                  f"--retrain 1 --dataset malware"
+        commands.append(command)
 
     if hyper:
         commands = [add_parameter(command, hyper) for command in commands]
@@ -49,18 +50,13 @@ def only_once_experiment(commands, exper_name, hyper=None):
 # 在这里写执行顺序
 def experiment_command():
     commands = []
-    hyper_dict = {
-        'window_size': [200],
-        'rank': [30, 50, 70]
-    }
+    # hyper_dict = {
+    #     'window_size': [200],
+    #     'rank': [50]
+    # }
     # best_hyper = hyper_search('TestConfig', hyper_dict)
     # commands = only_once_experiment(commands, 'TestConfig', best_hyper)
-    # best_hyper = hyper_search('Seq2SeqConfig', hyper_dict)
-    # commands = only_once_experiment(commands, 'Seq2SeqConfig', best_hyper)
-    best_hyper = hyper_search('AttConfig', hyper_dict)
-    commands = only_once_experiment(commands, 'AttConfig', best_hyper)
-    # best_hyper = hyper_search('MLPConfig', hyper_dict)
-    # commands = only_once_experiment(commands, 'MLPConfig', best_hyper)
+    commands = only_once_experiment(commands, 'TestConfig', None)
     return commands
 
 
