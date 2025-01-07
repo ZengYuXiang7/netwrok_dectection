@@ -58,13 +58,12 @@ def process_single_pcap(pcap_file, csv_dir):
     print(f"Converted pcap file to csv: {csv_file}")
 
 def process_pcap_files_in_directory(dataset):
+    os.makedirs('./datasets/csv/', exist_ok=True)
     input_dir = os.path.join('./datasets', 'pcap', dataset)
     csv_dir = os.path.join('./datasets', 'csv', dataset)
     input_pattern = os.path.join(input_dir, '*.pcap')
     pcap_files = glob.glob(input_pattern)
-
     print(f"Total pcap files to process: {len(pcap_files)}")
-
     # 创建一个进程池
     with multiprocessing.Pool(processes=6) as pool:
         pool.starmap(process_single_pcap, [(pcap_file, csv_dir) for pcap_file in pcap_files])  # 使用starmap传递额外参数

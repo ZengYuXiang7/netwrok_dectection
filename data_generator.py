@@ -5,7 +5,10 @@ from datetime import datetime
 
 
 def csv_to_flow(csv_file, time_interval):
-    df = pd.read_csv(csv_file)
+    if not type(csv_file) == pd.core.frame.DataFrame:
+        df = pd.read_csv(csv_file)
+    else:
+        df = csv_file
 
     # 创建一个字典存储流
     flows = defaultdict(list)
@@ -56,7 +59,7 @@ def csv_to_flow(csv_file, time_interval):
                     i += 1
                     if (i, now_flow_key) not in flows:
                         flows[(i, now_flow_key)].append([raw_timestamp, now_flow_key, packet_length])
-#                         print(f'插入到新的流 {i} -- {now_flow_key}')
+                        # print(f'插入到新的流 {i} -- {now_flow_key}')
                         break
                     else:
                         # 遍历下一个流
@@ -64,8 +67,7 @@ def csv_to_flow(csv_file, time_interval):
         else:
             now_key = (i, now_flow_key)
             flows[now_key].append([raw_timestamp, now_flow_key, packet_length])
-#             print(f'创建新的流 {i} -- {now_flow_key}')
-
+            # print(f'创建新的流 {i} -- {now_flow_key}')
 
     # 查看流的结果
     # for flow_key, flow_data in flows.items():
@@ -75,16 +77,15 @@ def csv_to_flow(csv_file, time_interval):
     #         print(f"    Packet: {packet}")
     return flows
 
+
 if __name__ == '__main__':
-    # os.makedirs('./datasets/csv/', exist_ok=True)
-    # process_pcap_files_in_directory('Medboit')
-    # process_pcap_files_in_directory('IoT')
-    # process_pcap_files_in_directory('Device')
-    # print('Done!')
     inputs = input('read or split: ')
     if inputs == 'read':
         process_pcap_files_in_directory('IoT')
+        # process_pcap_files_in_directory('Medboit')
+        # process_pcap_files_in_directory('Device')
     elif inputs == 'split':
-        for i in range(10):
-            all_flows = csv_to_flow("./datasets/csv/IoT/github.csv", i)
-            print(len(all_flows))
+        time_interval = 10
+        all_flows = csv_to_flow("./datasets/csv/IoT/github.csv", time_interval)
+        print(len(all_flows))
+

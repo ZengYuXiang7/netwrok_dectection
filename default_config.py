@@ -32,11 +32,10 @@ class BaseModelConfig:
 @dataclass
 class DatasetInfo:
     path: str = './datasets/'
-    dataset: str = 'cpu'
+    dataset: str = 'IoT'
     train_size: int = 500
     density: float = 0.80
     eval_set: bool = True
-
     time_interval: int = 10
 
 

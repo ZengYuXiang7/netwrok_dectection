@@ -5,14 +5,18 @@ import torch
 import numpy as np
 from sphinx.builders.gettext import timestamp
 
-from data_preprocess.csv_to_flow import get_all_input
 from utils.config import get_config
 from utils.logger import Logger
 from utils.plotter import MetricsPlotter
 from utils.utils import set_settings
 
-
 from torch.nn.utils.rnn import pad_sequence
+
+from tqdm import *
+from data_generator import csv_to_flow
+import os
+import pandas as pd
+import pickle
 
 class experiment:
     def __init__(self, config):
@@ -20,28 +24,33 @@ class experiment:
 
     @staticmethod
     def load_data(config):
-        dataset_labels = {
-            'bashlite_leg': 0,
-            'mirai_leg': 0,
-            'torii_leg': 0,
-            'bashlite_mal_spread_all': 1,
-            'bashlite_mal_CC_all': 2,
-            'mirai_mal_spread_all': 3,
-            'mirai_mal_CC_all': 4,
-            'torii_mal_all': 5,
-        }
-        y = []
-        all_five_tuple, all_seq = [], []
-        for dataset, item in dataset_labels.items():
-            now_five_tuple, now_seq, now_labels = get_all_input(dataset, config.time_interval, dataset_labels[dataset])
-            # print(len(now_five_tuple), len(now_seq))
-            # exit()
-            all_five_tuple += now_five_tuple
-            all_seq += now_seq
-            y += list(now_labels)
-        x = [all_five_tuple, all_seq]
-        return x, y
-
+        def get_all_flow(dataset):
+            try:
+                all_data = pickle.load(open(f'./datasets/flow/{dataset}.pickle', 'rb'))
+            except Exception as e:
+                datasets_path = os.path.join('./datasets', 'csv', dataset)
+                all_files = os.listdir(datasets_path)
+                all_csv_data = []
+                for i in range(len(all_files)):
+                    df = pd.read_csv(os.path.join(datasets_path, all_files[i]))
+                    all_csv_data.append(df)
+                all_data = []
+                time_interval = 10
+                for i in trange(len(all_csv_data)):
+                    all_data.append(csv_to_flow(all_csv_data[i], time_interval))
+                os.makedirs('./datasets/flow')
+                pickle.dump(all_data, open(f'./datasets/flow/{dataset}.pickle', 'wb'))
+            return all_data
+        all_data = get_all_flow(config.dataset)
+        all_x, all_y = [], []
+        for i in range(len(all_data)):
+            for key, value in tqdm(all_data[i].items()):
+                this_flow = []
+                for item in value:
+                    this_flow.append([item[0], item[-1]])
+                all_x.append(this_flow)
+                all_y.append(i)
+        return all_x, all_y
 
 
     def get_pytorch_index(self, data):
@@ -72,63 +81,6 @@ class DataModule:
         )
 
     def preprocess_data(self, x, y, config):
-        all_five_tuple, all_seq = x
-
-        # 将 all_five_tuple 转换为 NumPy 数组
-        all_five_tuple = np.array(all_five_tuple)
-        print(all_five_tuple)
-
-        # 确保输入是二维数组
-        if all_five_tuple.ndim != 2 or all_five_tuple.shape[1] != 5:
-            raise ValueError("all_five_tuple 应该是一个二维数组，形状为 (n_samples, 5)")
-
-        # 初始化 LabelEncoders
-        from sklearn.preprocessing import LabelEncoder
-        label_encoder_ip = LabelEncoder()  # 第一列和第二列共享
-        label_encoder_port = LabelEncoder()
-        label_encoder_protocol = LabelEncoder()
-
-        # 分别对每一列进行编码
-        col1_and_col2 = np.concatenate((all_five_tuple[:, 0], all_five_tuple[:, 1]))  # 合并第一列和第二列
-        col1_and_col2_encoded = label_encoder_ip.fit_transform(col1_and_col2)  # 对合并的列编码
-
-        # 第一列和第二列的编码结果
-        col1_encoded = col1_and_col2_encoded[:len(all_five_tuple)]
-        col2_encoded = col1_and_col2_encoded[len(all_five_tuple):]
-
-        # 第三列（source_port）编码
-        col3_encoded = label_encoder_port.fit_transform(all_five_tuple[:, 2])
-
-        # 第四列（destination_port）编码
-        col4_encoded = label_encoder_port.fit_transform(all_five_tuple[:, 3])
-
-        # 第五列（protocol）编码
-        col5_encoded = label_encoder_protocol.fit_transform(all_five_tuple[:, 4])
-
-        # 将编码后的列合并回一个二维数组
-        all_five_tuple_encoded = np.column_stack([col1_encoded, col2_encoded, col3_encoded, col4_encoded, col5_encoded])
-
-        # 查看结果
-        print("原始五元组：", all_five_tuple[:5])  # 显示前 5 个五元组
-        print("编码后的五元组：", all_five_tuple_encoded[:5])  # 显示前 5 个编码结果
-
-        # 对序列做归一化
-        max_value = 0.0
-        max_length = 0
-        print(max(all_seq))
-        for i in range(len(all_seq)):
-            max_length = max(max_length, len(all_seq[i]))
-            for j in range(len(all_seq[i])):
-                # print(all_seq[i][j][1])
-                max_value = max(all_seq[i][j][1], max_value)
-        for i in range(len(all_seq)):
-            for j in range(len(all_seq[i])):
-                # print(all_seq[i][j])
-                all_seq[i][j][1] /= max_value
-                # print(all_seq[i][j])
-        print(max(all_seq), max_length)
-        config.max_length = max_length
-        x = all_five_tuple_encoded, all_seq
         return x, y
 
     def get_train_valid_test_dataset(self, x, y, config):
@@ -163,6 +115,7 @@ class DataModule:
     def get_train_valid_test_classification_dataset(self, x, y, config):
         x, y = self.preprocess_data(x, y, config)
         from collections import defaultdict
+        import random
         class_data = defaultdict(list)
         for now_x, now_label in zip(x, y):
             class_data[now_label].append(now_x)
@@ -170,25 +123,16 @@ class DataModule:
         valid_x, valid_y = [], []
         test_x, test_y = [], []
         for label, now_x in class_data.items():
-            # indices = np.random.permutation(len(x))
-            # x, y = x[indices], y[indices]
-
-            five_tuple, seq = now_x
-            # 对 x（five_tuple 和 seq）同时打乱
-            indices = np.random.permutation(len(five_tuple))  # 生成随机索引
-            five_tuple = five_tuple[indices]
-            seq = [seq[i] for i in indices]
-
-            # 划分训练集、验证集和测试集
-            train_size = int(len(five_tuple) * config.density)
-            valid_size = int(len(five_tuple) * 0.10) if config.eval_set else 0
-
-            train_x.extend(zip(five_tuple[:train_size], seq[:train_size]))  # 同时保存 five 和 seq
+            flow = now_x
+            random.shuffle(flow)
+            train_size = int(len(flow) * config.density)
+            valid_size = int(len(flow) * 0.10) if config.eval_set else 0
+            train_x.extend(flow[:train_size])  # 同时保存 five 和 flow
             train_y.extend([label] * train_size)
-            valid_x.extend(zip(five_tuple[train_size:train_size + valid_size], seq[train_size:train_size + valid_size]))
+            valid_x.extend(flow[train_size:train_size + valid_size])
             valid_y.extend([label] * valid_size)
-            test_x.extend(zip(five_tuple[train_size + valid_size:], seq[train_size + valid_size:]))
-            test_y.extend([label] * (len(five_tuple) - train_size - valid_size))
+            test_x.extend(flow[train_size + valid_size:])
+            test_y.extend([label] * (len(flow) - train_size - valid_size))
         # train_x, train_y, valid_x, valid_y, test_x, test_y = map(np.array, [train_x, train_y, valid_x, valid_y, test_x, test_y])
         max_value = 1
         return train_x, train_y, valid_x, valid_y, test_x, test_y, max_value

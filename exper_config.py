@@ -11,7 +11,7 @@ class TestConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, T
     bs: int = 64
     rank: int = 30
     density: float = 0.8
-    device: str = 'cuda'
+    device: str = 'cpu'
     epochs: int = 300
     patience: int = 20
     classification: bool = True
