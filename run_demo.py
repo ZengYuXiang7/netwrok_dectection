@@ -1,6 +1,5 @@
 # coding : utf-8
 # Author : yuxiang Zeng
-import sys
 import time
 import subprocess
 import numpy as np
@@ -50,13 +49,14 @@ def only_once_experiment(commands, exper_name, hyper=None):
 # 在这里写执行顺序
 def experiment_command():
     commands = []
+    commands.append('python data_preprocess/data_generator.py')
     # hyper_dict = {
     #     'window_size': [200],
     #     'rank': [50]
     # }
     # best_hyper = hyper_search('TestConfig', hyper_dict)
     # commands = only_once_experiment(commands, 'TestConfig', best_hyper)
-    commands = only_once_experiment(commands, 'TestConfig', None)
+    # commands = only_once_experiment(commands, 'TestConfig', None)
     return commands
 
 

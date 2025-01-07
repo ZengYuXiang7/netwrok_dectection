@@ -5,7 +5,7 @@ import torch
 import numpy as np
 from sphinx.builders.gettext import timestamp
 
-from data_preprocess.flow import get_all_input
+from data_preprocess.csv_to_flow import get_all_input
 from utils.config import get_config
 from utils.logger import Logger
 from utils.plotter import MetricsPlotter
