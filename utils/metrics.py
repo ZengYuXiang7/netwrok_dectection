@@ -41,7 +41,7 @@ def ErrorMetrics(realVec, estiVec, config):
         Acc = accuracy_score(realVec, estiVec)
         F1 = f1_score(realVec, estiVec, average='macro')  # 如果是多分类问题，可以修改 average 参数
         P = precision_score(realVec, estiVec, average='macro')  # 如果是多分类问题，可以修改 average 参数
-        Recall = recall_score(realVec, estiVec, average='macro')  # 如果是多分类问题，可以修改 average 参数
+        Recall = recall_score(realVec, estiVec, average='macro', zero_division=0)  # 如果是多分类问题，可以修改 average 参数
         return {
             'Acc': Acc,
             'F1': F1,

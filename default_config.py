@@ -10,7 +10,7 @@ class LoggerConfig:
 @dataclass
 class ExperimentConfig:
     seed: int = 0
-    rounds: int = 5
+    rounds: int = 3
     epochs: int = 200
     patience: int = 20
 
@@ -37,6 +37,8 @@ class DatasetInfo:
     density: float = 0.80
     eval_set: bool = True
 
+    time_interval: int = 10
+
 
 @dataclass
 class TrainingConfig:
@@ -49,6 +51,6 @@ class TrainingConfig:
 
 @dataclass
 class OtherConfig:
-    classification: bool = 0
-    num_classes: int = 5
+    classification: bool = 1
+    num_classes: int = 6
     Ablation: int = 0

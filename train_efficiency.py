@@ -16,9 +16,9 @@ def calculate_inference_time(model, sample_input, config):
     step = 100
     all_time = []
     for i in range(step):
-        a = sample_input
+        a, b, _ = tuple([item.to(config.device) for item in sample_input])
         t1 = time()
-        model(a)
+        model(a, b)
         t2 = time()
         all_time.append(t2 - t1)
     inference_time = np.mean(all_time)
