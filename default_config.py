@@ -26,7 +26,7 @@ class ExperimentConfig:
 class BaseModelConfig:
     model: str = 'ours'
     rank: int = 40
-    retrain: bool = True
+    retrain: bool = False
 
 
 @dataclass

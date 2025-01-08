@@ -40,8 +40,8 @@ def ErrorMetrics(realVec, estiVec, config):
         from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
         Acc = accuracy_score(realVec, estiVec)
         F1 = f1_score(realVec, estiVec, average='macro')  # 如果是多分类问题，可以修改 average 参数
-        P = precision_score(realVec, estiVec, average='macro')  # 如果是多分类问题，可以修改 average 参数
-        Recall = recall_score(realVec, estiVec, average='macro', zero_division=0)  # 如果是多分类问题，可以修改 average 参数
+        P = precision_score(realVec, estiVec, average='macro', zero_division=0)  # 添加 zero_division 参数
+        Recall = recall_score(realVec, estiVec, average='macro', zero_division=0)  # 保持已有的 zero_division 参数
         return {
             'Acc': Acc,
             'F1': F1,

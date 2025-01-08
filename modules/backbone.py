@@ -6,23 +6,47 @@ from dask.cli import config_get
 from modules.predictor import Predictor
 import pickle
 
+
+class DFT(torch.nn.Module):
+    def __init__(self, config):
+        super(DFT, self).__init__()
+        self.config = config
+        self.top_k = 5
+
+    def forward(self, x):
+        xf = torch.fft.rfft(x)
+        freq = abs(xf)
+        freq[0] = 0
+        top_k_freq, top_list = torch.topk(freq, self.top_k)
+        xf[freq <= top_k_freq.min()] = 0
+        x_season = torch.fft.irfft(xf)
+        x_trend = x - x_season
+        return x_season, x_trend
+
+
 class Backbone(torch.nn.Module):
     def __init__(self, config):
         super(Backbone, self).__init__()
         self.config = config
         self.rank = config.rank
         # First Step
-        # self.transfer = torch.nn.Linear(5, self.rank)
-        # self.lstm = torch.nn.LSTM(self.rank, self.rank, num_layers=1, bias=True, batch_first=False, dropout=0, bidirectional=False)
-
         with open(f'./datasets/flow/{config.dataset}_info.pickle', 'rb') as f:
             info = pickle.load(f)
             max_flow_length = info['max_flow_length']
             num_classes = info['num_classes']
-        self.lstm = torch.nn.Linear(max_flow_length, self.rank)
+
+        # TimeStamp encoder
+        self.time_transfer = torch.nn.Linear(max_flow_length, self.rank)
+
+        # Flow encoder
+        self.lstm = torch.nn.LSTM(max_flow_length, self.rank, num_layers=1, bias=True, batch_first=False, dropout=0.00, bidirectional=False)
+
+        # FFT
+        self.fft_calculator = DFT(config)
+        self.fft_transfer = torch.nn.Linear(max_flow_length, self.rank)
 
         self.predictor = Predictor(
-            input_dim=config.rank,
+            input_dim=config.rank * 2,
             hidden_dim=config.rank,
             output_dim=num_classes,
             n_layer=3,
@@ -30,9 +54,31 @@ class Backbone(torch.nn.Module):
         )
 
     def forward(self, time_stamp, seq_input):
-        # context_embeds = self.transfer(time_stamp)
-        # print(seq_input.shape)
-        seq_embeds = self.lstm(seq_input)
-        # final_inputs = torch.cat([context_embeds, seq_embeds], dim = -1)
-        y = self.predictor(seq_embeds)
+        # 做差分计算时间间隔
+        time_stamp = self.diff_the_timestamp(time_stamp)
+
+        # 编码时间间隔与流序列
+        time_embeds = self.time_transfer(time_stamp)
+        seq_embeds, (_, _) = self.lstm(seq_input.unsqueeze(0))
+        seq_embeds = seq_embeds.squeeze(0)
+
+        # FFT
+        seq_season, seq_trend = self.fft_calculator.forward(seq_input)
+        seq_season = self.fft_transfer(seq_season)
+
+        # final_inputs = torch.cat([time_embeds, fft_embeds, seq_embeds], dim=-1)
+        final_inputs = torch.cat([seq_season, seq_embeds], dim=-1)
+
+        # 特征融合
+        y = self.predictor(final_inputs)
         return y
+
+    def diff_the_timestamp(self, time_stamp):
+        time_diff = time_stamp[:, 1:] - time_stamp[:, :-1]  # 按序列方向计算差分，形状 [batch_size, sequence_length-1]
+        # 将 padding 的位置（时间戳为 0 的地方）置为 0，防止错误的差分计算
+        mask = (time_stamp[:, :-1] != 0) & (time_stamp[:, 1:] != 0)  # 两个相邻时间戳都不为 0，才保留差值
+        time_diff = time_diff * mask  # 将 padding 差分置为 0
+        # 恢复原始长度，在最后补 0
+        time_diff = torch.cat([time_diff, torch.zeros(time_stamp.size(0), 1, device=time_stamp.device)], dim=1)
+        return time_diff
+

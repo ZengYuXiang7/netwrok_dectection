@@ -4,4 +4,3 @@
 /checkpoints/
 /datasets/
 git.py
-data_preprocess/data_generator.py

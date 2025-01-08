@@ -34,13 +34,8 @@ def Our_model(commands, hyper=None):
 
 
 def only_once_experiment(commands, exper_name, hyper=None):
-    # command = f"python ./data_preprocess/data_generator.py"
-    # commands.append(command)
-    for time_interval in [10, 50, 100, 500, 1000, 2000]:
-        command = f"python train_model.py --exp_name {exper_name} --time_interval {time_interval} " \
-                  f"--retrain 1 --dataset malware"
-        commands.append(command)
-
+    command = f"python train_model.py --exp_name {exper_name} --retrain 0"
+    commands.append(command)
     if hyper:
         commands = [add_parameter(command, hyper) for command in commands]
     return commands
@@ -50,11 +45,18 @@ def only_once_experiment(commands, exper_name, hyper=None):
 def experiment_command():
     commands = []
     hyper_dict = {
-        'rank': [20, 50, 100]
+        'rank': [50, 80, 100]
     }
-    best_hyper = hyper_search('MLPConfig', hyper_dict)
-    commands = only_once_experiment(commands, 'MLPConfig', best_hyper)
+    # best_hyper = hyper_search('MLPConfig', hyper_dict)
+    # commands = only_once_experiment(commands, 'MLPConfig', best_hyper)
 
+    # best_hyper = hyper_search('LSTMConfig', hyper_dict)
+    # commands = only_once_experiment(commands, 'LSTMConfig', best_hyper)
+
+    # best_hyper = hyper_search('CNNConfig', hyper_dict)
+    # commands = only_once_experiment(commands, 'CNNConfig', best_hyper)
+
+    best_hyper = hyper_search('TestConfig', hyper_dict)
     # commands = only_once_experiment(commands, 'TestConfig', None)
     return commands
 
