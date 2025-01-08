@@ -8,12 +8,34 @@ from dataclasses import dataclass
 @dataclass
 class TestConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
     model: str = 'ours'
-    bs: int = 64
-    rank: int = 30
+    bs: int = 256
+    rank: int = 50
     density: float = 0.8
-    device: str = 'cpu'
-    epochs: int = 300
-    patience: int = 20
-    classification: bool = True
-    debug: bool = False
-    window_size: int = 10
+    device: str = 'cuda'
+    epochs: int = 200
+    patience: int = 30
+
+@dataclass
+class MLPConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
+    model: str = 'mlp'
+    bs: int = 256
+    rank: int = 40
+    epochs: int = 200
+    patience: int = 30
+
+@dataclass
+class LSTMConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
+    model: str = 'lstm'
+    bs: int = 256
+    rank: int = 40
+    epochs: int = 200
+    patience: int = 30
+
+
+@dataclass
+class CNNConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
+    model: str = 'cnn'
+    bs: int = 256
+    rank: int = 40
+    epochs: int = 200
+    patience: int = 30

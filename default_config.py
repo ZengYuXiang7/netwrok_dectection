@@ -10,7 +10,7 @@ class LoggerConfig:
 @dataclass
 class ExperimentConfig:
     seed: int = 0
-    rounds: int = 3
+    rounds: int = 1
     epochs: int = 200
     patience: int = 20
 
@@ -50,6 +50,6 @@ class TrainingConfig:
 
 @dataclass
 class OtherConfig:
-    classification: bool = 1
+    classification: bool = True
     num_classes: int = 6
     Ablation: int = 0

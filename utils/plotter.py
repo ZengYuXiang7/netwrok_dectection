@@ -17,7 +17,7 @@ class MetricsPlotter:
         self.one_round_results = collections.defaultdict(list)
 
     def append_epochs(self, train_loss, metrics):
-        metrics['train_loss'] = train_loss
+        metrics['train_loss'] = train_loss.cpu()
         metrics = {'train_loss': metrics['train_loss'], **metrics}
         for key, values in metrics.items():
             self.one_round_results[key].append(values)
@@ -30,7 +30,7 @@ class MetricsPlotter:
 
     def record_metric(self, metrics):
         import matplotlib.pyplot as plt
-        plt.rcParams['font.sans-serif'] = ['Arial Unicode MS']  # 设置全局字体为 'Arial Unicode MS'
+        # plt.rcParams['font.sans-serif'] = ['Arial Unicode MS']  # 设置全局字体为 'Arial Unicode MS'
 
         num_rounds = len(self.all_rounds_results)
         num_metrics = len(self.all_rounds_results[0])

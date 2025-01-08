@@ -5,10 +5,15 @@ import sys
 import time
 import pickle
 import collections
+
+from torchvision.models import ResNet
 from tqdm import *
 import numpy as np
 import torch
 
+from baselines.lstm import LSTMModel
+from baselines.cnn import CNN
+from baselines.mlp import MLP
 from modules.backbone import Backbone
 
 from utils.metrics import ErrorMetrics
@@ -31,6 +36,12 @@ class Model(torch.nn.Module):
 
         if config.model == 'ours':
             self.model = Backbone(config)
+        elif config.model == 'mlp':
+            self.model = MLP(config)
+        elif config.model == 'cnn':
+            self.model = CNN(config)
+        elif config.model == 'lstm':
+            self.model = LSTMModel(config)
         else:
             raise ValueError(f"Unsupported model type: {config.model}")
 
@@ -194,7 +205,6 @@ def run(config):
         import traceback
         error_details = traceback.format_exc()
         print(error_details)
-        # log.send_email(log_filename, error_details, 'zengyuxiang@hnu.edu.cn')
         sys.exit(1)  # 终止程序，并返回一个非零的退出状态码，表示程序出错
 
     return metrics

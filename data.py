@@ -41,15 +41,43 @@ class experiment:
                 os.makedirs('./datasets/flow')
                 pickle.dump(all_data, open(f'./datasets/flow/{dataset}.pickle', 'wb'))
             return all_data
-        all_data = get_all_flow(config.dataset)
-        all_x, all_y = [], []
-        for i in range(len(all_data)):
-            for key, value in tqdm(all_data[i].items()):
-                this_flow = []
-                for item in value:
-                    this_flow.append([item[0], item[-1]])
-                all_x.append(this_flow)
-                all_y.append(i)
+        try:
+            all_x = pickle.load(open(f'./datasets/flow/{config.dataset}_all_x.pickle', 'rb'))
+            all_y = pickle.load(open(f'./datasets/flow/{config.dataset}_all_y.pickle', 'rb'))
+            dataset_info = pickle.load(open(f'./datasets/flow/{config.dataset}_info.pickle', 'rb'))
+        except Exception as e:
+            print(e)
+            all_data = get_all_flow(config.dataset)
+            all_x, all_y = [], []
+            for i in range(len(all_data)):
+                for key, value in tqdm(all_data[i].items()):
+                    this_flow = []
+                    for item in value:
+                        this_flow.append([item[0], item[-1]])
+                    # 统计数据到达 90 % 的流事件长度为 1320
+                    if len(this_flow) > 1320 or len(this_flow) == 0:
+                        # print(len(this_flow))
+                        # exit()
+                        continue
+                    all_x.append(this_flow)
+                    all_y.append(i)
+            pickle.dump(all_x, open(f'./datasets/flow/{config.dataset}_all_x.pickle', 'wb'))
+            pickle.dump(all_y, open(f'./datasets/flow/{config.dataset}_all_y.pickle', 'wb'))
+
+            max_packet_length = 0
+            max_flow_length = 0
+            for i in range(len(all_x)):
+                max_flow_length = max(max_flow_length, len(all_x[i]))
+                for j in range(len(all_x[i])):
+                    max_packet_length = max(max_packet_length, abs(all_x[i][j][1]))
+            # print(max_flow_length, max_packet_length)
+            dataset_info = {
+                'max_flow_length': max_flow_length,  # padding使用
+                'max_packet_length': max_packet_length,  # 包序列归一化
+                'num_classes': max(all_y) + 1,
+            }
+            pickle.dump(dataset_info, open(f'./datasets/flow/{config.dataset}_info.pickle', 'wb'))
+
         return all_x, all_y
 
 
@@ -71,8 +99,6 @@ class DataModule:
         self.train_loader, self.valid_loader, self.test_loader = get_dataloaders(self.train_set, self.valid_set, self.test_set, config)
         config.log.only_print(f'Train_length : {len(self.train_loader.dataset)} Valid_length : {len(self.valid_loader.dataset)} Test_length : {len(self.test_loader.dataset)} Max_value : {self.max_value:.2f}')
 
-
-
     def get_dataset(self, train_x, train_y, valid_x, valid_y, test_x, test_y, config):
         return (
             TensorDataset(train_x, train_y, config),
@@ -81,6 +107,7 @@ class DataModule:
         )
 
     def preprocess_data(self, x, y, config):
+
         return x, y
 
     def get_train_valid_test_dataset(self, x, y, config):
@@ -143,30 +170,39 @@ class TensorDataset(torch.utils.data.Dataset):
         self.config = config
         self.all_x = all_x
         self.all_y = all_y
+        dataset_info = pickle.load(open(f'./datasets/flow/{config.dataset}_info.pickle', 'rb'))
+        self.max_packet_length = dataset_info['max_packet_length']
+        self.max_flow_length = dataset_info['max_flow_length']
+
 
     def __len__(self):
         return len(self.all_x)
 
     def __getitem__(self, idx):
-        context_info, seq_input = self.all_x[idx]
-        context_info = torch.as_tensor(context_info, dtype=torch.float32)
-        timestamp = torch.as_tensor(seq_input)[:, 0]
-        seq_input = torch.as_tensor(seq_input)[:,-1]
-        # 0 Padding，注意这里是否有误
-        padded_seq = torch.zeros(self.config.max_length, dtype=seq_input.dtype)
-        padded_seq[:seq_input.size(0)] = seq_input
-        seq_input = padded_seq
-        labels = self.all_y[idx]
-        return context_info, seq_input, labels
+        seq_input = self.all_x[idx]
+        # 手动归一化 1514
+        seq_input = torch.tensor(seq_input)
+        stamp = seq_input[:, 0]
+        seq = seq_input[:, 1] / self.max_packet_length
+
+        # 0 Padding，注意这里是否合理，所以需要一个实验检验的过程
+        times_stamp = torch.zeros(self.max_flow_length, dtype=stamp.dtype)
+        times_stamp[:stamp.shape[0]] = stamp
+
+        seq_input = torch.zeros(self.max_flow_length, dtype=seq.dtype)
+        seq_input[:seq.shape[0]] = seq
+
+        label = self.all_y[idx]
+        return times_stamp, seq_input, label
 
 
 def custom_collate_fn(batch, config):
     from torch.utils.data.dataloader import default_collate
-    inputs, seq_input, labels = zip(*batch)
-    context_info = default_collate(inputs)
+    times_stamp, seq_input, labels = zip(*batch)
+    times_stamp = default_collate(times_stamp)
     seq_input = default_collate(seq_input)
-    labels = torch.as_tensor(labels, dtype=torch.long if config.classification else torch.float32)
-    return context_info, seq_input, labels
+    label = torch.as_tensor(labels, dtype=torch.long if config.classification else torch.float32)
+    return times_stamp, seq_input, label
 
 
 def get_dataloaders(train_set, valid_set, test_set, config):

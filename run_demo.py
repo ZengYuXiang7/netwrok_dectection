@@ -49,12 +49,12 @@ def only_once_experiment(commands, exper_name, hyper=None):
 # 在这里写执行顺序
 def experiment_command():
     commands = []
-    commands.append('python data_preprocess/data_generator.py')
     hyper_dict = {
-        'rank': [50]
+        'rank': [20, 50, 100]
     }
-    best_hyper = hyper_search('TestConfig', hyper_dict)
-    # commands = only_once_experiment(commands, 'TestConfig', best_hyper)
+    best_hyper = hyper_search('MLPConfig', hyper_dict)
+    commands = only_once_experiment(commands, 'MLPConfig', best_hyper)
+
     # commands = only_once_experiment(commands, 'TestConfig', None)
     return commands
 
