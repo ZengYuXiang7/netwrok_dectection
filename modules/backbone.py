@@ -46,10 +46,10 @@ class Backbone(torch.nn.Module):
         self.fft_transfer = torch.nn.Linear(max_flow_length, self.rank)
 
         self.predictor = Predictor(
-            input_dim=config.rank * 2,
+            input_dim=config.rank * 3,
             hidden_dim=config.rank,
             output_dim=num_classes,
-            n_layer=3,
+            n_layer=4,
             init_method='xavier'
         )
 
@@ -66,8 +66,8 @@ class Backbone(torch.nn.Module):
         seq_season, seq_trend = self.fft_calculator.forward(seq_input)
         seq_season = self.fft_transfer(seq_season)
 
-        # final_inputs = torch.cat([time_embeds, fft_embeds, seq_embeds], dim=-1)
-        final_inputs = torch.cat([seq_season, seq_embeds], dim=-1)
+        final_inputs = torch.cat([time_embeds, seq_season, seq_embeds], dim=-1)
+        # final_inputs = torch.cat([seq_season, seq_embeds], dim=-1)
 
         # 特征融合
         y = self.predictor(final_inputs)

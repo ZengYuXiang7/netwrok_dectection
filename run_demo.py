@@ -57,7 +57,7 @@ def experiment_command():
     # commands = only_once_experiment(commands, 'CNNConfig', best_hyper)
 
     best_hyper = hyper_search('TestConfig', hyper_dict)
-    # commands = only_once_experiment(commands, 'TestConfig', None)
+    commands = only_once_experiment(commands, 'TestConfig', None)
     return commands
 
 
