@@ -13,17 +13,25 @@ from anaconda_project.internal.cli.command_commands import add_command
 def debug(commands):
     commands.append(f"python train_model.py --config_path ./exper_config.py --exp_name TestConfig "
                     f"--density 100 --retrain 1 --device cpu --rank 300 --rounds 2")
-    return commands
-
+    # 执行所有命令
+    for command in commands:
+        run_command(command, log_file)
+    return True
 
 def Baselines(commands):
-    return commands
+    # 执行所有命令
+    for command in commands:
+        run_command(command, log_file)
+    return True
 
 
 def Ablation(commands, hyper=None):
     if hyper:
         commands = [add_parameter(command, hyper) for command in commands]
-    return commands
+    # 执行所有命令
+    for command in commands:
+        run_command(command, log_file)
+    return True
 
 
 def Our_model(commands, hyper=None):
@@ -33,7 +41,11 @@ def Our_model(commands, hyper=None):
 
     if hyper:
         commands = [add_parameter(command, hyper) for command in commands]
-    return commands
+
+    # 执行所有命令
+    for command in commands:
+        run_command(command, log_file)
+    return True
 
 
 def only_once_experiment(commands, exper_name, hyper=None):
@@ -41,11 +53,15 @@ def only_once_experiment(commands, exper_name, hyper=None):
     commands.append(command)
     if hyper:
         commands = [add_parameter(command, hyper) for command in commands]
-    return commands
+
+    # 执行所有命令
+    for command in commands:
+        run_command(command, log_file)
+    return True
 
 ######################################################################################################
 # 在这里写执行顺序
-def experiment_command():
+def experiment_run():
     commands = []
     hyper_dict = {
         'flow_length_limit': [20, 30, 40],
@@ -53,15 +69,15 @@ def experiment_command():
     }
     best_hyper = hyper_search('MLPConfig', hyper_dict, retrain=0)
     commands = only_once_experiment(commands, 'MLPConfig', best_hyper)
-    #
-    # best_hyper = hyper_search('LSTMConfig', hyper_dict, retrain=0)
-    # commands = only_once_experiment(commands, 'LSTMConfig', best_hyper)
-    #
-    # best_hyper = hyper_search('CNNConfig', hyper_dict, retrain=0)
-    # commands = only_once_experiment(commands, 'CNNConfig', best_hyper)
 
-    # best_hyper = hyper_search('TestConfig', hyper_dict, retrain=0)
-    # commands = only_once_experiment(commands, 'TestConfig', None)
+    best_hyper = hyper_search('LSTMConfig', hyper_dict, retrain=0)
+    commands = only_once_experiment(commands, 'LSTMConfig', best_hyper)
+
+    best_hyper = hyper_search('CNNConfig', hyper_dict, retrain=0)
+    commands = only_once_experiment(commands, 'CNNConfig', best_hyper)
+
+    best_hyper = hyper_search('TestConfig', hyper_dict, retrain=0)
+    commands = only_once_experiment(commands, 'TestConfig', best_hyper)
     return commands
 
 
@@ -98,6 +114,8 @@ def hyper_search(exp_name, hyper_dict, retrain=1):
                 for other_hyper_name, other_hyper_values in hyper_dict.items():
                     if other_hyper_name not in command:
                         command += f"--{other_hyper_name} {other_hyper_values[0]} "
+                        config.__dict__[other_hyper_name] = other_hyper_values[0]
+
                 print(command)
                 subprocess.run(command, shell=True)
                 config.__dict__.update(best_hyper)
@@ -168,11 +186,8 @@ def main():
     with open(log_file, 'a') as f:
         f.write(f"Experiment Start!!!\n")
 
-    commands = experiment_command()
+    experiment_run()
 
-    # 执行所有命令
-    for command in commands:
-        run_command(command, log_file)
 
     with open(log_file, 'a') as f:
         f.write(f"All commands executed successfully.\n\n")
