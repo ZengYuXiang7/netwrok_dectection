@@ -66,7 +66,7 @@ def experiment_run():
     hyper_dict = {
         'flow_length_limit': [20],
         'seq_method': ['lstm', 'self', 'external'],
-        'rank': [56, 64, 100, 128, 512],
+        'rank': [56, 64, 104, 128, 512],
     }
     # best_hyper = hyper_search('MLPConfig', hyper_dict, retrain=0)
     # only_once_experiment('MLPConfig', best_hyper)
@@ -77,7 +77,7 @@ def experiment_run():
     # best_hyper = hyper_search('CNNConfig', hyper_dict, retrain=0)
     # only_once_experiment('CNNConfig', best_hyper)
 
-    best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=0, retrain=0)
+    best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=1, retrain=0)
     only_once_experiment('TestConfig', best_hyper)
     return True
 
