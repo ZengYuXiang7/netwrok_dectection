@@ -14,22 +14,27 @@ class TestConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, T
     device: str = 'cuda'
     epochs: int = 200
     patience: int = 30
+    flow_length_limit: int = 30
 
 @dataclass
 class MLPConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
     model: str = 'mlp'
     bs: int = 256
     rank: int = 40
-    epochs: int = 200
+    epochs: int = 500
     patience: int = 30
+    flow_length_limit: int = 30
+
 
 @dataclass
 class LSTMConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
     model: str = 'lstm'
     bs: int = 256
     rank: int = 40
-    epochs: int = 200
+    epochs: int = 500
     patience: int = 30
+    flow_length_limit: int = 30
+
 
 
 @dataclass
@@ -37,5 +42,7 @@ class CNNConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, Tr
     model: str = 'cnn'
     bs: int = 256
     rank: int = 40
-    epochs: int = 200
+    epochs: int = 500
     patience: int = 30
+    flow_length_limit: int = 30
+

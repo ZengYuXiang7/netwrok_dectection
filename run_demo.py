@@ -5,6 +5,9 @@ import subprocess
 import numpy as np
 from datetime import datetime
 
+from anaconda_project.internal.cli.command_commands import add_command
+
+
 ######################################################################################################
 # 在这里写执行实验逻辑
 def debug(commands):
@@ -45,60 +48,78 @@ def only_once_experiment(commands, exper_name, hyper=None):
 def experiment_command():
     commands = []
     hyper_dict = {
-        'rank': [50, 80, 100]
+        'flow_length_limit': [20, 30, 40],
+        'rank': [50, 80, 100],
     }
-    # best_hyper = hyper_search('MLPConfig', hyper_dict)
-    # commands = only_once_experiment(commands, 'MLPConfig', best_hyper)
-
-    # best_hyper = hyper_search('LSTMConfig', hyper_dict)
+    best_hyper = hyper_search('MLPConfig', hyper_dict, retrain=0)
+    commands = only_once_experiment(commands, 'MLPConfig', best_hyper)
+    #
+    # best_hyper = hyper_search('LSTMConfig', hyper_dict, retrain=0)
     # commands = only_once_experiment(commands, 'LSTMConfig', best_hyper)
-
-    # best_hyper = hyper_search('CNNConfig', hyper_dict)
+    #
+    # best_hyper = hyper_search('CNNConfig', hyper_dict, retrain=0)
     # commands = only_once_experiment(commands, 'CNNConfig', best_hyper)
 
-    best_hyper = hyper_search('TestConfig', hyper_dict)
-    commands = only_once_experiment(commands, 'TestConfig', None)
+    # best_hyper = hyper_search('TestConfig', hyper_dict, retrain=0)
+    # commands = only_once_experiment(commands, 'TestConfig', None)
     return commands
 
 
-def hyper_search(exp_name, hyper_dict):
+def hyper_search(exp_name, hyper_dict, retrain=1):
     """
     多超参数逐步优化
     :param hyper_dict: 字典形式的超参数和其对应搜索范围，例如：
                        {'Rank': [10, 50, 100], 'Order': [0.1, 0.5, 1.0]}
     :return: 最优超参数字典
     """
-    from train_model import run
     from utils.config import get_config
-
+    import pickle
     config = get_config(exp_name)
     best_hyper = {}
+    # Run the all hyper
     with open(log_file, 'a') as f:
         for hyper_name, hyper_values in hyper_dict.items():
             current_best_value = None
             best_metric = 0 if config.classification else 1e9
+            print(hyper_name, hyper_values)
             for value in hyper_values:
-                # 设置当前超参数值，同时保留之前优化的最佳值
+                # 设置最基础的实验
+                command = f"python train_model.py --exp_name {exp_name} --hyper_search 1 --retrain {retrain} "
+                # 将搜好的超参数配置上
+                # print(command)
+                if len(best_hyper) != 0:
+                    for best_param_key, best_param_values in best_hyper.items():
+                        command += f"--{best_param_key} {best_param_values} "
+                # print(command)
+                # 搜索正在的参数
+                command += f"--{hyper_name} {value} "
+                # 将其他参数还未探索的先默认使用第一个
+                # print(command)
+                for other_hyper_name, other_hyper_values in hyper_dict.items():
+                    if other_hyper_name not in command:
+                        command += f"--{other_hyper_name} {other_hyper_values[0]} "
+                # print(command)
+                subprocess.run(command, shell=True)
                 config.__dict__.update(best_hyper)
                 config.__dict__[hyper_name] = value
-                # 运行实验
-                metrics = run(config)
+                log_filename = f'Model_{config.model}_Dataset_{config.dataset}_W{config.flow_length_limit:d}_R{config.rank}'
+                this_expr_metrics = pickle.load(open(f'./results/metrics/' + log_filename + '.pkl', 'rb'))
                 # 根据任务选择优化目标
                 if config.classification:
                     metric = 'Acc'
-                    current_metric = np.mean(metrics[metric])
+                    current_metric = np.mean(this_expr_metrics[metric])
                     if current_metric > best_metric:
                         best_metric = current_metric
                         current_best_value = value
                 else:
                     metric = 'MAE'
-                    current_metric = np.mean(metrics[metric])
+                    current_metric = np.mean(this_expr_metrics[metric])
                     if current_metric < best_metric:
                         best_metric = current_metric
                         current_best_value = value
                 f.write(f"Hyperparameter: {hyper_name}, Value: {value}, Metrics: {current_metric}\n")
             # 更新最优超参数
-            print(hyper_name, current_best_value)
+            print(f"Best {hyper_name}: {current_best_value}\n")
             best_hyper[hyper_name] = current_best_value
             f.write(f"Best {hyper_name}: {current_best_value}\n")
         f.write(f"The Best Hyperparameters: {best_hyper}\n")

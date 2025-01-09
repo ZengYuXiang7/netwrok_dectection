@@ -10,7 +10,7 @@ class MLP(torch.nn.Module):
     def __init__(self, config):
         super(MLP, self).__init__()
 
-        with open(f'./datasets/flow/{config.dataset}_info.pickle', 'rb') as f:
+        with open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'rb') as f:
             info = pickle.load(f)
             max_flow_length = info['max_flow_length']
             num_classes = info['num_classes']

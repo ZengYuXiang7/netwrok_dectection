@@ -10,7 +10,7 @@ class CNN(torch.nn.Module):
         super(CNN, self).__init__()
 
         # 从配置文件加载信息
-        with open(f'./datasets/flow/{config.dataset}_info.pickle', 'rb') as f:
+        with open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'rb') as f:
             info = pickle.load(f)
             max_flow_length = info['max_flow_length']  # 输入流的最大长度
             num_classes = info['num_classes']  # 分类的类别数
