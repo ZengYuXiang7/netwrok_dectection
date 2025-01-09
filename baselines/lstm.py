@@ -19,7 +19,7 @@ class LSTMModel(torch.nn.Module):
         input_size = max_flow_length
 
         # 定义 LSTM 网络
-        self.lstm = nn.LSTM(input_size=input_size,
+        self.lstm = nn.LSTM(input_size=1,
                             hidden_size=hidden_size,
                             num_layers=2,  # 双层 LSTM
                             batch_first=True,  # 输入的 batch 在第一个维度
@@ -27,12 +27,15 @@ class LSTMModel(torch.nn.Module):
                             bidirectional=False)  # 单向 LSTM
 
         # 全连接层，用于分类
-        self.fc = nn.Linear(hidden_size, num_classes)  # 输出分类结果
+        self.fc = nn.Linear(hidden_size * max_flow_length, num_classes)  # 输出分类结果
 
     def forward(self, _, x):
         # x: [batch_size, max_flow_length]
-        x = x.unsqueeze(0)  # 扩展最后一个维度，形状变为 [batch_size, max_flow_length, 1]
-
+        x = x.unsqueeze(-1)
+        # print(x.shape)
+        # exit()
         out, (hn, cn) = self.lstm(x)  # out: [batch_size, max_flow_length, hidden_size]
-        y = self.fc(out).squeeze(0)  # 输出分类结果，形状为 [batch_size, num_classes]
+        out = out.reshape(out.shape[0], -1)
+        y = self.fc(out)  # 输出分类结果，形状为 [batch_size, num_classes]
+        # print(y.shape)
         return y

@@ -13,7 +13,7 @@ class TestConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, T
     rank: int = 50
     density: float = 0.8
     device: str = 'cuda'
-    epochs: int = 200
+    epochs: int = 1
     patience: int = 30
     flow_length_limit: int = 30
 
@@ -22,7 +22,7 @@ class MLPConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, Tr
     model: str = 'mlp'
     bs: int = all_batch_size
     rank: int = 40
-    epochs: int = 1
+    epochs: int = 500
     patience: int = 30
     flow_length_limit: int = 30
 

@@ -112,7 +112,7 @@ class Logger:
         def delete_small_log_files(directory):
             # 获取所有.log文件
             log_files = glob.glob(os.path.join(directory, '*.md'))
-            number_lines = 17
+            number_lines = 15
 
             # 遍历所有的.log文件
             for file_path in log_files:
