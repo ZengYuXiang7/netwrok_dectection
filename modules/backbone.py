@@ -30,7 +30,7 @@ class Backbone(torch.nn.Module):
         self.config = config
         self.rank = config.rank
         # First Step
-        with open(f'./datasets/flow/{config.dataset}_info.pickle', 'rb') as f:
+        with open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'rb') as f:
             info = pickle.load(f)
             max_flow_length = info['max_flow_length']
             num_classes = info['num_classes']
@@ -49,7 +49,7 @@ class Backbone(torch.nn.Module):
             input_dim=config.rank * 3,
             hidden_dim=config.rank,
             output_dim=num_classes,
-            n_layer=4,
+            n_layer=3,
             init_method='xavier'
         )
 

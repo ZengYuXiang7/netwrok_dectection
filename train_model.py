@@ -123,9 +123,9 @@ def RunOnce(config, runId, log):
             results = model.evaluate_one_epoch(datamodule, 'test')
             sum_time = pickle.load(open(f'./results/metrics/' + log.filename + '.pkl', 'rb'))['train_time'][runId]
             if not config.classification:
-                log(f'MAE={results["MAE"]:.4f} RMSE={results["RMSE"]:.4f} NMAE={results["NMAE"]:.4f} NRMSE={results["NRMSE"]:.4f}')
+                log(f'MAE={results["MAE"]:.4f} RMSE={results["RMSE"]:.4f} NMAE={results["NMAE"]:.4f} NRMSE={results["NRMSE"]:.4f} time={sum_time:.1f} s ')
             else:
-                log(f'Acc={results["Acc"]:.4f} F1={results["F1"]:.4f} Precision={results["P"]:.4f} Recall={results["Recall"]:.4f}')
+                log(f'Acc={results["Acc"]:.4f} F1={results["F1"]:.4f} Precision={results["P"]:.4f} Recall={results["Recall"]:.4f} time={sum_time:.1f} s ')
             config.record = False
         except Exception as e:
             log.only_print(f'Error: {str(e)}')
@@ -150,6 +150,7 @@ def RunOnce(config, runId, log):
         log.show_test_error(runId, monitor, results, sum_time)
         torch.save(monitor.best_model, model_path)
         log.only_print(f'Model parameters saved to {model_path}')
+
     results['train_time'] = sum_time
     return results
 
@@ -193,7 +194,7 @@ def run(config):
     from utils.plotter import MetricsPlotter
     from utils.utils import set_settings, set_seed
     set_settings(config)
-    log_filename = f'Model_{config.model}_Dataset_{config.dataset}_W{config.time_interval:d}_R{config.rank}'
+    log_filename = f'Model_{config.model}_Dataset_{config.dataset}_W{config.flow_length_limit:d}_R{config.rank}'
     plotter = MetricsPlotter(log_filename, config)
     log = Logger(log_filename, plotter, config)
     try:

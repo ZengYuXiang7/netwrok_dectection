@@ -42,9 +42,9 @@ class experiment:
                 pickle.dump(all_data, open(f'./datasets/flow/{dataset}.pickle', 'wb'))
             return all_data
         try:
-            all_x = pickle.load(open(f'./datasets/flow/{config.dataset}_all_x.pickle', 'rb'))
-            all_y = pickle.load(open(f'./datasets/flow/{config.dataset}_all_y.pickle', 'rb'))
-            dataset_info = pickle.load(open(f'./datasets/flow/{config.dataset}_info.pickle', 'rb'))
+            all_x = pickle.load(open(f'./datasets/flow/{config.dataset}_all_x_{config.flow_length_limit}.pickle', 'rb'))
+            all_y = pickle.load(open(f'./datasets/flow/{config.dataset}_all_y_{config.flow_length_limit}.pickle', 'rb'))
+            dataset_info = pickle.load(open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'rb'))
         except Exception as e:
             print(e)
             all_data = get_all_flow(config.dataset)
@@ -54,15 +54,17 @@ class experiment:
                     this_flow = []
                     for item in value:
                         this_flow.append([item[0], item[-1]])
-                    # 统计数据到达 90 % 的流事件长度为 1320
-                    if len(this_flow) > 1320 or len(this_flow) == 0:
+                    # filter the small flow
+                    if len(this_flow) < config.flow_length_limit:
                         # print(len(this_flow))
                         # exit()
                         continue
-                    all_x.append(this_flow)
+                    all_x.append(this_flow[:config.flow_length_limit])
+                    # print(len(all_x[-1]))
+                    # exit()
                     all_y.append(i)
-            pickle.dump(all_x, open(f'./datasets/flow/{config.dataset}_all_x.pickle', 'wb'))
-            pickle.dump(all_y, open(f'./datasets/flow/{config.dataset}_all_y.pickle', 'wb'))
+            pickle.dump(all_x, open(f'./datasets/flow/{config.dataset}_all_x_{config.flow_length_limit}.pickle', 'wb'))
+            pickle.dump(all_y, open(f'./datasets/flow/{config.dataset}_all_y_{config.flow_length_limit}.pickle', 'wb'))
 
             max_packet_length = 0
             max_flow_length = 0
@@ -76,7 +78,7 @@ class experiment:
                 'max_packet_length': max_packet_length,  # 包序列归一化
                 'num_classes': max(all_y) + 1,
             }
-            pickle.dump(dataset_info, open(f'./datasets/flow/{config.dataset}_info.pickle', 'wb'))
+            pickle.dump(dataset_info, open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'wb'))
 
         return all_x, all_y
 
@@ -170,7 +172,7 @@ class TensorDataset(torch.utils.data.Dataset):
         self.config = config
         self.all_x = all_x
         self.all_y = all_y
-        dataset_info = pickle.load(open(f'./datasets/flow/{config.dataset}_info.pickle', 'rb'))
+        dataset_info = pickle.load(open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'rb'))
         self.max_packet_length = dataset_info['max_packet_length']
         self.max_flow_length = dataset_info['max_flow_length']
 
@@ -182,15 +184,15 @@ class TensorDataset(torch.utils.data.Dataset):
         seq_input = self.all_x[idx]
         # 手动归一化 1514
         seq_input = torch.tensor(seq_input)
-        stamp = seq_input[:, 0]
-        seq = seq_input[:, 1] / self.max_packet_length
+        times_stamp = seq_input[:, 0]
+        seq_input = seq_input[:, 1] / self.max_packet_length
 
-        # 0 Padding，注意这里是否合理，所以需要一个实验检验的过程
-        times_stamp = torch.zeros(self.max_flow_length, dtype=stamp.dtype)
-        times_stamp[:stamp.shape[0]] = stamp
-
-        seq_input = torch.zeros(self.max_flow_length, dtype=seq.dtype)
-        seq_input[:seq.shape[0]] = seq
+        # # 0 Padding，注意这里是否合理，所以需要一个实验检验的过程
+        # times_stamp = torch.zeros(self.max_flow_length, dtype=stamp.dtype)
+        # times_stamp[:stamp.shape[0]] = stamp
+        #
+        # seq_input = torch.zeros(self.max_flow_length, dtype=seq.dtype)
+        # seq_input[:seq.shape[0]] = seq
 
         label = self.all_y[idx]
         return times_stamp, seq_input, label

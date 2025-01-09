@@ -15,7 +15,8 @@ class Logger:
         self,
         filename,
         plotter,
-        config
+        config,
+        show_params=True
     ):
         self.clear_the_useless_logs()
         self.plotter = plotter
@@ -25,17 +26,20 @@ class Logger:
         makedir(self.fileroot)
         self.exper_time = time.strftime('%H_%M_%S', time.localtime(time.time())) + '_'
         self.exper_filename = self.fileroot + self.exper_time + self.filename
+        if config.hyper_search:
+            self.exper_filename += '_hyper_search'
         logging.basicConfig(level=logging.INFO, filename=f"{self.exper_filename}.md", filemode='w', format='%(message)s')
         # logging.basicConfig(level=logging.INFO, filename=f"{self.exper_filename}.md", filemode='w')
         self.logger = logging.getLogger(config.model)
         config.log = self
         self.config = config
-        self.prepare_the_experiment()
+        self.prepare_the_experiment(show_params)
 
 
-    def prepare_the_experiment(self):
+    def prepare_the_experiment(self, show_params):
         self.logger.info('```python')
-        self.log(self.format_and_sort_config_dict(self.config.__dict__))
+        if show_params:
+            self.log(self.format_and_sort_config_dict(self.config.__dict__))
 
     def save_result(self, metrics):
         import pickle
@@ -80,7 +84,7 @@ class Logger:
             self.only_print(f'Best Epoch {monitor.best_epoch} = {monitor.best_score * -1:.4f}  now = {(epoch - monitor.best_epoch):d}')
             if self.config.classification:
                 # self.only_print(f"Round={runId + 1} Epoch={epoch + 1:03d} Loss={epoch_loss:.4f} vAcc={result_error['Acc']:.4f} vF1={result_error['F1']:.4f} vPrecision={result_error['P']:.4f} vRecall={result_error['Recall']:.4f} time={sum(train_time):.1f} s ")
-                self.log(f"Round={runId + 1} Epoch={epoch + 1:03d} Loss={epoch_loss:.4f} vAcc={result_error['Acc']:.4f} vF1={result_error['F1']:.4f} vPrecision={result_error['P']:.4f} vRecall={result_error['Recall']:.4f} time={sum(train_time):.1f} s ")
+                self.only_print(f"Round={runId + 1} Epoch={epoch + 1:03d} Loss={epoch_loss:.4f} vAcc={result_error['Acc']:.4f} vF1={result_error['F1']:.4f} vPrecision={result_error['P']:.4f} vRecall={result_error['Recall']:.4f} time={sum(train_time):.1f} s ")
             else:
                 self.only_print(f"Round={runId + 1} Epoch={epoch + 1:03d} Loss={epoch_loss:.4f} vMAE={result_error['MAE']:.4f} vRMSE={result_error['RMSE']:.4f} vNMAE={result_error['NMAE']:.4f} vNRMSE={result_error['NRMSE']:.4f} time={sum(train_time):.1f} s ")
                 # self.only_print(f"Acc = [1%={result_error['Acc_1']:.4f}, 5%={result_error['Acc_5']:.4f}, 10%={result_error['Acc_10']:.4f}] ")

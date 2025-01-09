@@ -14,12 +14,13 @@ class ExperimentConfig:
     epochs: int = 200
     patience: int = 20
 
-    verbose: int = 0
+    verbose: int = 10
     device: str = 'cuda'
     debug: bool = False
     experiment: bool = False
     program_test: bool = False
     record: bool = True
+    hyper_search: bool = False
 
 
 @dataclass
