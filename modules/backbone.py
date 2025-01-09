@@ -1,8 +1,6 @@
 # coding : utf-8
 # Author : Yuxiang Zeng
 import torch
-from dask.cli import config_get
-
 from modules.predictor import Predictor
 import pickle
 
