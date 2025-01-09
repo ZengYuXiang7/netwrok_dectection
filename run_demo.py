@@ -98,7 +98,7 @@ def hyper_search(exp_name, hyper_dict, retrain=1):
                 for other_hyper_name, other_hyper_values in hyper_dict.items():
                     if other_hyper_name not in command:
                         command += f"--{other_hyper_name} {other_hyper_values[0]} "
-                # print(command)
+                print(command)
                 subprocess.run(command, shell=True)
                 config.__dict__.update(best_hyper)
                 config.__dict__[hyper_name] = value
