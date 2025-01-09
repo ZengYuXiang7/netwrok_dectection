@@ -22,7 +22,7 @@ class MLPConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, Tr
     model: str = 'mlp'
     bs: int = all_batch_size
     rank: int = 40
-    epochs: int = 500
+    epochs: int = 1
     patience: int = 30
     flow_length_limit: int = 30
 
