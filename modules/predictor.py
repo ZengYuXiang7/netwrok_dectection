@@ -12,14 +12,14 @@ class Predictor(torch.nn.Module):
         # Add the first layer
         layers.append(torch.nn.Linear(input_dim, current_dim))
         layers.append(torch.nn.LayerNorm(current_dim))
-        layers.append(torch.nn.ReLU())
+        layers.append(torch.nn.LeakyReLU(negative_slope=1e-2))
 
         # Add intermediate layers
         for _ in range(n_layer - 1):
             next_dim = max(current_dim // 2, output_dim)  # Ensure it doesn't drop below output_dim
             layers.append(torch.nn.Linear(current_dim, next_dim))
             layers.append(torch.nn.LayerNorm(next_dim))
-            layers.append(torch.nn.ReLU())
+            layers.append(torch.nn.LeakyReLU(negative_slope=1e-2))
             current_dim = next_dim
 
         # Add the final layer

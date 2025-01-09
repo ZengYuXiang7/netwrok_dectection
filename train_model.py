@@ -106,7 +106,7 @@ def RunOnce(config, runId, log):
     try:
         model.compile()
     except Exception as e:
-        print('Skip the model.compile()')
+        print(f'Skip the model.compile() because {e}')
 
     # Setting
     monitor = EarlyStopping(config)
@@ -206,7 +206,6 @@ def run(config):
         error_details = traceback.format_exc()
         print(error_details)
         sys.exit(1)  # 终止程序，并返回一个非零的退出状态码，表示程序出错
-
     return metrics
 
 
