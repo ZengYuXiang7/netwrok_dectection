@@ -15,7 +15,9 @@ class TestConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, T
     device: str = 'cuda'
     epochs: int = 500
     patience: int = 30
-    flow_length_limit: int = 30
+    flow_length_limit: int = 20
+
+
 
 @dataclass
 class MLPConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
@@ -24,7 +26,7 @@ class MLPConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, Tr
     rank: int = 40
     epochs: int = 500
     patience: int = 30
-    flow_length_limit: int = 30
+    flow_length_limit: int = 20
 
 
 @dataclass
@@ -34,7 +36,7 @@ class LSTMConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, T
     rank: int = 40
     epochs: int = 500
     patience: int = 30
-    flow_length_limit: int = 30
+    flow_length_limit: int = 20
 
 
 
@@ -45,5 +47,29 @@ class CNNConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, Tr
     rank: int = 40
     epochs: int = 500
     patience: int = 30
-    flow_length_limit: int = 30
+    flow_length_limit: int = 20
+
+@dataclass
+class GCNConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
+    model: str = 'gnn'
+    bs: int = 64
+    rank: int = 64
+    epochs: int = 50
+    patience: int = 10
+    verbose: int = 1
+    flow_length_limit: int = 20
+    graph_encoder: str = 'gcn'
+    order: int = 3
+
+@dataclass
+class GATConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
+    model: str = 'gnn'
+    bs: int = 64
+    rank: int = 64
+    epochs: int = 50
+    patience: int = 10
+    verbose: int = 1
+    flow_length_limit: int = 20
+    graph_encoder: str = 'gat'
+    order: int = 3
 

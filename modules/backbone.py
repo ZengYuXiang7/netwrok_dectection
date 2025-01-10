@@ -65,7 +65,7 @@ class Backbone(torch.nn.Module):
 
         # FFT
         # print(seq_input.shape)
-        # seq_input = torch.abs(seq_input)
+        seq_input = torch.abs(seq_input)
         seq_season, seq_trend = self.fft_calculator.forward(seq_input)
         seq_season = self.fft_transfer(seq_season)
 

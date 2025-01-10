@@ -5,6 +5,7 @@ import torch
 import numpy as np
 from sphinx.builders.gettext import timestamp
 
+from baselines.graph_baselines import build_single_graph
 from utils.config import get_config
 from utils.logger import Logger
 from utils.plotter import MetricsPlotter
@@ -186,22 +187,20 @@ class TensorDataset(torch.utils.data.Dataset):
         seq_input = torch.tensor(seq_input)
         times_stamp = seq_input[:, 0]
         seq_input = seq_input[:, 1] / self.max_packet_length
-
-        # # 0 Padding，注意这里是否合理，所以需要一个实验检验的过程
-        # times_stamp = torch.zeros(self.max_flow_length, dtype=stamp.dtype)
-        # times_stamp[:stamp.shape[0]] = stamp
-        #
-        # seq_input = torch.zeros(self.max_flow_length, dtype=seq.dtype)
-        # seq_input[:seq.shape[0]] = seq
-
+        if self.config.model == 'gnn':
+            times_stamp = build_single_graph(seq_input, times_stamp)
+            seq_input = torch.as_tensor([1.0])
         label = self.all_y[idx]
         return times_stamp, seq_input, label
 
-
+import dgl
 def custom_collate_fn(batch, config):
     from torch.utils.data.dataloader import default_collate
     times_stamp, seq_input, labels = zip(*batch)
-    times_stamp = default_collate(times_stamp)
+    if config.model == 'gnn':
+        times_stamp = dgl.batch(times_stamp)
+    else:
+        times_stamp = default_collate(times_stamp)
     seq_input = default_collate(seq_input)
     label = torch.as_tensor(labels, dtype=torch.long if config.classification else torch.float32)
     return times_stamp, seq_input, label

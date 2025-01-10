@@ -7,6 +7,8 @@ from datetime import datetime
 
 from anaconda_project.internal.cli.command_commands import add_command
 
+from train_model import get_experiment_name
+
 
 ######################################################################################################
 # 在这里写执行实验逻辑
@@ -66,11 +68,16 @@ def experiment_run():
     hyper_dict = {
         'flow_length_limit': [20],
         # 'seq_method': ['lstm', 'self', 'external'],
-        'seq_method': ['gru', 'self'],
-        'rank': [56],
+        'seq_method': ['gru'],
+        'rank': [20, 40, 50, 64, 100, 128],
     }
-    best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=1, retrain=1)
-    only_once_experiment('TestConfig', best_hyper)
+
+    # best_hyper = hyper_search('GCNConfig', hyper_dict, grid_search=0, retrain=0, debug=0)
+    only_once_experiment('GCNConfig')
+    only_once_experiment('GATConfig')
+
+    # best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=0, retrain=0, debug=0)
+    # only_once_experiment('TestConfig', best_hyper)
     return True
 
 
@@ -123,17 +130,18 @@ def hyper_search(exp_name, hyper_dict, grid_search=0, retrain=1, debug=0):
     # 定义一个辅助函数，用于执行命令并读取结果
     def run_and_get_metric(cmd_str, config, chosen_hyper, debug=False):
         # 更新 config 中的超参数
+        print(cmd_str)
         config.__dict__.update(chosen_hyper)
         log_filename = f"Model_{config.model}_Dataset_{config.dataset}_W{config.flow_length_limit:d}_R{config.rank}"
         # 运行命令
         if debug:
-            print(cmd_str)
             print(log_filename, chosen_hyper)
         else:
             subprocess.run(cmd_str, shell=True)
-
         # 读取 metrics
-        this_expr_metrics = pickle.load(open(f'./results/metrics/' + log_filename + '.pkl', 'rb'))
+        metric_file_address = f'./results/metrics/' + get_experiment_name(config)
+        this_expr_metrics = pickle.load(open(metric_file_address+ '.pkl', 'rb'))
+
         # 根据任务类型选取关键指标
         if classification_task:
             metric_name = 'Acc'

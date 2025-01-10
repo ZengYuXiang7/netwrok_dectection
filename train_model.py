@@ -11,6 +11,7 @@ from tqdm import *
 import numpy as np
 import torch
 
+from baselines.graph_baselines import GnnFamily
 from baselines.lstm import LSTMModel
 from baselines.cnn import CNN
 from baselines.mlp import MLP
@@ -42,6 +43,8 @@ class Model(torch.nn.Module):
             self.model = CNN(config)
         elif config.model == 'lstm':
             self.model = LSTMModel(config)
+        elif config.model == 'gnn':
+            self.model = GnnFamily(config)
         else:
             raise ValueError(f"Unsupported model type: {config.model}")
 
@@ -118,10 +121,10 @@ def RunOnce(config, runId, log):
 
     if not retrain_required:
         try:
+            sum_time = pickle.load(open(f'./results/metrics/' + log.filename + '.pkl', 'rb'))['train_time'][runId]
             model.load_state_dict(torch.load(model_path, weights_only=True, map_location='cpu'))
             model.setup_optimizer(config)
             results = model.evaluate_one_epoch(datamodule, 'test')
-            sum_time = pickle.load(open(f'./results/metrics/' + log.filename + '.pkl', 'rb'))['train_time'][runId]
             if not config.classification:
                 log(f'MAE={results["MAE"]:.4f} RMSE={results["RMSE"]:.4f} NMAE={results["NMAE"]:.4f} NRMSE={results["NRMSE"]:.4f} time={sum_time:.1f} s ')
             else:
@@ -189,13 +192,13 @@ def RunExperiments(log, config):
     return metrics
 
 
+
 def run(config):
     from utils.logger import Logger
     from utils.plotter import MetricsPlotter
     from utils.utils import set_settings, set_seed
     set_settings(config)
-    log_filename = f'Model_{config.model}_Dataset_{config.dataset}_W{config.flow_length_limit:d}_R{config.rank}'
-    log_filename += f"_method_{config.seq_method}"
+    log_filename = get_experiment_name(config)
     plotter = MetricsPlotter(log_filename, config)
     log = Logger(log_filename, plotter, config)
     try:
@@ -209,6 +212,13 @@ def run(config):
         sys.exit(1)  # 终止程序，并返回一个非零的退出状态码，表示程序出错
     return metrics
 
+def get_experiment_name(config):
+    log_filename = f'Model_{config.model}_Dataset_{config.dataset}_W{config.flow_length_limit:d}_R{config.rank}'
+    try:
+        log_filename += f"_method_{config.seq_method}"
+    except:
+        pass
+    return log_filename
 
 if __name__ == '__main__':
     # Experiment Settings, logger, plotter
