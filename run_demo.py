@@ -12,6 +12,7 @@ from anaconda_project.internal.cli.command_commands import add_command
 # 在这里写执行实验逻辑
 def debug(commands):
     commands = []
+
     # 执行所有命令
     for command in commands:
         run_command(command, log_file)
@@ -19,6 +20,18 @@ def debug(commands):
 
 def Baselines(commands):
     commands = []
+    hyper_dict = {
+        'flow_length_limit': [20],
+        'rank': [50],
+    }
+    best_hyper = hyper_search('MLPConfig', hyper_dict, retrain=0)
+    only_once_experiment('MLPConfig', best_hyper)
+
+    best_hyper = hyper_search('LSTMConfig', hyper_dict, retrain=0)
+    only_once_experiment('LSTMConfig', best_hyper)
+
+    best_hyper = hyper_search('CNNConfig', hyper_dict, retrain=0)
+    only_once_experiment('CNNConfig', best_hyper)
     # 执行所有命令
     for command in commands:
         run_command(command, log_file)
@@ -47,6 +60,21 @@ def Our_model(hyper=None):
     return True
 
 
+######################################################################################################
+# 在这里写执行顺序
+def experiment_run():
+    hyper_dict = {
+        'flow_length_limit': [20],
+        # 'seq_method': ['lstm', 'self', 'external'],
+        'seq_method': ['gru', 'self'],
+        'rank': [56],
+    }
+    best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=1, retrain=1)
+    only_once_experiment('TestConfig', best_hyper)
+    return True
+
+
+# 采用最佳的参数做最后一次复现实验
 def only_once_experiment(exper_name, hyper=None):
     commands = []
     command = f"python train_model.py --exp_name {exper_name} --retrain 0"
@@ -60,29 +88,8 @@ def only_once_experiment(exper_name, hyper=None):
         run_command(command, log_file)
     return True
 
-######################################################################################################
-# 在这里写执行顺序
-def experiment_run():
-    hyper_dict = {
-        'flow_length_limit': [20],
-        'seq_method': ['lstm', 'self', 'external'],
-        'rank': [56, 64, 104, 128, 512],
-    }
-    # best_hyper = hyper_search('MLPConfig', hyper_dict, retrain=0)
-    # only_once_experiment('MLPConfig', best_hyper)
 
-    # best_hyper = hyper_search('LSTMConfig', hyper_dict, retrain=0)
-    # only_once_experiment('LSTMConfig', best_hyper)
-    #
-    # best_hyper = hyper_search('CNNConfig', hyper_dict, retrain=0)
-    # only_once_experiment('CNNConfig', best_hyper)
-
-    best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=1, retrain=0)
-    only_once_experiment('TestConfig', best_hyper)
-    return True
-
-
-def hyper_search(exp_name, hyper_dict, grid_search=0, retrain=1):
+def hyper_search(exp_name, hyper_dict, grid_search=0, retrain=1, debug=0):
     """
     多超参数搜索，可以在逐个超参数搜索和网格搜索之间切换。
 
@@ -96,7 +103,6 @@ def hyper_search(exp_name, hyper_dict, grid_search=0, retrain=1):
     :param grid_search: 若为 True，则做网格搜索，否则做逐个超参数的“逐步优化”。
     :return: 最优超参数字典
     """
-    import os
     import subprocess
     import numpy as np
     import pickle
@@ -115,25 +121,25 @@ def hyper_search(exp_name, hyper_dict, grid_search=0, retrain=1):
     classification_task = getattr(config, 'classification', False)
 
     # 定义一个辅助函数，用于执行命令并读取结果
-    def run_and_get_metric(cmd_str, config, chosen_hyper):
-        # 运行命令
-        subprocess.run(cmd_str, shell=True)
-
+    def run_and_get_metric(cmd_str, config, chosen_hyper, debug=False):
         # 更新 config 中的超参数
         config.__dict__.update(chosen_hyper)
         log_filename = f"Model_{config.model}_Dataset_{config.dataset}_W{config.flow_length_limit:d}_R{config.rank}"
+        # 运行命令
+        if debug:
+            print(cmd_str)
+            print(log_filename, chosen_hyper)
+        else:
+            subprocess.run(cmd_str, shell=True)
 
         # 读取 metrics
         this_expr_metrics = pickle.load(open(f'./results/metrics/' + log_filename + '.pkl', 'rb'))
-
         # 根据任务类型选取关键指标
         if classification_task:
             metric_name = 'Acc'
-            best_value = np.mean(this_expr_metrics[metric_name])
         else:
             metric_name = 'MAE'
-            best_value = np.mean(this_expr_metrics[metric_name])
-
+        best_value = np.mean(this_expr_metrics[metric_name])
         return best_value
 
     # =======================
@@ -173,7 +179,7 @@ def hyper_search(exp_name, hyper_dict, grid_search=0, retrain=1):
 
                 f.write(f"COMMAND: {command}\n")
                 # 运行并获取结果
-                current_metric = run_and_get_metric(command, config, combo_dict)
+                current_metric = run_and_get_metric(command, config, combo_dict, debug)
 
                 if classification_task:
                     # 分类，metric 越大越好
@@ -185,10 +191,11 @@ def hyper_search(exp_name, hyper_dict, grid_search=0, retrain=1):
                     if current_metric < best_metric:
                         best_metric = current_metric
                         best_combo = combo_dict
-
+                print(f"Combo: {combo_dict}, Metric= {current_metric}\n")
                 f.write(f"Combo: {combo_dict}, Metric= {current_metric}\n")
 
             # 记录最优组合
+            print(f"Best combo: {best_combo}, Best metric: {best_metric}\n")
             f.write(f"Best combo: {best_combo}, Best metric: {best_metric}\n")
         return best_combo
 
@@ -199,8 +206,6 @@ def hyper_search(exp_name, hyper_dict, grid_search=0, retrain=1):
         """
         保持原有的“逐个超参数”逻辑
         """
-        best_hyper = {}
-        best_metric = 0 if classification_task else 1e9
 
         with open(log_file, 'a') as f:
             f.write("\n=== Sequential Hyper Search ===\n")
@@ -224,6 +229,7 @@ def hyper_search(exp_name, hyper_dict, grid_search=0, retrain=1):
 
                     # 先写入之前已经确定的 best_hyper
                     for best_param_key, best_param_value in best_hyper.items():
+                        config.best_param_key = best_param_value
                         command += f"--{best_param_key} {best_param_value} "
 
                     # 再加当前要测试的
@@ -232,6 +238,8 @@ def hyper_search(exp_name, hyper_dict, grid_search=0, retrain=1):
                     # 对其他 hyper 未探索过的，使用它们的第一个值
                     for other_hyper_name, other_hyper_values in hyper_dict.items():
                         if other_hyper_name not in best_hyper and other_hyper_name != hyper_name:
+                            config.other_hyper_name = other_hyper_values[0]
+                            best_hyper[other_hyper_name] = other_hyper_values[0]
                             command += f"--{other_hyper_name} {other_hyper_values[0]} "
 
                     # 运行命令、获取 metric
@@ -239,7 +247,7 @@ def hyper_search(exp_name, hyper_dict, grid_search=0, retrain=1):
                     chosen_dict[hyper_name] = value
 
                     f.write(f"COMMAND: {command}\n")
-                    current_metric = run_and_get_metric(command, config, chosen_dict)
+                    current_metric = run_and_get_metric(command, config, chosen_dict, debug)
 
                     # 比较更新最优
                     if classification_task:
@@ -255,6 +263,7 @@ def hyper_search(exp_name, hyper_dict, grid_search=0, retrain=1):
 
                 # 结束后，更新最优
                 best_hyper[hyper_name] = current_best_value
+                print(f"==> Best {hyper_name}: {current_best_value}, local_best_metric: {local_best_metric}\n")
                 f.write(f"==> Best {hyper_name}: {current_best_value}, local_best_metric: {local_best_metric}\n")
 
             # 全部结束后，打印并写日志

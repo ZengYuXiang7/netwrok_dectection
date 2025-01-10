@@ -195,6 +195,7 @@ def run(config):
     from utils.utils import set_settings, set_seed
     set_settings(config)
     log_filename = f'Model_{config.model}_Dataset_{config.dataset}_W{config.flow_length_limit:d}_R{config.rank}'
+    log_filename += f"_method_{config.seq_method}"
     plotter = MetricsPlotter(log_filename, config)
     log = Logger(log_filename, plotter, config)
     try:

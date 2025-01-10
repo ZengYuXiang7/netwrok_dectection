@@ -7,6 +7,7 @@ from modules.dft import DFT
 from modules.predictor import Predictor
 import pickle
 
+from modules.seq_encoder import SeqEncoder
 
 
 class Backbone(torch.nn.Module):
@@ -30,10 +31,7 @@ class Backbone(torch.nn.Module):
 
         # Flow encoder
         self.seq_transfer = torch.nn.Linear(1, self.rank)
-
-        self.lstm = torch.nn.LSTM(self.rank, self.rank, num_layers=2, bias=True, batch_first=False, dropout=0.00, bidirectional=False)
-        self.self_attention = torch.nn.MultiheadAttention(self.rank, 8, 0.10, batch_first=True)
-        self.external_attention = ExternalAttention(self.rank, 128)
+        self.seq_encoder = SeqEncoder(config)
 
         self.dropout = torch.nn.Dropout(0.1)
         self.MLP1 = torch.nn.Sequential(
@@ -53,7 +51,7 @@ class Backbone(torch.nn.Module):
             input_dim=config.rank * 3,
             hidden_dim=config.rank,
             output_dim=num_classes,
-            n_layer=2,
+            n_layer=3,
             init_method='xavier'
         )
 
@@ -64,9 +62,12 @@ class Backbone(torch.nn.Module):
         # 编码时间间隔与流序列
         time_embeds = self.time_transfer(time_stamp)
 
-        # 编码流序列
-        abs_seq = torch.abs(seq_input.unsqueeze(-1))
-        seq_embeds = self.seq_transfer(abs_seq)
+
+        # FFT
+        # print(seq_input.shape)
+        # seq_input = torch.abs(seq_input)
+        seq_season, seq_trend = self.fft_calculator.forward(seq_input)
+        seq_season = self.fft_transfer(seq_season)
 
         # 位置编码
         # batch_size, seq_len, _ = lstm_input.shape
@@ -74,15 +75,12 @@ class Backbone(torch.nn.Module):
         # lstm_input = lstm_input + pos_embed
         # lstm_input = self.pos_norm(lstm_input)
 
-        # 序列学习
-        if self.config.seq_method == 'lstm':
-            seq_output, (_, _) = self.lstm(seq_embeds)
-        elif self.config.seq_method == 'self':
-            seq_output, _ = self.self_attention(seq_embeds, seq_embeds, seq_embeds)
-        elif self.config.seq_method == 'external':
-            seq_output = self.external_attention(seq_embeds)
+        # 序列学习,  编码流序列
+        seq_input = seq_input.unsqueeze(-1)
+        seq_embeds = self.seq_transfer(seq_input)
+        seq_enc = self.seq_encoder(seq_embeds)
 
-        seq_embeds = seq_embeds + self.dropout(seq_output)
+        seq_embeds = seq_embeds + self.dropout(seq_enc)
         seq_embeds = self.seq_output_norm1(seq_embeds)
         seq_embeds = seq_embeds + self.dropout(self.MLP1(seq_embeds))
         seq_embeds = self.seq_output_norm2(seq_embeds)
@@ -91,9 +89,7 @@ class Backbone(torch.nn.Module):
         seq_embeds = seq_embeds.reshape(seq_embeds.shape[0], -1)
         seq_embeds = self.seq_output_transfer(seq_embeds)
 
-        # FFT
-        seq_season, seq_trend = self.fft_calculator.forward(seq_input)
-        seq_season = self.fft_transfer(seq_season)
+
 
         final_inputs = torch.cat([time_embeds, seq_season, seq_embeds], dim=-1)
         # 特征融合
