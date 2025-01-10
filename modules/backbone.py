@@ -90,7 +90,6 @@ class Backbone(torch.nn.Module):
         seq_embeds = self.seq_output_transfer(seq_embeds)
 
 
-
         final_inputs = torch.cat([time_embeds, seq_season, seq_embeds], dim=-1)
         # 特征融合
         y = self.predictor(final_inputs)

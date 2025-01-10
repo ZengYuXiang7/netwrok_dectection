@@ -117,7 +117,7 @@ def RunOnce(config, runId, log):
     model_path = f'./checkpoints/{config.model}/{log.filename}_round_{runId}.pt'
 
     # Check if retrain is required or if model file exists
-    retrain_required = config.retrain == 1 or not os.path.exists(model_path)
+    retrain_required = config.retrain == 1 or not os.path.exists(model_path) and config.continue_train
 
     if not retrain_required:
         try:
@@ -133,7 +133,10 @@ def RunOnce(config, runId, log):
         except Exception as e:
             log.only_print(f'Error: {str(e)}')
             retrain_required = True
-            print()
+
+    if config.continue_train:
+        log.only_print(f'Continue training...')
+        model.load_state_dict(torch.load(model_path, weights_only=True, map_location='cpu'))
 
     if retrain_required:
         model.setup_optimizer(config)
@@ -147,6 +150,7 @@ def RunOnce(config, runId, log):
             log.show_epoch_error(runId, epoch, monitor, train_loss, valid_error, train_time)
             train_time.append(time_cost)
             log.plotter.append_epochs(train_loss, valid_error)
+            torch.save(model.state_dict(), model_path)
         model.load_state_dict(monitor.best_model)
         sum_time = sum(train_time[: monitor.best_epoch])
         results = model.evaluate_one_epoch(datamodule, 'test')

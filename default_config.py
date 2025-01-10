@@ -21,7 +21,7 @@ class ExperimentConfig:
     program_test: bool = False
     record: bool = True
     hyper_search: bool = False
-
+    continue_train: bool = False
 
 @dataclass
 class BaseModelConfig:

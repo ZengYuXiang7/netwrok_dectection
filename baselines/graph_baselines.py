@@ -30,7 +30,7 @@ class GnnFamily(torch.nn.Module):
         self.acts = torch.nn.ModuleList([torch.nn.ReLU() for _ in range(self.order)])
         self.dropout = torch.nn.Dropout(0.10)
         self.readout_layer = torch.nn.Linear(self.rank, self.rank)
-        self.classifier = torch.nn.Linear(self.rank * self.max_flow_length, num_classes)
+        self.classifier = torch.nn.Linear(self.rank, num_classes)
 
     def forward(self, graph, _):
         feats = graph.ndata['feats'].reshape(-1, 1)
@@ -44,8 +44,21 @@ class GnnFamily(torch.nn.Module):
             feats = act(feats)
             if self.config.graph_encoder != 'gat':
                 feats = self.dropout(feats)
-        y = self.classifier(feats.reshape(bs, -1))
+        feats = feats.reshape(bs, -1, self.rank)
+        feats = torch.mean(feats, dim=1)
+        y = self.classifier(feats)
         return y
+
+
+
+def construct_edge_features(graph, src, dst, timestamp, config):
+    graph.add_edges(src, dst)
+    if config.model == 'graphiot':
+        if abs(timestamp[src] - timestamp[dst]) > 1:
+            graph.edges[src, dst].data['edge_feats'] = torch.tensor([0.01])
+        else:
+            graph.edges[src, dst].data['edge_feats'] = torch.tensor([1.0])
+    return graph
 
 
 def build_single_graph(seq, timestamp, config):
@@ -55,16 +68,6 @@ def build_single_graph(seq, timestamp, config):
     :param seq: 一维张量，表示序列中的值。
     :return: DGL 图对象。
     """
-
-    def construct_edge_features(graph, src, dst, timestamp, config):
-        graph.add_edges(src, dst)
-        if config.model == 'graphiot':
-            if abs(timestamp[src] - timestamp[dst]) > 1:
-                graph.edges[src, dst].data['edge_feats'] = torch.tensor([0.01])
-            else:
-                graph.edges[src, dst].data['edge_feats'] = torch.tensor([1.0])
-        return graph
-
     num_nodes = len(seq)
     # 创建一个空图，并预先指定节点数量
     graph = dgl.graph([])
@@ -78,14 +81,14 @@ def build_single_graph(seq, timestamp, config):
         if current_direction == previous_direction:
             if i == 0:
                 continue
-            graph = construct_edge_features(graph, i, i - 1, timestamp)
-            graph = construct_edge_features(graph, i - 1, i, timestamp)
+            graph = construct_edge_features(graph, i, i - 1, timestamp, config)
+            graph = construct_edge_features(graph, i - 1, i, timestamp, config)
             # graph.add_edges(i, i - 1)
             # graph.add_edges(i - 1, i)
             # print(f"无向边 连边 {i - 1} -- {i}")
         else:
             if i == 1:
-                graph = construct_edge_features(graph, 0, i, timestamp)
+                graph = construct_edge_features(graph, 0, i, timestamp, config)
                 # graph.add_edges(0, i)
                 # print(f"连边 {0} -- {i}")
                 previous_direction = current_direction
@@ -99,7 +102,7 @@ def build_single_graph(seq, timestamp, config):
                     pass
                 else:
                     # 直到找到号最小的那个
-                    graph = construct_edge_features(graph, j + 1, i, timestamp)
+                    graph = construct_edge_features(graph, j + 1, i, timestamp, config)
                     # graph.add_edges(j + 1, i)
                     # print(f"连边 {j + 1} -- {i}")
                     break
@@ -114,7 +117,7 @@ def build_single_graph(seq, timestamp, config):
                     if now_direction == current_direction:
                         continue
                     else:
-                        graph = construct_edge_features(graph, j, i, timestamp)
+                        graph = construct_edge_features(graph, j, i, timestamp, config)
                         # graph.add_edges(j, i)
                         # print(f"+ 连边 {j} -- {i}")
                         break

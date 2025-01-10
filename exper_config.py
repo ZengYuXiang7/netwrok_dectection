@@ -53,11 +53,11 @@ class CNNConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, Tr
 @dataclass
 class GCNConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
     model: str = 'gnn'
-    bs: int = 1024
+    bs: int = 64
     rank: int = 64
-    epochs: int = 200
-    patience: int = 20
-    verbose: int = 1
+    epochs: int = 500
+    patience: int = 30
+    verbose: int = 10
     flow_length_limit: int = 20
     graph_encoder: str = 'gcn'
     order: int = 3
@@ -65,11 +65,11 @@ class GCNConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, Tr
 @dataclass
 class GATConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
     model: str = 'gnn'
-    bs: int = 1024
+    bs: int = 64
     rank: int = 64
-    epochs: int = 200
-    patience: int = 20
-    verbose: int = 1
+    epochs: int = 500
+    patience: int = 30
+    verbose: int = 10
     flow_length_limit: int = 20
     graph_encoder: str = 'gat'
     order: int = 3
@@ -78,11 +78,11 @@ class GATConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, Tr
 @dataclass
 class GINConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
     model: str = 'gnn'
-    bs: int = 1024
+    bs: int = 64
     rank: int = 64
-    epochs: int = 200
-    patience: int = 20
-    verbose: int = 1
+    epochs: int = 500
+    patience: int = 30
+    verbose: int = 10
     flow_length_limit: int = 20
     graph_encoder: str = 'gin'
     order: int = 3

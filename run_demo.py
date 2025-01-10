@@ -67,17 +67,19 @@ def Our_model(hyper=None):
 def experiment_run():
     hyper_dict = {
         'flow_length_limit': [20],
-        # 'seq_method': ['lstm', 'self', 'external'],
-        'seq_method': ['gru'],
-        'rank': [20, 40, 50, 64, 100, 128],
+        # 'seq_method': ['gru', 'lstm', 'self', 'external'],
+        'rank': [40, 50, 64, 100, 128],
     }
 
     # best_hyper = hyper_search('GCNConfig', hyper_dict, grid_search=0, retrain=0, debug=0)
-    only_once_experiment('GCNConfig')
-    only_once_experiment('GATConfig')
-
-    # best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=0, retrain=0, debug=0)
-    # only_once_experiment('TestConfig', best_hyper)
+    best_hyper = hyper_search('GCNConfig', hyper_dict, grid_search=0, retrain=1)
+    only_once_experiment('GCNConfig', best_hyper)  # {'continue_train': 1}
+    best_hyper = hyper_search('GATConfig', hyper_dict, grid_search=0, retrain=1)
+    only_once_experiment('GATConfig', best_hyper)  # {'continue_train': 1}
+    best_hyper = hyper_search('GINConfig', hyper_dict, grid_search=0, retrain=1)
+    only_once_experiment('GINConfig', best_hyper)  # {'continue_train': 1}
+    best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=0, retrain=1, debug=0)
+    only_once_experiment('TestConfig', best_hyper)
     return True
 
 

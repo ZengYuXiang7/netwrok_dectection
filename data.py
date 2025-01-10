@@ -104,9 +104,9 @@ class DataModule:
 
     def get_dataset(self, train_x, train_y, valid_x, valid_y, test_x, test_y, config):
         return (
-            TensorDataset(train_x, train_y, config),
-            TensorDataset(valid_x, valid_y, config),
-            TensorDataset(test_x, test_y, config)
+            TensorDataset(train_x, train_y, 'train', config),
+            TensorDataset(valid_x, valid_y, 'valid', config),
+            TensorDataset(test_x, test_y, 'test', config)
         )
 
     def preprocess_data(self, x, y, config):
@@ -169,14 +169,30 @@ class DataModule:
 
 
 class TensorDataset(torch.utils.data.Dataset):
-    def __init__(self, all_x, all_y, config):
+    def __init__(self, all_x, all_y, mode, config):
         self.config = config
         self.all_x = all_x
         self.all_y = all_y
+        self.mode = mode
         dataset_info = pickle.load(open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'rb'))
         self.max_packet_length = dataset_info['max_packet_length']
         self.max_flow_length = dataset_info['max_flow_length']
-
+        if self.config.model == 'gnn':
+            try:
+                with open(f'./datasets/flow/{config.dataset}_{config.flow_length_limit}_{self.mode}_graph.pickle', 'rb') as f:
+                    self.all_graph = pickle.load(f)
+            except Exception as e:
+                print(e)
+                self.all_graph = []
+                for i in trange(len(all_x)):
+                    seq_input = self.all_x[i]
+                    seq_input = torch.tensor(seq_input)
+                    times_stamp = seq_input[:, 0]
+                    seq_input = seq_input[:, 1] / self.max_packet_length
+                    graph = build_single_graph(seq_input, times_stamp, self.config)
+                    self.all_graph.append(graph)
+                with open(f'./datasets/flow/{config.dataset}_{config.flow_length_limit}_{self.mode}_graph.pickle', 'wb') as f:
+                    pickle.dump(self.all_graph, f)
 
     def __len__(self):
         return len(self.all_x)
@@ -187,8 +203,9 @@ class TensorDataset(torch.utils.data.Dataset):
         seq_input = torch.tensor(seq_input)
         times_stamp = seq_input[:, 0]
         seq_input = seq_input[:, 1] / self.max_packet_length
-        if self.config.model == 'gnn':
-            times_stamp = build_single_graph(seq_input, times_stamp, self.config)
+        if self.config.model == 'gnn': # 优化
+            # times_stamp = build_single_graph(seq_input, times_stamp, self.config)
+            times_stamp = self.all_graph[idx]
             seq_input = torch.as_tensor([1.0])
         label = self.all_y[idx]
         return times_stamp, seq_input, label
