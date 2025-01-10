@@ -22,6 +22,8 @@ class GnnFamily(torch.nn.Module):
             self.layers = torch.nn.ModuleList([dgl.nn.pytorch.SAGEConv(self.rank, self.rank, aggregator_type='gcn') for i in range(self.order)])
         elif config.graph_encoder == 'gat':
             self.layers = torch.nn.ModuleList([dgl.nn.pytorch.GATConv(self.rank, self.rank, config.heads, 0.10) for i in range(self.order)])
+        elif config.graph_encoder == 'gin':
+            self.layers = torch.nn.ModuleList([dgl.nn.pytorch.GINConv(torch.nn.Linear(self.rank, self.rank), 'max')])
         else:
             raise NotImplementedError
         self.norms = torch.nn.ModuleList([torch.nn.LayerNorm(self.rank) for _ in range(self.order)])
@@ -46,7 +48,7 @@ class GnnFamily(torch.nn.Module):
         return y
 
 
-def build_single_graph(seq, timestamp):
+def build_single_graph(seq, timestamp, config):
     """
     根据序列构建自定义图，每个点对应一个节点，并根据方向添加边。
 
@@ -54,12 +56,13 @@ def build_single_graph(seq, timestamp):
     :return: DGL 图对象。
     """
 
-    def construct_edge_features(graph, src, dst, timestamp):
+    def construct_edge_features(graph, src, dst, timestamp, config):
         graph.add_edges(src, dst)
-        if abs(timestamp[src] - timestamp[dst]) > 0.5:
-            graph.edges[src, dst].data['edge_feats'] = torch.tensor([1.0])
-        else:
-            graph.edges[src, dst].data['edge_feats'] = torch.tensor([0.01])
+        if config.model == 'graphiot':
+            if abs(timestamp[src] - timestamp[dst]) > 1:
+                graph.edges[src, dst].data['edge_feats'] = torch.tensor([0.01])
+            else:
+                graph.edges[src, dst].data['edge_feats'] = torch.tensor([1.0])
         return graph
 
     num_nodes = len(seq)

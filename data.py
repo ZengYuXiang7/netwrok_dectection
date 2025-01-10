@@ -188,7 +188,7 @@ class TensorDataset(torch.utils.data.Dataset):
         times_stamp = seq_input[:, 0]
         seq_input = seq_input[:, 1] / self.max_packet_length
         if self.config.model == 'gnn':
-            times_stamp = build_single_graph(seq_input, times_stamp)
+            times_stamp = build_single_graph(seq_input, times_stamp, self.config)
             seq_input = torch.as_tensor([1.0])
         label = self.all_y[idx]
         return times_stamp, seq_input, label
