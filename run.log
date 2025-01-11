@@ -1,0 +1,2014 @@
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.5490981963927856
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.5490981963927856
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.763169195533925
+Hyperparameter: flow_length_limit, Value: 30, Metrics: 0.5745986779981114
+Hyperparameter: flow_length_limit, Value: 40, Metrics: 0.5431063401543106
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.763169195533925
+Hyperparameter: rank, Value: 80, Metrics: 0.6130117377612367
+Hyperparameter: rank, Value: 100, Metrics: 0.6130117377612367
+Best rank: 50
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.763169195533925
+Hyperparameter: flow_length_limit, Value: 30, Metrics: 0.5745986779981114
+Hyperparameter: flow_length_limit, Value: 40, Metrics: 0.5431063401543106
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.763169195533925
+Hyperparameter: rank, Value: 80, Metrics: 0.6130117377612367
+Hyperparameter: rank, Value: 100, Metrics: 0.6130117377612367
+Best rank: 50
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.763169195533925
+Hyperparameter: flow_length_limit, Value: 30, Metrics: 0.5745986779981114
+Hyperparameter: flow_length_limit, Value: 40, Metrics: 0.5431063401543106
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.763169195533925
+Hyperparameter: rank, Value: 80, Metrics: 0.6130117377612367
+Hyperparameter: rank, Value: 100, Metrics: 0.6130117377612367
+Best rank: 50
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.763169195533925
+Hyperparameter: flow_length_limit, Value: 30, Metrics: 0.5745986779981114
+Hyperparameter: flow_length_limit, Value: 40, Metrics: 0.5431063401543106
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.763169195533925
+Hyperparameter: rank, Value: 80, Metrics: 0.6130117377612367
+Hyperparameter: rank, Value: 100, Metrics: 0.6130117377612367
+Best rank: 50
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.763169195533925
+Hyperparameter: flow_length_limit, Value: 30, Metrics: 0.5745986779981114
+Hyperparameter: flow_length_limit, Value: 40, Metrics: 0.5431063401543106
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.763169195533925
+Hyperparameter: rank, Value: 80, Metrics: 0.6130117377612367
+Hyperparameter: rank, Value: 100, Metrics: 0.6130117377612367
+Best rank: 50
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Experiment Start!!!
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.763169195533925
+Hyperparameter: flow_length_limit, Value: 30, Metrics: 0.5745986779981114
+Hyperparameter: flow_length_limit, Value: 40, Metrics: 0.5431063401543106
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.763169195533925
+Hyperparameter: rank, Value: 80, Metrics: 0.6130117377612367
+Hyperparameter: rank, Value: 100, Metrics: 0.6130117377612367
+Best rank: 50
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Running at 2025-01-09 16:53: python train_model.py --exp_name MLPConfig --retrain 0 --flow_length_limit 20 --rank 50
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.763169195533925
+Hyperparameter: flow_length_limit, Value: 30, Metrics: 0.5745986779981114
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.7605210420841684
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.7605210420841684
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.7667477812768394
+Hyperparameter: flow_length_limit, Value: 30, Metrics: 0.7609773371104815
+Hyperparameter: flow_length_limit, Value: 40, Metrics: 0.7549480040254948
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.7667477812768394
+Hyperparameter: rank, Value: 80, Metrics: 0.7892928714572001
+Hyperparameter: rank, Value: 100, Metrics: 0.8082593758946465
+Best rank: 100
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 100}
+Running at 2025-01-09 17:19: python train_model.py --exp_name MLPConfig --retrain 0 --flow_length_limit 20 --rank 100
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.7735470941883767
+Experiment Start!!!
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.7735470941883767
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.7735470941883767
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.7735470941883767
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.7735470941883767
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.7735470941883767
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.7735470941883767
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.7735470941883767
+Experiment Start!!!
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.7735470941883767
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.7735470941883767
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.8682364729458918
+Hyperparameter: flow_length_limit, Value: 30, Metrics: 0.8610717658168083
+Hyperparameter: flow_length_limit, Value: 40, Metrics: 0.8446829922844683
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.8682364729458918
+Hyperparameter: rank, Value: 80, Metrics: 0.8734612081305468
+Hyperparameter: rank, Value: 100, Metrics: 0.8766819352991698
+Best rank: 100
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 100}
+Running at 2025-01-09 18:07: python train_model.py --exp_name LSTMConfig --retrain 0 --flow_length_limit 20 --rank 100
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.8454050959060979
+Hyperparameter: flow_length_limit, Value: 30, Metrics: 0.8471435316336167
+Hyperparameter: flow_length_limit, Value: 40, Metrics: 0.8290841999329084
+Best flow_length_limit: 30
+Hyperparameter: rank, Value: 50, Metrics: 0.8471435316336167
+Hyperparameter: rank, Value: 80, Metrics: 0.8856232294617564
+Hyperparameter: rank, Value: 100, Metrics: 0.8740557129367328
+Best rank: 80
+The Best Hyperparameters: {'flow_length_limit': 30, 'rank': 80}
+Running at 2025-01-09 18:40: python train_model.py --exp_name CNNConfig --retrain 0 --flow_length_limit 30 --rank 80
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.8828371027769826
+Hyperparameter: flow_length_limit, Value: 30, Metrics: 0.8557601510859302
+Hyperparameter: flow_length_limit, Value: 40, Metrics: 0.8099630996309963
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.8828371027769826
+Hyperparameter: rank, Value: 80, Metrics: 0.8801173776123676
+Hyperparameter: rank, Value: 100, Metrics: 0.8797595190380761
+Best rank: 50
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Running at 2025-01-09 20:03: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+All commands executed successfully.
+
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.8828371027769826
+Best flow_length_limit: 20
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.8828371027769826
+Best flow_length_limit: 20
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.8828371027769826
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.8828371027769826
+Hyperparameter: rank, Value: 80, Metrics: 0.8801173776123676
+Hyperparameter: rank, Value: 100, Metrics: 0.8797595190380761
+Best rank: 50
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Running at 2025-01-09 20:13: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Experiment Start!!!
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.8828371027769826
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.8828371027769826
+Hyperparameter: rank, Value: 80, Metrics: 0.8801173776123676
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.8828371027769826
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.8828371027769826
+Hyperparameter: rank, Value: 80, Metrics: 0.8801173776123676
+Experiment Start!!!
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.8828371027769826
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.8828371027769826
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.8828371027769826
+Best flow_length_limit: 20
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.8828371027769826
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.8828371027769826
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.8828371027769826
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.8828371027769826
+Experiment Start!!!
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.8828371027769826
+Best flow_length_limit: 20
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.8828371027769826
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.8828371027769826
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.8828371027769826
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.8828371027769826
+Hyperparameter: rank, Value: 80, Metrics: 0.8801173776123676
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.9086744918408245
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.9086744918408245
+Hyperparameter: rank, Value: 80, Metrics: 0.8801173776123676
+Hyperparameter: rank, Value: 100, Metrics: 0.8797595190380761
+Best rank: 50
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Running at 2025-01-09 20:50: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Retrying at 2025-01-09 20:50: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.9086744918408245
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.9086744918408245
+Hyperparameter: rank, Value: 80, Metrics: 0.904308617234469
+Hyperparameter: rank, Value: 100, Metrics: 0.9062410535356427
+Best rank: 50
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Running at 2025-01-09 21:01: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+All commands executed successfully.
+
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.8360292012596622
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.8360292012596622
+Best rank: 50
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Running at 2025-01-09 21:43: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+All commands executed successfully.
+
+Experiment Start!!!
+Experiment Start!!!
+Hyperparameter: flow_length_limit, Value: 20, Metrics: 0.8360292012596622
+Best flow_length_limit: 20
+Hyperparameter: rank, Value: 50, Metrics: 0.8360292012596622
+Best rank: 50
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Running at 2025-01-09 21:46: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+All commands executed successfully.
+
+Experiment Start!!!
+The Best Hyperparameters: {}
+Running at 2025-01-09 21:48: python train_model.py --exp_name TestConfig --retrain 0
+All commands executed successfully.
+
+Experiment Start!!!
+The Best Hyperparameters: {}
+Running at 2025-01-09 21:49: python train_model.py --exp_name TestConfig --retrain 0
+Experiment Start!!!
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Running at 2025-01-09 21:49: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+All commands executed successfully.
+
+Experiment Start!!!
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Running at 2025-01-09 21:50: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Experiment Start!!!
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Running at 2025-01-09 21:51: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Experiment Start!!!
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Running at 2025-01-09 21:52: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Experiment Start!!!
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Running at 2025-01-09 21:53: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Experiment Start!!!
+Experiment Start!!!
+Hyperparameter: rank, Value: 80, Metrics: 0.8309476095047237
+Hyperparameter: rank, Value: 100, Metrics: 0.8430432293157744
+Best rank: 100
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 100}
+Running at 2025-01-09 21:59: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 100
+All commands executed successfully.
+
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Hyperparameter: rank, Value: 50, Metrics: 0.9043801889493273
+Experiment Start!!!
+Hyperparameter: rank, Value: 50, Metrics: 0.9043801889493273
+Experiment Start!!!
+Hyperparameter: rank, Value: 50, Metrics: 0.9043801889493273
+Experiment Start!!!
+Hyperparameter: rank, Value: 50, Metrics: 0.8938591468651589
+Experiment Start!!!
+Hyperparameter: rank, Value: 50, Metrics: 0.8938591468651589
+Hyperparameter: rank, Value: 80, Metrics: 0.8309476095047237
+Hyperparameter: rank, Value: 100, Metrics: 0.8430432293157744
+Best rank: 50
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 50}
+Running at 2025-01-09 22:31: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Retrying at 2025-01-09 22:31: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Retrying at 2025-01-09 22:31: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Retrying at 2025-01-09 22:31: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Retrying at 2025-01-09 22:31: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Retrying at 2025-01-09 22:31: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --rank 50
+Experiment Start!!!
+Hyperparameter: rank, Value: 50, Metrics: 0.8938591468651589
+Experiment Start!!!
+Experiment Start!!!
+Hyperparameter: rank, Value: 50, Metrics: 0.8994417406241053
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Experiment Start!!!
+Running at 2025-01-09 22:50: python train_model.py --exp_name TestConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0
+Retrying at 2025-01-09 22:50: python train_model.py --exp_name TestConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0
+Retrying at 2025-01-09 22:50: python train_model.py --exp_name TestConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0
+Retrying at 2025-01-09 22:50: python train_model.py --exp_name TestConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0
+Experiment Start!!!
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}, Metric= 0.6007014028056112
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 64 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+
+Hyper: rank, Values: [56, 64, 100, 128, 512]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: 56, Metric: 0.6007014028056112
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 64 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+
+Hyper: rank, Values: [56, 64, 100, 128, 512]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: 56, Metric: 0.6007014028056112
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 64 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}, Metric= 0.6007014028056112
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 64 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 64}, Metric= 0.6321213856283997
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 100 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 100}, Metric= 0.8430432293157744
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 128 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 128}, Metric= 0.675708559977097
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 512 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 512}, Metric= 0.688877755511022
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Metric= 0.6007014028056112
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 64 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 64}, Metric= 0.6321213856283997
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 100 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 100}, Metric= 0.8430432293157744
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 128 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 128}, Metric= 0.675708559977097
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 512 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 512}, Metric= 0.688877755511022
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 56}, Metric= 0.6007014028056112
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 64 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 64}, Metric= 0.6321213856283997
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 100 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 100}, Metric= 0.8430432293157744
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 128 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 128}, Metric= 0.675708559977097
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 512 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 512}, Metric= 0.688877755511022
+Best combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 100}, Best metric: 0.8430432293157744
+Running at 2025-01-09 22:56: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 100
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 100
+Retrying at 2025-01-09 22:56: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 100
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 100
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}, Metric= 0.6007014028056112
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 64 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 64}, Metric= 0.6321213856283997
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 100 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 100}, Metric= 0.8430432293157744
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 128 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 128}, Metric= 0.675708559977097
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 512 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 512}, Metric= 0.688877755511022
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Metric= 0.6007014028056112
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 64 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 64}, Metric= 0.6321213856283997
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 100 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 100}, Metric= 0.8430432293157744
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 128 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 128}, Metric= 0.675708559977097
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 512 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 512}, Metric= 0.688877755511022
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 56}, Metric= 0.6007014028056112
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 64 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 64}, Metric= 0.6321213856283997
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 100 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 100}, Metric= 0.8430432293157744
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 128 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 128}, Metric= 0.675708559977097
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 512 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 512}, Metric= 0.688877755511022
+Best combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 100}, Best metric: 0.8430432293157744
+Running at 2025-01-09 22:58: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 100
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 100
+Retrying at 2025-01-09 22:59: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 100
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 100
+Retrying at 2025-01-09 22:59: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 100
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 64 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 64}, Metric= 0.8546378471228171
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 104 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 104}, Metric= 0.8822645290581163
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 128 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 128}, Metric= 0.8971514457486401
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 512 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 512}, Metric= 0.9018036072144289
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 64 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 64}, Metric= 0.8546378471228171
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 104 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 104}, Metric= 0.8822645290581163
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 128 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 128}, Metric= 0.8971514457486401
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 512 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 512}, Metric= 0.9018036072144289
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 64 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 64}, Metric= 0.8546378471228171
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 104 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 104}, Metric= 0.8822645290581163
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 128 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 128}, Metric= 0.8971514457486401
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 512 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 512}, Metric= 0.9018036072144289
+Best combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}, Best metric: 0.9060263383910678
+Running at 2025-01-09 23:35: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 64 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 64}, Metric= 0.8546378471228171
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 104 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 104}, Metric= 0.8822645290581163
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 128 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 128}, Metric= 0.8971514457486401
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 512 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 512}, Metric= 0.9018036072144289
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 64 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 64}, Metric= 0.8546378471228171
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 104 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 104}, Metric= 0.8822645290581163
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 128 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 128}, Metric= 0.8971514457486401
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 512 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 512}, Metric= 0.9018036072144289
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 64 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 64}, Metric= 0.8546378471228171
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 104 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 104}, Metric= 0.8822645290581163
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 128 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 128}, Metric= 0.8971514457486401
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 512 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 512}, Metric= 0.9018036072144289
+Best combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}, Best metric: 0.9060263383910678
+Running at 2025-01-10 01:29: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}
+Running at 2025-01-10 10:15: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}
+Running at 2025-01-10 10:27: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}
+Running at 2025-01-10 10:28: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}
+Running at 2025-01-10 10:30: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}
+Running at 2025-01-10 10:31: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}
+Running at 2025-01-10 10:34: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}
+Running at 2025-01-10 10:37: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 56}, Metric= 0.9060263383910678
+Best combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}, Best metric: 0.9060263383910678
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+
+Hyper: rank, Values: [56, 80]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: 56, Metric: 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 80 
+Value: 80, Metric: 0.8309476095047237
+==> Best rank: 56, local_best_metric: 0.9060263383910678
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+
+Hyper: rank, Values: [56, 104]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: 56, Metric: 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 104 
+Value: 104, Metric: 0.8822645290581163
+==> Best rank: 56, local_best_metric: 0.9060263383910678
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+
+Hyper: rank, Values: [56, 104]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: 56, Metric: 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 104 
+Value: 104, Metric: 0.8822645290581163
+==> Best rank: 56, local_best_metric: 0.9060263383910678
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Value: self, Metric: 0.8994417406241053
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Value: external, Metric: 0.8994417406241053
+==> Best seq_method: lstm, local_best_metric: 0.8994417406241053
+
+Hyper: rank, Values: [56, 104]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: 56, Metric: 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 104 
+Value: 104, Metric: 0.8822645290581163
+==> Best rank: 56, local_best_metric: 0.9060263383910678
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --rank 56 --seq_method self 
+Value: self, Metric: 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --rank 56 --seq_method external 
+Value: external, Metric: 0.9060263383910678
+==> Best seq_method: lstm, local_best_metric: 0.9060263383910678
+
+Hyper: rank, Values: [56, 104]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --rank 56 --seq_method lstm --rank 56 
+Value: 56, Metric: 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --rank 56 --seq_method lstm --rank 104 
+Value: 104, Metric: 0.8822645290581163
+==> Best rank: 56, local_best_metric: 0.9060263383910678
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 56, 'seq_method': 'lstm'}
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --rank 56 --seq_method self 
+Value: self, Metric: 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --rank 56 --seq_method external 
+Value: external, Metric: 0.9060263383910678
+==> Best seq_method: lstm, local_best_metric: 0.9060263383910678
+
+Hyper: rank, Values: [56, 104]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --rank 56 --seq_method lstm --rank 56 
+Value: 56, Metric: 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --rank 56 --seq_method lstm --rank 104 
+Value: 104, Metric: 0.8822645290581163
+==> Best rank: 56, local_best_metric: 0.9060263383910678
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 56, 'seq_method': 'lstm'}
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['lstm', 'self', 'external']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Value: lstm, Metric: 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --rank 56 --seq_method self 
+Value: self, Metric: 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --rank 56 --seq_method external 
+Value: external, Metric: 0.9060263383910678
+==> Best seq_method: lstm, local_best_metric: 0.9060263383910678
+
+Hyper: rank, Values: [56, 104]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --rank 56 --seq_method lstm --rank 56 
+Value: 56, Metric: 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --rank 56 --seq_method lstm --rank 104 
+Value: 104, Metric: 0.8822645290581163
+==> Best rank: 56, local_best_metric: 0.9060263383910678
+The Best Hyperparameters: {'flow_length_limit': 20, 'rank': 56, 'seq_method': 'lstm'}
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 104 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 104}, Metric= 0.8822645290581163
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 104 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 104}, Metric= 0.8822645290581163
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 104 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 104}, Metric= 0.8822645290581163
+Best combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}, Best metric: 0.9060263383910678
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 104 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 104}, Metric= 0.8822645290581163
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 104 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 104}, Metric= 0.8822645290581163
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 104 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 104}, Metric= 0.8822645290581163
+Best combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}, Best metric: 0.9060263383910678
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 80 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 80}, Metric= 0.8309476095047237
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 104 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 104}, Metric= 0.8822645290581163
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 128 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 128}, Metric= 0.8971514457486401
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method lstm --rank 512 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 512}, Metric= 0.9018036072144289
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 80 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 80}, Metric= 0.8309476095047237
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 104 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 104}, Metric= 0.8822645290581163
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 128 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 128}, Metric= 0.8971514457486401
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method self --rank 512 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 512}, Metric= 0.9018036072144289
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 80 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 80}, Metric= 0.8309476095047237
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 104 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 104}, Metric= 0.8822645290581163
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 128 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 128}, Metric= 0.8971514457486401
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method external --rank 512 
+Combo: {'flow_length_limit': 20, 'seq_method': 'external', 'rank': 512}, Metric= 0.9018036072144289
+Best combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'rank': 56}, Best metric: 0.9060263383910678
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method self --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Metric= 0.9060263383910678
+Best combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Best metric: 0.9060263383910678
+Running at 2025-01-10 10:53: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method self --rank 56 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method self --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Metric= 0.9060263383910678
+Best combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Best metric: 0.9060263383910678
+Running at 2025-01-10 11:01: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Retrying at 2025-01-10 11:02: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method self --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Metric= 0.9060263383910678
+Best combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Best metric: 0.9060263383910678
+Running at 2025-01-10 11:02: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Retrying at 2025-01-10 11:02: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method self --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Metric= 0.9060263383910678
+Best combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Best metric: 0.9060263383910678
+Running at 2025-01-10 11:03: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Retrying at 2025-01-10 11:03: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method self --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Metric= 0.9060263383910678
+Best combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Best metric: 0.9060263383910678
+Running at 2025-01-10 11:03: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Retrying at 2025-01-10 11:03: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Retrying at 2025-01-10 11:04: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Retrying at 2025-01-10 11:04: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method self --rank 56
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method self --rank 56 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method self --rank 56 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 56 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 56 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 56 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method lstm --rank 56 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method lstm --rank 56 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method lstm --rank 56 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 56 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 56 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method self --rank 56 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method self --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Metric= 0.9060263383910678
+Best combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 56}, Best metric: 0.9060263383910678
+Running at 2025-01-10 11:18: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 56
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 56
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method self --rank 56 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method self --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Metric= 0.9060263383910678
+Best combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 56}, Best metric: 0.9060263383910678
+Running at 2025-01-10 11:19: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 56
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 56
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method self --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Metric= 0.9060263383910678
+Best combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 56}, Best metric: 0.9060263383910678
+Running at 2025-01-10 11:19: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 56
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 56
+Retrying at 2025-01-10 11:20: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 56
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 56 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 56 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 56}, Metric= 0.9060263383910678
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method self --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'self', 'rank': 56}, Metric= 0.9060263383910678
+Best combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 56}, Best metric: 0.9060263383910678
+Running at 2025-01-10 11:40: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 56
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 56 
+Combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 56}, Metric= 0.9060263383910678
+Best combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 56}, Best metric: 0.9060263383910678
+Running at 2025-01-10 11:53: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 56
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 56}
+Running at 2025-01-10 11:59: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 56
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 56}
+Running at 2025-01-10 12:00: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 56
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 20 
+Value: 20, Metric: 0.8940022902948754
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 40 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 20 
+Value: 20, Metric: 0.8940022902948754
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 40 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 20 
+Value: 20, Metric: 0.8940022902948754
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 40 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method gru --rank 20 
+Value: 20, Metric: 0.8940022902948754
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method gru --rank 40 
+Value: 40, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method gru --rank 50 
+Value: 50, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method gru --rank 64 
+Value: 64, Metric: 0.9168336673346693
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method gru --rank 100 
+Value: 100, Metric: 0.9200543945032923
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method gru --rank 128 
+Value: 128, Metric: 0.9156885198969368
+==> Best rank: 100, local_best_metric: 0.9200543945032923
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 100}
+Running at 2025-01-10 16:21: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 100
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 0 --flow_length_limit 20 --seq_method gru --rank 20 
+Experiment Start!!!
+Running at 2025-01-10 16:52: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Retrying at 2025-01-10 16:52: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 16:53: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 16:55: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 16:57: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 16:58: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 17:00: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 18:24: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Retrying at 2025-01-10 18:24: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Retrying at 2025-01-10 18:24: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 18:24: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 18:26: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Retrying at 2025-01-10 18:26: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 18:26: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Retrying at 2025-01-10 18:26: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 18:27: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 18:28: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 19:27: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Retrying at 2025-01-10 19:27: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 19:27: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 19:28: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 19:29: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 19:31: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 22:08: python train_model.py --exp_name MLPConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 22:09: python train_model.py --exp_name MLPConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 22:11: python train_model.py --exp_name MLPConfig --retrain 0 --continue_train 1
+Experiment Start!!!
+Running at 2025-01-10 22:11: python train_model.py --exp_name MLPConfig --retrain 0 --continue_train 1
+Experiment Start!!!
+Running at 2025-01-10 22:26: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Retrying at 2025-01-10 22:26: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 22:26: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Retrying at 2025-01-10 22:26: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 22:26: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 22:32: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Retrying at 2025-01-10 22:32: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Retrying at 2025-01-10 22:32: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 22:32: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Retrying at 2025-01-10 22:32: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Retrying at 2025-01-10 22:32: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Retrying at 2025-01-10 22:32: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Retrying at 2025-01-10 22:32: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 22:33: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Retrying at 2025-01-10 22:33: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 22:33: python train_model.py --exp_name GCNConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GCNConfig --retrain 0
+Retrying at 2025-01-10 22:38: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 22:39: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 22:48: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-10 22:50: python train_model.py --exp_name GCNConfig --retrain 0
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [20, 40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --rank 20 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [40, 50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --rank 40 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --rank 50 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --rank 50 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 50 
+Value: 50, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 64 
+Value: 64, Metric: 0.9168336673346693
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 100 
+Value: 100, Metric: 0.9200543945032923
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 128 
+Value: 128, Metric: 0.9156885198969368
+==> Best rank: 100, local_best_metric: 0.9200543945032923
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 100}
+Running at 2025-01-10 23:46: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 100
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 100
+Retrying at 2025-01-10 23:46: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 100
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 100
+Retrying at 2025-01-10 23:46: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 100
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 100
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 50 
+Value: 50, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 64 
+Value: 64, Metric: 0.9168336673346693
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 100 
+Value: 100, Metric: 0.9200543945032923
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 128 
+Value: 128, Metric: 0.9156885198969368
+==> Best rank: 100, local_best_metric: 0.9200543945032923
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 100}
+Running at 2025-01-10 23:47: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 100
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 50 
+Value: 50, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 64 
+Value: 64, Metric: 0.9168336673346693
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 100 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 50 
+Value: 50, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 64 
+Value: 64, Metric: 0.9168336673346693
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 100 
+Value: 100, Metric: 0.9200543945032923
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 128 
+Value: 128, Metric: 0.9156885198969368
+==> Best rank: 100, local_best_metric: 0.9200543945032923
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 100}
+Running at 2025-01-10 23:50: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 100
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 50 
+Value: 50, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 64 
+Value: 64, Metric: 0.9168336673346693
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 100 
+Value: 100, Metric: 0.9200543945032923
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 128 
+Value: 128, Metric: 0.9156885198969368
+==> Best rank: 100, local_best_metric: 0.9200543945032923
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 100}
+Running at 2025-01-10 23:50: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 100
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 50 
+Value: 50, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 64 
+Value: 64, Metric: 0.9168336673346693
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 100 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 50 
+Value: 50, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 64 
+Value: 64, Metric: 0.9168336673346693
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 100 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 50 
+Value: 50, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 64 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 50 
+Value: 50, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 64 
+Value: 64, Metric: 0.9168336673346693
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 100 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 50 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 50 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 50 
+Value: 50, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 64 
+Value: 64, Metric: 0.9168336673346693
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 100 
+Value: 100, Metric: 0.9200543945032923
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 128 
+Value: 128, Metric: 0.9156885198969368
+==> Best rank: 100, local_best_metric: 0.9200543945032923
+The Best Hyperparameters: {'flow_length_limit': 20, 'seq_method': 'gru', 'rank': 100}
+Running at 2025-01-10 23:55: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --rank 100
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 50 
+Value: 50, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 64 
+Value: 64, Metric: 0.9168336673346693
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 100 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 50 
+Value: 50, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 64 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 50 
+Value: 50, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 64 
+Value: 64, Metric: 0.9168336673346693
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 100 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 50 
+Value: 50, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 64 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --rank 50 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional True --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional True --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional True --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional True --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional True --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional True --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional 1 --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional 1 --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional 1 --rank 50 
+Combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'bidirectional': 1, 'rank': 50}, Metric= 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional 0 --rank 50 
+Combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'bidirectional': 0, 'rank': 50}, Metric= 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method lstm --bidirectional 1 --rank 50 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional 1 --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional 1 --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional 1 --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional 1 --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional 1 --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional 1 --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional 1 --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional 1 --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional 1 --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional 1 --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional True --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional True --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional True --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional True --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional True --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional True --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional True --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional True --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional True --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional False --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional False --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional False --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional False --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional False --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional False --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional False --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional False --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional False --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional False --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional False --rank 50 
+Value: gru, Metric: 0.914758087603779
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional False --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional False --rank 50 
+Value: gru, Metric: 0.5944746636129402
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional False --rank 50 --seq_method lstm 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: seq_method, Values: ['gru', 'lstm']
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Value: gru, Metric: 0.609862582307472
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional True --rank 50 --seq_method lstm 
+Value: lstm, Metric: 0.5986973947895792
+==> Best seq_method: gru, local_best_metric: 0.609862582307472
+
+Hyper: bidirectional, Values: [True, False]
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --bidirectional True --rank 50 --seq_method gru --bidirectional True 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50 
+Combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'bidirectional': True, 'rank': 50}, Metric= 0.609862582307472
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method gru --bidirectional False --rank 50 
+Combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'bidirectional': False, 'rank': 50}, Metric= 0.5944746636129402
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method lstm --bidirectional True --rank 50 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'bidirectional': True, 'rank': 50}, Metric= 0.5986973947895792
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --flow_length_limit 20 --seq_method lstm --bidirectional False --rank 50 
+Combo: {'flow_length_limit': 20, 'seq_method': 'lstm', 'bidirectional': False, 'rank': 50}, Metric= 0.5980532493558546
+Best combo: {'flow_length_limit': 20, 'seq_method': 'gru', 'bidirectional': True, 'rank': 50}, Best metric: 0.609862582307472
+Running at 2025-01-11 00:21: python train_model.py --exp_name TestConfig --retrain 0 --flow_length_limit 20 --seq_method gru --bidirectional True --rank 50
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+The Best Hyperparameters: {'rank': 2}
+Running at 2025-01-11 00:24: python train_model.py --exp_name GCNConfig --retrain 0 --rank 2
+
+=== Sequential Hyper Search ===
+The Best Hyperparameters: {'rank': 2}
+Running at 2025-01-11 00:25: python train_model.py --exp_name GATConfig --retrain 0 --rank 2
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+The Best Hyperparameters: {'rank': 2}
+
+=== Sequential Hyper Search ===
+The Best Hyperparameters: {'rank': 2}
+
+=== Sequential Hyper Search ===
+The Best Hyperparameters: {'rank': 2}
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --rank 50 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+The Best Hyperparameters: {'rank': 2}
+
+=== Sequential Hyper Search ===
+The Best Hyperparameters: {'rank': 2}
+
+=== Sequential Hyper Search ===
+The Best Hyperparameters: {'rank': 2}
+Running at 2025-01-11 00:26: python train_model.py --exp_name GINConfig --retrain 0 --rank 2
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --rank 50 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+The Best Hyperparameters: {'rank': 2}
+Running at 2025-01-11 00:28: python train_model.py --exp_name GINConfig --retrain 0 --rank 2
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --rank 50 
+Experiment Start!!!
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 1 --rank 50 
+Value: 50, Metric: 0.8144145433724592
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 1 --rank 64 
+Value: 64, Metric: 0.8306613226452906
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 1 --rank 100 
+Value: 100, Metric: 0.8542799885485256
+COMMAND: python train_model.py --exp_name GCNConfig --hyper_search 1 --retrain 1 --rank 128 
+Value: 128, Metric: 0.859862582307472
+==> Best rank: 128, local_best_metric: 0.859862582307472
+The Best Hyperparameters: {'rank': 128}
+Running at 2025-01-11 03:12: python train_model.py --exp_name GCNConfig --retrain 0 --rank 128
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GATConfig --hyper_search 1 --retrain 1 --rank 50 
+Value: 50, Metric: 0.8660893215001432
+COMMAND: python train_model.py --exp_name GATConfig --hyper_search 1 --retrain 1 --rank 64 
+Value: 64, Metric: 0.871027769825365
+COMMAND: python train_model.py --exp_name GATConfig --hyper_search 1 --retrain 1 --rank 100 
+Value: 100, Metric: 0.8844832522187231
+COMMAND: python train_model.py --exp_name GATConfig --hyper_search 1 --retrain 1 --rank 128 
+Value: 128, Metric: 0.8898511308330948
+==> Best rank: 128, local_best_metric: 0.8898511308330948
+The Best Hyperparameters: {'rank': 128}
+Running at 2025-01-11 06:08: python train_model.py --exp_name GATConfig --retrain 0 --rank 128
+
+=== Sequential Hyper Search ===
+
+Hyper: rank, Values: [50, 64, 100, 128]
+COMMAND: python train_model.py --exp_name GINConfig --hyper_search 1 --retrain 1 --rank 50 
+Value: 50, Metric: 0.7752648153449757
+COMMAND: python train_model.py --exp_name GINConfig --hyper_search 1 --retrain 1 --rank 64 
+Value: 64, Metric: 0.7905811623246493
+COMMAND: python train_model.py --exp_name GINConfig --hyper_search 1 --retrain 1 --rank 100 
+Value: 100, Metric: 0.8174921271113655
+COMMAND: python train_model.py --exp_name GINConfig --hyper_search 1 --retrain 1 --rank 128 
+Value: 128, Metric: 0.8240767248783281
+==> Best rank: 128, local_best_metric: 0.8240767248783281
+The Best Hyperparameters: {'rank': 128}
+Running at 2025-01-11 08:08: python train_model.py --exp_name GINConfig --retrain 0 --rank 128
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --rank 50 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 50}, Metric= 0.916762095619811
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --rank 64 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 64}, Metric= 0.9163326653306614
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --rank 100 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 100}, Metric= 0.9209132550815917
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 128}, Metric= 0.9207701116518752
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional False --rank 50 
+Combo: {'seq_method': 'gru', 'bidirectional': False, 'rank': 50}, Metric= 0.9168336673346693
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional False --rank 64 
+Combo: {'seq_method': 'gru', 'bidirectional': False, 'rank': 64}, Metric= 0.9156885198969368
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional False --rank 100 
+Combo: {'seq_method': 'gru', 'bidirectional': False, 'rank': 100}, Metric= 0.9196249642141425
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional False --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': False, 'rank': 128}, Metric= 0.9149728027483538
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method lstm --bidirectional True --rank 50 
+Combo: {'seq_method': 'lstm', 'bidirectional': True, 'rank': 50}, Metric= 0.9160463784712282
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method lstm --bidirectional True --rank 64 
+Combo: {'seq_method': 'lstm', 'bidirectional': True, 'rank': 64}, Metric= 0.9190523904952763
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method lstm --bidirectional True --rank 100 
+Combo: {'seq_method': 'lstm', 'bidirectional': True, 'rank': 100}, Metric= 0.9188376753507014
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method lstm --bidirectional True --rank 128 
+Combo: {'seq_method': 'lstm', 'bidirectional': True, 'rank': 128}, Metric= 0.9184082450615517
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method lstm --bidirectional False --rank 50 
+Combo: {'seq_method': 'lstm', 'bidirectional': False, 'rank': 50}, Metric= 0.9078156312625251
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method lstm --bidirectional False --rank 64 
+Combo: {'seq_method': 'lstm', 'bidirectional': False, 'rank': 64}, Metric= 0.9098196392785571
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method lstm --bidirectional False --rank 100 
+Combo: {'seq_method': 'lstm', 'bidirectional': False, 'rank': 100}, Metric= 0.9145433724592041
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method lstm --bidirectional False --rank 128 
+Combo: {'seq_method': 'lstm', 'bidirectional': False, 'rank': 128}, Metric= 0.9158316633266533
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 100}, Best metric: 0.9209132550815917
+Running at 2025-01-11 09:53: python train_model.py --exp_name TestConfig --retrain 0 --seq_method gru --bidirectional True --rank 100
+All commands executed successfully.
+

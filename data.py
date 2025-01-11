@@ -199,28 +199,34 @@ class TensorDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, idx):
         seq_input = self.all_x[idx]
-        # 手动归一化 1514
         seq_input = torch.tensor(seq_input)
         times_stamp = seq_input[:, 0]
-        seq_input = seq_input[:, 1] / self.max_packet_length
-        if self.config.model == 'gnn': # 优化
-            # times_stamp = build_single_graph(seq_input, times_stamp, self.config)
-            times_stamp = self.all_graph[idx]
+
+        # 做差分
+        time_interval = times_stamp[1:] - times_stamp[:-1]
+        time_interval = torch.cat([torch.tensor([0.0], dtype=time_interval.dtype), time_interval])
+
+        # 做包序列归一化
+        seq_input = seq_input[:, 1] / self.max_packet_length # 手动归一化 1514
+
+        if self.config.model == 'gnn':
+            time_interval = self.all_graph[idx]
             seq_input = torch.as_tensor([1.0])
         label = self.all_y[idx]
-        return times_stamp, seq_input, label
+        return time_interval, seq_input, label
+
 
 import dgl
 def custom_collate_fn(batch, config):
     from torch.utils.data.dataloader import default_collate
-    times_stamp, seq_input, labels = zip(*batch)
+    time_interval, seq_input, labels = zip(*batch)
     if config.model == 'gnn':
-        times_stamp = dgl.batch(times_stamp)
+        time_interval = dgl.batch(time_interval)
     else:
-        times_stamp = default_collate(times_stamp)
+        time_interval = default_collate(time_interval)
     seq_input = default_collate(seq_input)
     label = torch.as_tensor(labels, dtype=torch.long if config.classification else torch.float32)
-    return times_stamp, seq_input, label
+    return time_interval, seq_input, label
 
 
 def get_dataloaders(train_set, valid_set, test_set, config):

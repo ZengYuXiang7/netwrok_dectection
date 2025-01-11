@@ -66,8 +66,8 @@ class Model(torch.nn.Module):
         t1 = time.time()
         for train_Batch in (dataModule.train_loader):
             # 这个写法能够直接免掉右边的一切，左边复制好就行
-            time_stamp, seq_input, label = tuple(item.to(self.config.device) for item in train_Batch)
-            preds = self.forward(time_stamp, seq_input)
+            time_interval, seq_input, label = tuple(item.to(self.config.device) for item in train_Batch)
+            preds = self.forward(time_interval, seq_input)
             loss = self.loss_function(preds, label)
             self.optimizer.zero_grad()
             loss.backward()
@@ -81,8 +81,8 @@ class Model(torch.nn.Module):
         dataloader = dataModule.valid_loader if mode == 'valid' and len(dataModule.valid_loader.dataset) != 0 else dataModule.test_loader
         preds, reals, val_loss = [], [], 0.
         for batch in (dataloader):
-            time_stamp, seq_input, label = tuple(item.to(self.config.device) for item in batch)
-            pred = self.forward(time_stamp, seq_input)
+            time_interval, seq_input, label = tuple(item.to(self.config.device) for item in batch)
+            pred = self.forward(time_interval, seq_input)
             if mode == 'valid':
                 val_loss += self.loss_function(pred, label)
             if self.config.classification:
@@ -220,6 +220,10 @@ def get_experiment_name(config):
     log_filename = f'Model_{config.model}_Dataset_{config.dataset}_W{config.flow_length_limit:d}_R{config.rank}'
     try:
         log_filename += f"_method_{config.seq_method}"
+    except:
+        pass
+    try:
+        log_filename += f"_method_{config.graph_encoder}"
     except:
         pass
     return log_filename

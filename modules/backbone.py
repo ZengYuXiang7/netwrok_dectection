@@ -55,16 +55,11 @@ class Backbone(torch.nn.Module):
             init_method='xavier'
         )
 
-    def forward(self, time_stamp, seq_input):
-        # 做差分计算时间间隔
-        time_stamp = self.diff_the_timestamp(time_stamp)
-
+    def forward(self, time_interval, seq_input):
         # 编码时间间隔与流序列
-        time_embeds = self.time_transfer(time_stamp)
-
+        time_embeds = self.time_transfer(time_interval)
 
         # FFT
-        # print(seq_input.shape)
         seq_input = torch.abs(seq_input)
         seq_season, seq_trend = self.fft_calculator.forward(seq_input)
         seq_season = self.fft_transfer(seq_season)
@@ -95,12 +90,5 @@ class Backbone(torch.nn.Module):
         y = self.predictor(final_inputs)
         return y
 
-    def diff_the_timestamp(self, time_stamp):
-        time_diff = time_stamp[:, 1:] - time_stamp[:, :-1]  # 按序列方向计算差分，形状 [batch_size, sequence_length-1]
-        # 将 padding 的位置（时间戳为 0 的地方）置为 0，防止错误的差分计算
-        mask = (time_stamp[:, :-1] != 0) & (time_stamp[:, 1:] != 0)  # 两个相邻时间戳都不为 0，才保留差值
-        time_diff = time_diff * mask  # 将 padding 差分置为 0
-        # 恢复原始长度，在最后补 0
-        time_diff = torch.cat([time_diff, torch.zeros(time_stamp.size(0), 1, device=time_stamp.device)], dim=1)
-        return time_diff
+
 

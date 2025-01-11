@@ -16,6 +16,7 @@ class TestConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, T
     epochs: int = 500
     patience: int = 30
     flow_length_limit: int = 20
+    bidirectional: bool = False
 
 
 

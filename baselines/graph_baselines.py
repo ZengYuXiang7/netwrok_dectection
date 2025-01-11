@@ -30,7 +30,7 @@ class GnnFamily(torch.nn.Module):
         self.acts = torch.nn.ModuleList([torch.nn.ReLU() for _ in range(self.order)])
         self.dropout = torch.nn.Dropout(0.10)
         self.readout_layer = torch.nn.Linear(self.rank, self.rank)
-        self.classifier = torch.nn.Linear(self.rank, num_classes)
+        self.classifier = torch.nn.Linear(self.rank * self.max_flow_length, num_classes)
 
     def forward(self, graph, _):
         feats = graph.ndata['feats'].reshape(-1, 1)
@@ -44,8 +44,9 @@ class GnnFamily(torch.nn.Module):
             feats = act(feats)
             if self.config.graph_encoder != 'gat':
                 feats = self.dropout(feats)
-        feats = feats.reshape(bs, -1, self.rank)
-        feats = torch.mean(feats, dim=1)
+        # feats = feats.reshape(bs, -1, self.rank)
+        # feats = torch.mean(feats, dim=1)
+        feats = feats.reshape(bs, -1)
         y = self.classifier(feats)
         return y
 

@@ -34,6 +34,12 @@ def Baselines(commands):
 
     best_hyper = hyper_search('CNNConfig', hyper_dict, retrain=0)
     only_once_experiment('CNNConfig', best_hyper)
+
+    best_hyper = hyper_search('GCNConfig', hyper_dict, grid_search=0, retrain=1)
+    only_once_experiment('GCNConfig', best_hyper)  # {'continue_train': 1}
+
+    best_hyper = hyper_search('GATConfig', hyper_dict, grid_search=0, retrain=1)
+    only_once_experiment('GATConfig', best_hyper)  # {'continue_train': 1}
     # 执行所有命令
     for command in commands:
         run_command(command, log_file)
@@ -65,20 +71,17 @@ def Our_model(hyper=None):
 ######################################################################################################
 # 在这里写执行顺序
 def experiment_run():
-    hyper_dict = {
-        'flow_length_limit': [20],
-        # 'seq_method': ['gru', 'lstm', 'self', 'external'],
-        'rank': [40, 50, 64, 100, 128],
-    }
 
-    # best_hyper = hyper_search('GCNConfig', hyper_dict, grid_search=0, retrain=0, debug=0)
-    best_hyper = hyper_search('GCNConfig', hyper_dict, grid_search=0, retrain=1)
-    only_once_experiment('GCNConfig', best_hyper)  # {'continue_train': 1}
-    best_hyper = hyper_search('GATConfig', hyper_dict, grid_search=0, retrain=1)
-    only_once_experiment('GATConfig', best_hyper)  # {'continue_train': 1}
+    hyper_dict = {'rank': [50, 64, 100, 128]}
+
     best_hyper = hyper_search('GINConfig', hyper_dict, grid_search=0, retrain=1)
     only_once_experiment('GINConfig', best_hyper)  # {'continue_train': 1}
-    best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=0, retrain=1, debug=0)
+    hyper_dict = {
+        'seq_method': ['gru', 'lstm'],  # 'lstm', 'self', 'external'
+        'bidirectional': [True, False],
+        'rank': [50, 64, 100, 128],
+    }
+    best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=1, retrain=1, debug=0)
     only_once_experiment('TestConfig', best_hyper)
     return True
 
