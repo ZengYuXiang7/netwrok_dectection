@@ -2012,3 +2012,127 @@ Best combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 100}, Best metr
 Running at 2025-01-11 09:53: python train_model.py --exp_name TestConfig --retrain 0 --seq_method gru --bidirectional True --rank 100
 All commands executed successfully.
 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 128}, Metric= 0.9149728027483538
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 128}, Best metric: 0.9149728027483538
+Running at 2025-01-11 14:20: python train_model.py --exp_name TestConfig --retrain 0 --seq_method gru --bidirectional True --rank 128
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --seq_method gru --bidirectional True --rank 128
+Retrying at 2025-01-11 14:20: python train_model.py --exp_name TestConfig --retrain 0 --seq_method gru --bidirectional True --rank 128
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --seq_method gru --bidirectional True --rank 128
+Retrying at 2025-01-11 14:20: python train_model.py --exp_name TestConfig --retrain 0 --seq_method gru --bidirectional True --rank 128
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 128}, Metric= 0.9149728027483538
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 128}, Best metric: 0.9149728027483538
+Running at 2025-01-11 14:23: python train_model.py --exp_name TestConfig --retrain 0 --seq_method gru --bidirectional True --rank 128
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 128}, Metric= 0.2506441454337246
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 128}, Best metric: 0.2506441454337246
+Running at 2025-01-11 14:25: python train_model.py --exp_name TestConfig --retrain 0 --seq_method gru --bidirectional True --rank 128
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 128}, Metric= 0.2506441454337246
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 128}, Best metric: 0.2506441454337246
+Running at 2025-01-11 14:26: python train_model.py --exp_name TestConfig --retrain 0 --seq_method gru --bidirectional True --rank 128
+Command failed, retrying in 3 seconds: python train_model.py --exp_name TestConfig --retrain 0 --seq_method gru --bidirectional True --rank 128
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 128}, Metric= 0.9207701116518752
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 128}, Best metric: 0.9207701116518752
+Running at 2025-01-11 14:36: python train_model.py --exp_name TestConfig --retrain 0 --seq_method gru --bidirectional True --rank 128
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 128}, Metric= 0.9196965359290009
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'rank': 128}, Best metric: 0.9196965359290009
+Running at 2025-01-11 14:47: python train_model.py --exp_name TestConfig --retrain 0 --seq_method gru --bidirectional True --rank 128
+All commands executed successfully.
+
+Experiment Start!!!
+Running at 2025-01-11 16:54: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 16:55: python train_model.py --exp_name DAPPConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-11 16:55: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 16:56: python train_model.py --exp_name DAPPConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-11 16:56: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 16:56: python train_model.py --exp_name DAPPConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-11 16:57: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 16:58: python train_model.py --exp_name DAPPConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-11 16:59: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 16:59: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 16:59: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 17:00: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 17:00: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 17:01: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 17:01: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 17:02: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 17:02: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 17:03: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 17:03: python train_model.py --exp_name DAPPConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-11 17:04: python train_model.py --exp_name DAPPConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-11 17:05: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 17:05: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 17:06: python train_model.py --exp_name DAPPConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-11 17:06: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 17:06: python train_model.py --exp_name DAPPConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-11 17:07: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 17:07: python train_model.py --exp_name DAPPConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-11 17:09: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-11 17:14: python train_model.py --exp_name DAPPConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-11 17:14: python train_model.py --exp_name DAPPConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-11 17:15: python train_model.py --exp_name DAPPConfig --retrain 0
+Command failed, retrying in 3 seconds: python train_model.py --exp_name DAPPConfig --retrain 0
+Retrying at 2025-01-11 17:16: python train_model.py --exp_name DAPPConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-11 17:16: python train_model.py --exp_name DAPPConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-11 17:16: python train_model.py --exp_name DAPPConfig --retrain 0
+Experiment Start!!!
+Running at 2025-01-11 17:17: python train_model.py --exp_name DAPPConfig --retrain 0

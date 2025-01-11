@@ -16,7 +16,7 @@ class TestConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, T
     epochs: int = 500
     patience: int = 30
     flow_length_limit: int = 20
-    bidirectional: bool = False
+    bidirectional: bool = True
 
 
 
@@ -87,3 +87,12 @@ class GINConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, Tr
     flow_length_limit: int = 20
     graph_encoder: str = 'gin'
     order: int = 3
+
+@dataclass
+class DAPPConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
+    model: str = 'dapp'
+    bs: int = 150
+    epochs: int = 500
+    patience: int = 30
+    verbose: int = 10
+    flow_length_limit: int = 20

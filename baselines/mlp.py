@@ -31,7 +31,7 @@ class MLP(torch.nn.Module):
         self.ln3 = nn.LayerNorm(num_classes)  # 第三层 LayerNorm
         self.act3 = nn.ReLU()  # 第三层激活函数
 
-    def forward(self, _, x):
+    def forward(self, _, x, __):
         # 前向传播
         x = self.fc1(x)
         x = self.ln1(x)

@@ -6,6 +6,7 @@ import numpy as np
 from sphinx.builders.gettext import timestamp
 
 from baselines.graph_baselines import build_single_graph
+from modules.merge_tool import merge_features
 from utils.config import get_config
 from utils.logger import Logger
 from utils.plotter import MetricsPlotter
@@ -177,7 +178,7 @@ class TensorDataset(torch.utils.data.Dataset):
         dataset_info = pickle.load(open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'rb'))
         self.max_packet_length = dataset_info['max_packet_length']
         self.max_flow_length = dataset_info['max_flow_length']
-        if self.config.model == 'gnn':
+        if self.config.model in ['gnn', 'dapp', 'graphiot']:
             try:
                 with open(f'./datasets/flow/{config.dataset}_{config.flow_length_limit}_{self.mode}_graph.pickle', 'rb') as f:
                     self.all_graph = pickle.load(f)
@@ -209,24 +210,27 @@ class TensorDataset(torch.utils.data.Dataset):
         # 做包序列归一化
         seq_input = seq_input[:, 1] / self.max_packet_length # 手动归一化 1514
 
-        if self.config.model == 'gnn':
+        merge_info = merge_features(seq_input, times_stamp)
+
+        if self.config.model in ['gnn', 'dapp', 'graphiot']:
             time_interval = self.all_graph[idx]
             seq_input = torch.as_tensor([1.0])
         label = self.all_y[idx]
-        return time_interval, seq_input, label
+        return time_interval, seq_input, merge_info, label
 
 
 import dgl
 def custom_collate_fn(batch, config):
     from torch.utils.data.dataloader import default_collate
-    time_interval, seq_input, labels = zip(*batch)
-    if config.model == 'gnn':
+    time_interval, seq_input, merge_info, labels = zip(*batch)
+    if config.model in ['gnn', 'dapp', 'graphiot']:
         time_interval = dgl.batch(time_interval)
     else:
         time_interval = default_collate(time_interval)
+    merge_info = default_collate(merge_info)
     seq_input = default_collate(seq_input)
     label = torch.as_tensor(labels, dtype=torch.long if config.classification else torch.float32)
-    return time_interval, seq_input, label
+    return time_interval, seq_input, merge_info, label
 
 
 def get_dataloaders(train_set, valid_set, test_set, config):

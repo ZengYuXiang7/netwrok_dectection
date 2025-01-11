@@ -40,6 +40,7 @@ def Baselines(commands):
 
     best_hyper = hyper_search('GATConfig', hyper_dict, grid_search=0, retrain=1)
     only_once_experiment('GATConfig', best_hyper)  # {'continue_train': 1}
+
     # 执行所有命令
     for command in commands:
         run_command(command, log_file)
@@ -72,14 +73,16 @@ def Our_model(hyper=None):
 # 在这里写执行顺序
 def experiment_run():
 
-    hyper_dict = {'rank': [50, 64, 100, 128]}
+    # hyper_dict = {'rank': [50, 64, 100, 128]}
+    # best_hyper = hyper_search('GINConfig', hyper_dict, grid_search=0, retrain=1)
+    # only_once_experiment('GINConfig', best_hyper)  # {'continue_train': 1}
 
-    best_hyper = hyper_search('GINConfig', hyper_dict, grid_search=0, retrain=1)
-    only_once_experiment('GINConfig', best_hyper)  # {'continue_train': 1}
+    only_once_experiment('DAPPConfig')  # {'continue_train': 1}
+
     hyper_dict = {
-        'seq_method': ['gru', 'lstm'],  # 'lstm', 'self', 'external'
-        'bidirectional': [True, False],
-        'rank': [50, 64, 100, 128],
+        'seq_method': ['gru'],  # 'lstm', 'self', 'external'
+        'bidirectional': [True],
+        'rank': [128],
     }
     best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=1, retrain=1, debug=0)
     only_once_experiment('TestConfig', best_hyper)

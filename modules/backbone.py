@@ -47,15 +47,18 @@ class Backbone(torch.nn.Module):
         self.fft_calculator = DFT(config)
         self.fft_transfer = torch.nn.Linear(max_flow_length, self.rank)
 
+        # Merge info
+        # self.merge_info = torch.nn.Linear(max_flow_length * 2, self.rank)
+
         self.predictor = Predictor(
             input_dim=config.rank * 3,
             hidden_dim=config.rank,
             output_dim=num_classes,
-            n_layer=3,
+            n_layer=4,
             init_method='xavier'
         )
 
-    def forward(self, time_interval, seq_input):
+    def forward(self, time_interval, seq_input, merge_info):
         # 编码时间间隔与流序列
         time_embeds = self.time_transfer(time_interval)
 
@@ -84,6 +87,10 @@ class Backbone(torch.nn.Module):
         seq_embeds = seq_embeds.reshape(seq_embeds.shape[0], -1)
         seq_embeds = self.seq_output_transfer(seq_embeds)
 
+        # Merge Information
+        # merge_embeds = self.merge_info(merge_info)
+
+        a = self.pos(time_embeds, seq_embeds, seq_embeds)
 
         final_inputs = torch.cat([time_embeds, seq_season, seq_embeds], dim=-1)
         # 特征融合

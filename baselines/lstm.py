@@ -29,7 +29,7 @@ class LSTMModel(torch.nn.Module):
         # 全连接层，用于分类
         self.fc = nn.Linear(hidden_size * max_flow_length, num_classes)  # 输出分类结果
 
-    def forward(self, _, x):
+    def forward(self, _, x, __):
         # x: [batch_size, max_flow_length]
         x = x.unsqueeze(-1)
         # print(x.shape)

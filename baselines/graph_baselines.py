@@ -32,7 +32,7 @@ class GnnFamily(torch.nn.Module):
         self.readout_layer = torch.nn.Linear(self.rank, self.rank)
         self.classifier = torch.nn.Linear(self.rank * self.max_flow_length, num_classes)
 
-    def forward(self, graph, _):
+    def forward(self, graph, _, __):
         feats = graph.ndata['feats'].reshape(-1, 1)
         bs = len(feats) // self.max_flow_length
         feats = self.seq_encoder(feats)

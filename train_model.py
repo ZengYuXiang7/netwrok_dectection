@@ -11,6 +11,7 @@ from tqdm import *
 import numpy as np
 import torch
 
+from baselines.dapp import DApp
 from baselines.graph_baselines import GnnFamily
 from baselines.lstm import LSTMModel
 from baselines.cnn import CNN
@@ -45,12 +46,14 @@ class Model(torch.nn.Module):
             self.model = LSTMModel(config)
         elif config.model == 'gnn':
             self.model = GnnFamily(config)
+        elif config.model == 'dapp':
+            self.model = DApp(config)
         else:
             raise ValueError(f"Unsupported model type: {config.model}")
 
 
-    def forward(self, time_stamp, seq_input):
-        y = self.model(time_stamp, seq_input)
+    def forward(self, time_stamp, seq_input, merge_info):
+        y = self.model(time_stamp, seq_input, merge_info)
         return y
 
     def setup_optimizer(self, config):
@@ -66,8 +69,8 @@ class Model(torch.nn.Module):
         t1 = time.time()
         for train_Batch in (dataModule.train_loader):
             # 这个写法能够直接免掉右边的一切，左边复制好就行
-            time_interval, seq_input, label = tuple(item.to(self.config.device) for item in train_Batch)
-            preds = self.forward(time_interval, seq_input)
+            time_interval, seq_input, merge_info, label = tuple(item.to(self.config.device) for item in train_Batch)
+            preds = self.forward(time_interval, seq_input, merge_info)
             loss = self.loss_function(preds, label)
             self.optimizer.zero_grad()
             loss.backward()
@@ -81,8 +84,8 @@ class Model(torch.nn.Module):
         dataloader = dataModule.valid_loader if mode == 'valid' and len(dataModule.valid_loader.dataset) != 0 else dataModule.test_loader
         preds, reals, val_loss = [], [], 0.
         for batch in (dataloader):
-            time_interval, seq_input, label = tuple(item.to(self.config.device) for item in batch)
-            pred = self.forward(time_interval, seq_input)
+            time_interval, seq_input, merge_info, label = tuple(item.to(self.config.device) for item in batch)
+            pred = self.forward(time_interval, seq_input, merge_info)
             if mode == 'valid':
                 val_loss += self.loss_function(pred, label)
             if self.config.classification:
