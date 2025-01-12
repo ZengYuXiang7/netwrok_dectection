@@ -70,16 +70,27 @@ class experiment:
 
             max_packet_length = 0
             max_flow_length = 0
+            max_time_interval = 0
             for i in range(len(all_x)):
                 max_flow_length = max(max_flow_length, len(all_x[i]))
                 for j in range(len(all_x[i])):
                     max_packet_length = max(max_packet_length, abs(all_x[i][j][1]))
+
+                # find the max time interval value
+                seq_input = all_x[i]
+                seq_input = np.array(seq_input)
+                times_stamp = seq_input[:, 0]
+                time_interval = times_stamp[1:] - times_stamp[:-1]
+                max_time_interval = max(np.max(time_interval), max_time_interval)
+
             # print(max_flow_length, max_packet_length)
             dataset_info = {
+                'max_time_interval': max_time_interval, # 爲了防止 over fitting
                 'max_flow_length': max_flow_length,  # padding使用
                 'max_packet_length': max_packet_length,  # 包序列归一化
                 'num_classes': max(all_y) + 1,
             }
+            print(dataset_info)
             pickle.dump(dataset_info, open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'wb'))
 
         return all_x, all_y
@@ -178,6 +189,7 @@ class TensorDataset(torch.utils.data.Dataset):
         dataset_info = pickle.load(open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'rb'))
         self.max_packet_length = dataset_info['max_packet_length']
         self.max_flow_length = dataset_info['max_flow_length']
+        self.max_time_interval = dataset_info['max_time_interval']
         if self.config.model in ['gnn', 'dapp', 'graphiot']:
             try:
                 with open(f'./datasets/flow/{config.dataset}_{config.flow_length_limit}_{self.mode}_graph.pickle', 'rb') as f:
@@ -206,6 +218,7 @@ class TensorDataset(torch.utils.data.Dataset):
         # 做差分
         time_interval = times_stamp[1:] - times_stamp[:-1]
         time_interval = torch.cat([torch.tensor([0.0], dtype=time_interval.dtype), time_interval])
+        time_interval /= self.max_time_interval  # 2025年1月12日22:47:27
 
         # 做包序列归一化
         seq_input = seq_input[:, 1] / self.max_packet_length # 手动归一化 1514
