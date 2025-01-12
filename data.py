@@ -76,6 +76,7 @@ class experiment:
                     max_packet_length = max(max_packet_length, abs(all_x[i][j][1]))
             # print(max_flow_length, max_packet_length)
             dataset_info = {
+                'max_time_interval': max_packet_length, # 爲了防止 over fitting
                 'max_flow_length': max_flow_length,  # padding使用
                 'max_packet_length': max_packet_length,  # 包序列归一化
                 'num_classes': max(all_y) + 1,

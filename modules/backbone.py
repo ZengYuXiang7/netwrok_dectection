@@ -1,5 +1,7 @@
 # coding : utf-8
 # Author : Yuxiang Zeng
+from typing import final
+
 import torch
 
 from modules.attention import ExternalAttention
@@ -49,13 +51,25 @@ class Backbone(torch.nn.Module):
         # Merge info
         # self.merge_info = torch.nn.Linear(max_flow_length * 2, self.rank)
 
+        if self.config.try_exp in [1, 2, 3, 4, 10, 11, 12, 19]:
+            final_input_dim = config.rank * 1
+        elif self.config.try_exp in [5, 6, 17, 18]:
+            final_input_dim = config.rank * 3
+        elif self.config.try_exp in [7, 8, 9, 14, 15, 16, 20]:
+            final_input_dim = config.rank * 2
+        elif self.config.try_exp in [13]:
+            final_input_dim = config.rank * 4
+
         self.predictor = Predictor(
-            input_dim=config.rank * 3,
+            input_dim=final_input_dim,
             hidden_dim=config.rank,
             output_dim=num_classes,
             n_layer=3,
             init_method='xavier'
         )
+
+        if self.config.try_exp >= 11:
+            self.att_fusion = torch.nn.MultiheadAttention(self.rank, num_heads=2, dropout=0.1, batch_first=True)
 
     def forward(self, time_interval, seq_input, merge_info):
         # 编码时间间隔与流序列
@@ -77,19 +91,81 @@ class Backbone(torch.nn.Module):
         seq_embeds = self.seq_transfer(seq_input)
 
         for i in range(self.config.num_layers):
-            seq_embeds = seq_embeds + self.dropout(self.seq_encoder[i](seq_embeds))
+            seq_embeds = seq_embeds + self.seq_encoder[i](seq_embeds)
 
         # Flatten
         seq_embeds = seq_embeds.reshape(seq_embeds.shape[0], -1)
         seq_embeds = self.seq_output_transfer(seq_embeds)
 
-        # Merge Information
-        # merge_embeds = self.merge_info(merge_info)
-        # a = self.pos(time_embeds, seq_embeds, seq_embeds)
-
         seq_remain = seq_embeds - seq_season
 
-        final_inputs = torch.cat([time_embeds, seq_remain, seq_embeds], dim=-1)
+        # Fusion
+        if self.config.try_exp == 1:
+            final_inputs = seq_remain + seq_embeds
+        elif self.config.try_exp == 2:
+            final_inputs = seq_season + seq_embeds
+        elif self.config.try_exp == 3:
+            final_inputs = time_embeds + seq_embeds + seq_season
+        elif self.config.try_exp == 4:
+            final_inputs = time_embeds + seq_embeds + seq_remain
+        elif self.config.try_exp == 5:
+            final_inputs = torch.cat([time_embeds, seq_season, seq_embeds], dim=-1)
+        elif self.config.try_exp == 6:
+            final_inputs = torch.cat([time_embeds, seq_remain, seq_embeds], dim=-1)
+        elif self.config.try_exp == 7:
+            final_inputs = torch.cat([seq_remain, seq_embeds], dim=-1)
+        elif self.config.try_exp == 8:
+            final_inputs = torch.cat([time_embeds, seq_embeds], dim=-1)
+        elif self.config.try_exp == 9:
+            final_inputs = torch.cat([seq_season, seq_embeds], dim=-1)
+        elif self.config.try_exp == 10:
+            final_inputs = seq_embeds
+        elif self.config.try_exp == 11:
+            final_inputs = torch.stack([time_embeds, seq_remain, seq_season, seq_embeds], dim=1)
+            final_inputs, _ = self.att_fusion(final_inputs, final_inputs, final_inputs)
+            final_inputs = torch.sum(final_inputs, dim=1)
+        elif self.config.try_exp == 12:
+            final_inputs = torch.stack([time_embeds, seq_remain, seq_season, seq_embeds], dim=1)
+            final_inputs, _ = self.att_fusion(final_inputs, final_inputs, final_inputs)
+            final_inputs = torch.mean(final_inputs, dim=1)
+        elif self.config.try_exp == 13:
+            final_inputs = torch.stack([time_embeds, seq_remain, seq_season, seq_embeds], dim=1)
+            final_inputs, _ = self.att_fusion(final_inputs, final_inputs, final_inputs)
+            final_inputs = final_inputs.reshape(final_inputs.shape[0], -1)
+        elif self.config.try_exp == 14:
+            final_inputs = torch.stack([time_embeds, seq_embeds], dim=1)
+            final_inputs, _ = self.att_fusion(final_inputs, final_inputs, final_inputs)
+            final_inputs = final_inputs.reshape(final_inputs.shape[0], -1)
+        elif self.config.try_exp == 15:
+            final_inputs = torch.stack([seq_season, seq_embeds], dim=1)
+            final_inputs, _ = self.att_fusion(final_inputs, final_inputs, final_inputs)
+            final_inputs = final_inputs.reshape(final_inputs.shape[0], -1)
+        elif self.config.try_exp == 16:
+            final_inputs = torch.stack([seq_remain, seq_embeds], dim=1)
+            final_inputs, _ = self.att_fusion(final_inputs, final_inputs, final_inputs)
+            final_inputs = final_inputs.reshape(final_inputs.shape[0], -1)
+        elif self.config.try_exp == 17:
+            final_inputs = torch.stack([time_embeds, seq_season, seq_embeds], dim=1)
+            final_inputs, _ = self.att_fusion(final_inputs, final_inputs, final_inputs)
+            final_inputs = final_inputs.reshape(final_inputs.shape[0], -1)
+        elif self.config.try_exp == 18:
+            final_inputs = torch.stack([time_embeds, seq_remain, seq_embeds], dim=1)
+            final_inputs, _ = self.att_fusion(final_inputs, final_inputs, final_inputs)
+            final_inputs = final_inputs.reshape(final_inputs.shape[0], -1)
+        elif self.config.try_exp == 19:
+            time_embeds = time_embeds.unsqueeze(1)
+            seq_embeds = seq_season.unsqueeze(1)
+            final_inputs, _ = self.att_fusion(time_embeds, seq_embeds, seq_embeds)
+            final_inputs = final_inputs.squeeze(1)
+        elif self.config.try_exp == 20:
+            time_embeds = time_embeds.unsqueeze(1)
+            seq_embeds = seq_season.unsqueeze(1)
+            final_inputs1, _ = self.att_fusion(time_embeds, seq_embeds, seq_embeds)
+            final_inputs2, _ = self.att_fusion(time_embeds, seq_embeds, seq_embeds)
+            final_inputs1 = final_inputs1.squeeze(1)
+            final_inputs2 = final_inputs2.squeeze(1)
+            final_inputs = torch.cat([final_inputs1, final_inputs2], dim=1)
+
         # 特征融合
         y = self.predictor(final_inputs)
         return y
