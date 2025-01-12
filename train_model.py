@@ -11,8 +11,9 @@ from tqdm import *
 import numpy as np
 import torch
 
-from baselines.dapp import DApp
+from baselines.dapp import DAPP
 from baselines.graph_baselines import GnnFamily
+from baselines.graphiot import GraphIoT
 from baselines.lstm import LSTMModel
 from baselines.cnn import CNN
 from baselines.mlp import MLP
@@ -47,7 +48,9 @@ class Model(torch.nn.Module):
         elif config.model == 'gnn':
             self.model = GnnFamily(config)
         elif config.model == 'dapp':
-            self.model = DApp(config)
+            self.model = DAPP(config)
+        elif config.model == 'graphiot':
+            self.model = GraphIoT(config)
         else:
             raise ValueError(f"Unsupported model type: {config.model}")
 

@@ -77,11 +77,13 @@ def experiment_run():
     # best_hyper = hyper_search('GINConfig', hyper_dict, grid_search=0, retrain=1)
     # only_once_experiment('GINConfig', best_hyper)  # {'continue_train': 1}
 
-    only_once_experiment('DAPPConfig')  # {'continue_train': 1}
+    # only_once_experiment('DAPPConfig')  # {'continue_train': 1}
+    # only_once_experiment('GraphIoTConfig')  # {'continue_train': 1}
 
     hyper_dict = {
         'seq_method': ['gru'],  # 'lstm', 'self', 'external'
         'bidirectional': [True],
+        'num_layers': [3, 4],
         'rank': [128],
     }
     best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=1, retrain=1, debug=0)

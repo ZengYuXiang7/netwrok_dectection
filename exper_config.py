@@ -17,6 +17,7 @@ class TestConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, T
     patience: int = 30
     flow_length_limit: int = 20
     bidirectional: bool = True
+    num_layers: int = 3
 
 
 
@@ -92,7 +93,19 @@ class GINConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, Tr
 class DAPPConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
     model: str = 'dapp'
     bs: int = 150
+    rank: int = 64
     epochs: int = 500
     patience: int = 30
     verbose: int = 10
+    flow_length_limit: int = 20
+
+
+@dataclass
+class GraphIoTConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
+    model: str = 'graphiot'
+    rank: int = 64
+    epochs: int = 500
+    patience: int = 30
+    verbose: int = 10
+    bs: int = 64
     flow_length_limit: int = 20

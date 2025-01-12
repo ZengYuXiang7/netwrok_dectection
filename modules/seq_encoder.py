@@ -20,19 +20,34 @@ class SeqEncoder(torch.nn.Module):
         if self.bidirectional:
             self.aggregator = torch.nn.Linear(self.rank * 2, self.rank)
 
+        self.dropout = torch.nn.Dropout(0.1)
+        self.MLP1 = torch.nn.Sequential(
+            torch.nn.Linear(self.rank, self.rank),
+            torch.nn.GELU(),
+            torch.nn.Linear(self.rank, self.rank)
+        )
+        self.seq_output_norm1 = torch.nn.LayerNorm(self.rank)
+        self.seq_output_norm2 = torch.nn.LayerNorm(self.rank)
+
     def forward(self, seq_embeds):
         if self.config.seq_method == 'lstm':
-            seq_output, (_, _) = self.lstm(seq_embeds)
+            seq_enc, (_, _) = self.lstm(seq_embeds)
         elif self.config.seq_method == 'gru':
             if self.bidirectional:
-                seq_output, _ = self.gru(seq_embeds)
+                seq_enc, _ = self.gru(seq_embeds)
             else:
-                seq_output, (_, _) = self.gru(seq_embeds)
+                seq_enc, (_, _) = self.gru(seq_embeds)
         elif self.config.seq_method == 'self':
-            seq_output, _ = self.self_attention(seq_embeds, seq_embeds, seq_embeds)
+            seq_enc, _ = self.self_attention(seq_embeds, seq_embeds, seq_embeds)
         elif self.config.seq_method == 'external':
-            seq_output = self.external_attention(seq_embeds)
+            seq_enc = self.external_attention(seq_embeds)
 
         if self.bidirectional:
-            seq_output = self.aggregator(seq_output)
-        return seq_output
+            seq_enc = self.aggregator(seq_enc)
+
+        seq_enc = seq_embeds + self.dropout(seq_enc)
+        seq_enc = self.seq_output_norm1(seq_enc)
+        seq_enc = seq_enc + self.dropout(self.MLP1(seq_enc))
+        seq_enc = self.seq_output_norm2(seq_enc)
+        
+        return seq_enc
