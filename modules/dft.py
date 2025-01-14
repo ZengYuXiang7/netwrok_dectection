@@ -7,7 +7,7 @@ class DFT(torch.nn.Module):
     def __init__(self, config):
         super(DFT, self).__init__()
         self.config = config
-        self.top_k = 5
+        self.top_k = 1
 
     def forward(self, x):
         xf = torch.fft.rfft(x)

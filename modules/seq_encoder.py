@@ -3,16 +3,18 @@ import torch
 from modules.attention import ExternalAttention
 
 
-class SeqEncoder(torch.nn.Module):
+class SeqLayer(torch.nn.Module):
     def __init__(self, config):
-        super(SeqEncoder, self).__init__()
+        super(SeqLayer, self).__init__()
         self.config = config
         self.rank = config.rank
         self.bidirectional = config.bidirectional
         if self.config.seq_method == 'lstm':
-            self.lstm = torch.nn.LSTM(self.rank, self.rank, num_layers=2, bias=True, batch_first=True, dropout=0.05, bidirectional=self.bidirectional)
+            self.lstm = torch.nn.LSTM(self.rank, self.rank, num_layers=2, bias=True, batch_first=True, dropout=0.05,
+                                      bidirectional=self.bidirectional)
         elif self.config.seq_method == 'gru':
-            self.gru = torch.nn.GRU(self.rank, self.rank, num_layers=2, bias=True, batch_first=True, dropout=0.05, bidirectional=self.bidirectional)
+            self.gru = torch.nn.GRU(self.rank, self.rank, num_layers=2, bias=True, batch_first=True, dropout=0.05,
+                                    bidirectional=self.bidirectional)
         elif self.config.seq_method == 'self':
             self.self_attention = torch.nn.MultiheadAttention(self.rank, 4, 0.10, batch_first=True)
         elif self.config.seq_method == 'external':
@@ -49,5 +51,25 @@ class SeqEncoder(torch.nn.Module):
         seq_enc = self.seq_output_norm1(seq_enc)
         seq_enc = seq_enc + self.dropout(self.MLP1(seq_enc))
         seq_enc = self.seq_output_norm2(seq_enc)
-        
         return seq_enc
+
+
+class SeqEncoder(torch.nn.Module):
+    def __init__(self, input_size, config):
+        super(SeqEncoder, self).__init__()
+        self.config = config
+        self.rank = config.rank
+        self.seq_transfer = torch.nn.Linear(input_size, self.rank)
+        self.seq_encoder = torch.nn.ModuleList(
+            [SeqLayer(config) for _ in range(config.num_layers)]
+        )
+        self.output_transfer = torch.nn.Linear(20 * self.rank, self.rank)
+
+    def forward(self, x):
+        x = x.unsqueeze(-1)
+        x = self.seq_transfer(x)
+        for i in range(self.config.num_layers):
+            x = x + self.seq_encoder[i](x)
+        x = x.reshape(x.shape[0], -1)
+        x = self.output_transfer(x)
+        return x

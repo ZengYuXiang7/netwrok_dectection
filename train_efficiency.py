@@ -16,9 +16,9 @@ def calculate_inference_time(model, sample_input, config):
     step = 100
     all_time = []
     for i in range(step):
-        a, b, _ = tuple([item.to(config.device) for item in sample_input])
+        a, b, c, _ = tuple([item.to(config.device) for item in sample_input])
         t1 = time()
-        model(a, b)
+        model(a, b, c)
         t2 = time()
         all_time.append(t2 - t1)
     inference_time = np.mean(all_time)
@@ -50,6 +50,9 @@ def only_run():
     flops, params = calculate_flops_params(model, sample_inputs, config)
     inference_time = calculate_inference_time(model, sample_inputs, config)
     # estimate_gpu_memory(model, sample_inputs, config)
+    print(f"Flops: {flops:.0f}")
+    print(f"Params: {params:.0f}")
+    print(f"Inference time: {inference_time:.2f} ms")
     return flops, params, inference_time
 
 

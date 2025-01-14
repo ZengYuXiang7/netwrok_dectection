@@ -85,7 +85,8 @@ def experiment_run():
         'bidirectional': [True],
         'num_layers': [3],
         'rank': [128],
-        'try_exp': [i + 1 for i in range(20)],
+        # 'continue_train': [True]
+        # 'try_exp': [i + 1 for i in range(7)],
     }
     best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=1, retrain=1, debug=0)
     # only_once_experiment('TestConfig', best_hyper)

@@ -4346,3 +4346,459 @@ Experiment Start!!!
 === Grid Search ===
 COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 --try_exp 1 
 Experiment Start!!!
+Running at 2025-01-13 02:53: python train_model.py --exp_name TestConfig --retrain 0 --seq_method gru --bidirectional True --num_layers 3 --rank 128 --try_exp 16
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.8014600629831091
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.8014600629831091
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.8014600629831091
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.8014600629831091
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9238476953907816
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9238476953907816
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9238476953907816
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9238476953907816
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.25100200400801603
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.25100200400801603
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9048096192384769
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9048096192384769
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9108932150014314
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9108932150014314
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9241339822502147
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9241339822502147
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9241339822502147
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9241339822502147
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9241339822502147
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9241339822502147
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9146149441740624
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9146149441740624
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9249212711136559
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9249212711136559
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9246349842542227
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9246349842542227
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9265674205553965
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9265674205553965
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9270684225594045
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9270684225594045
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9270684225594045
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9270684225594045
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 --try_exp 1 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128, 'try_exp': 1}, Metric= 0.9223446893787575
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 --try_exp 2 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128, 'try_exp': 2}, Metric= 0.922702547953049
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 --try_exp 3 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128, 'try_exp': 3}, Metric= 0.9210921843687374
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 --try_exp 4 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 --try_exp 1 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128, 'try_exp': 1}, Metric= 0.9257801316919554
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 --try_exp 2 
+Experiment Start!!!
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 --try_exp 1 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128, 'try_exp': 1}, Metric= 0.9254222731176639
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 --try_exp 2 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9234182651016318
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9234182651016318
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9234182651016318
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9234182651016318
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9234182651016318
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9234182651016318
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9234182651016318
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9234182651016318
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.8465502433438306
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.8465502433438306
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 4 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 4, 'rank': 128}, Metric= 0.9254222731176639
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 4, 'rank': 128}, Best metric: 0.9254222731176639
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 50 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 50}, Metric= 0.9180503864872602
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 64 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 64}, Metric= 0.9234898368164901
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9257801316919554
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 256 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 256}, Metric= 0.9158316633266533
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 512 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 50 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 256 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9133266533066132
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9133266533066132
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9133266533066132
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9133266533066132
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9133266533066132
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9133266533066132
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.924706555969081
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.924706555969081
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 2 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 2, 'rank': 128}, Metric= 0.9250644145433724
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 2 --rank 256 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 2, 'rank': 256}, Metric= 0.9255654165473804
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 2 --rank 512 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 2 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9176209561981105
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9176209561981105
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!
+
+=== Grid Search ===
+Experiment Start!!!
+
+=== Grid Search ===
+Experiment Start!!!
+
+=== Grid Search ===
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 --continue_train True 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128, 'continue_train': True}, Metric= 0.9176209561981105
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128, 'continue_train': True}, Best metric: 0.9176209561981105
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 --continue_train True 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128, 'continue_train': True}, Metric= 0.9238476953907816
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128, 'continue_train': True}, Best metric: 0.9238476953907816
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 --continue_train True 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128, 'continue_train': True}, Metric= 0.9238476953907816
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128, 'continue_train': True}, Best metric: 0.9238476953907816
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 --continue_train True 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 --continue_train True 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128, 'continue_train': True}, Metric= 0.9238476953907816
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128, 'continue_train': True}, Best metric: 0.9238476953907816
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 --continue_train True 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128, 'continue_train': True}, Metric= 0.9238476953907816
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128, 'continue_train': True}, Best metric: 0.9238476953907816
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 --continue_train True 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9191955339249929
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9191955339249929
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9191955339249929
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9191955339249929
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9191955339249929
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9191955339249929
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9191955339249929
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9191955339249929
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Metric= 0.9191955339249929
+Best combo: {'seq_method': 'gru', 'bidirectional': True, 'num_layers': 3, 'rank': 128}, Best metric: 0.9191955339249929
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --seq_method gru --bidirectional True --num_layers 3 --rank 128 
+Experiment Start!!!

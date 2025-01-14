@@ -15,9 +15,12 @@ class TestConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, T
     device: str = 'cuda'
     epochs: int = 500
     patience: int = 30
+    verbose: int = 1
     flow_length_limit: int = 20
     bidirectional: bool = True
+    seq_method: str = 'gru'
     num_layers: int = 3
+    try_exp: int = 1
 
 
 
