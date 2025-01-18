@@ -4,32 +4,33 @@ from modules.attention import ExternalAttention
 
 
 class SeqLayer(torch.nn.Module):
-    def __init__(self, config):
+    def __init__(self, d_model, config):
         super(SeqLayer, self).__init__()
         self.config = config
-        self.rank = config.rank
         self.bidirectional = config.bidirectional
-        if self.config.seq_method == 'lstm':
-            self.lstm = torch.nn.LSTM(self.rank, self.rank, num_layers=2, bias=True, batch_first=True, dropout=0.05,
-                                      bidirectional=self.bidirectional)
-        elif self.config.seq_method == 'gru':
-            self.gru = torch.nn.GRU(self.rank, self.rank, num_layers=2, bias=True, batch_first=True, dropout=0.05,
-                                    bidirectional=self.bidirectional)
-        elif self.config.seq_method == 'self':
-            self.self_attention = torch.nn.MultiheadAttention(self.rank, 4, 0.10, batch_first=True)
-        elif self.config.seq_method == 'external':
-            self.external_attention = ExternalAttention(self.rank, 128)
-        if self.bidirectional:
-            self.aggregator = torch.nn.Linear(self.rank * 2, self.rank)
+        self.d_model = d_model
+        if config.seq_method == 'lstm':
+            self.lstm = torch.nn.LSTM(self.d_model, self.d_model, num_layers=2, bias=True, batch_first=True, dropout=0.05,
+                                      bidirectional=config.bidirectional)
+        elif config.seq_method == 'gru':
+            self.gru = torch.nn.GRU(self.d_model, self.d_model, num_layers=2, bias=True, batch_first=True, dropout=0.05,
+                                    bidirectional=config.bidirectional)
+        elif config.seq_method == 'self':
+            self.self_attention = torch.nn.MultiheadAttention(self.d_model, 4, 0.10, batch_first=True)
+        elif config.seq_method == 'external':
+            self.external_attention = ExternalAttention(self.d_model, 128)
 
-        self.dropout = torch.nn.Dropout(0.1)
+        if config.bidirectional:
+            self.aggregator = torch.nn.Linear(self.d_model * 2, self.d_model)
+
         self.MLP1 = torch.nn.Sequential(
-            torch.nn.Linear(self.rank, self.rank),
+            torch.nn.Linear(self.d_model, self.d_model),
             torch.nn.GELU(),
-            torch.nn.Linear(self.rank, self.rank)
+            torch.nn.Linear(self.d_model, self.d_model)
         )
-        self.seq_output_norm1 = torch.nn.LayerNorm(self.rank)
-        self.seq_output_norm2 = torch.nn.LayerNorm(self.rank)
+        self.dropout = torch.nn.Dropout(0.1)
+        self.seq_output_norm1 = torch.nn.LayerNorm(self.d_model)
+        self.seq_output_norm2 = torch.nn.LayerNorm(self.d_model)
 
     def forward(self, seq_embeds):
         if self.config.seq_method == 'lstm':
@@ -55,15 +56,15 @@ class SeqLayer(torch.nn.Module):
 
 
 class SeqEncoder(torch.nn.Module):
-    def __init__(self, input_size, config):
+    def __init__(self, input_size, d_model, seq_len, num_layers, config):
         super(SeqEncoder, self).__init__()
         self.config = config
-        self.rank = config.rank
-        self.seq_transfer = torch.nn.Linear(input_size, self.rank)
+        self.seq_transfer = torch.nn.Linear(input_size, d_model)
         self.seq_encoder = torch.nn.ModuleList(
-            [SeqLayer(config) for _ in range(config.num_layers)]
+            [SeqLayer(d_model, config) for _ in range(num_layers)]
         )
-        self.output_transfer = torch.nn.Linear(20 * self.rank, self.rank)
+        self.output_transfer = torch.nn.Linear(seq_len * d_model, d_model)
+
 
     def forward(self, x):
         x = x.unsqueeze(-1)

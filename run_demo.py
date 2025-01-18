@@ -12,19 +12,12 @@ from train_model import get_experiment_name
 
 ######################################################################################################
 # 在这里写执行实验逻辑
-def debug(commands):
-    commands = []
-
-    # 执行所有命令
-    for command in commands:
-        run_command(command, log_file)
+def debug():
     return True
 
-def Baselines(commands):
-    commands = []
+def Baselines():
     hyper_dict = {
-        'flow_length_limit': [20],
-        'rank': [50],
+        'rank': [40, 50, 60],
     }
     best_hyper = hyper_search('MLPConfig', hyper_dict, retrain=0)
     only_once_experiment('MLPConfig', best_hyper)
@@ -41,52 +34,30 @@ def Baselines(commands):
     best_hyper = hyper_search('GATConfig', hyper_dict, grid_search=0, retrain=1)
     only_once_experiment('GATConfig', best_hyper)  # {'continue_train': 1}
 
-    # 执行所有命令
-    for command in commands:
-        run_command(command, log_file)
+    # best_hyper = hyper_search('GINConfig', hyper_dict, grid_search=0, retrain=1)
+    # only_once_experiment('GINConfig', best_hyper)  # {'continue_train': 1}
+    # only_once_experiment('DAPPConfig')  # {'continue_train': 1}
+    # only_once_experiment('GraphIoTConfig')  # {'continue_train': 1}
     return True
 
 
 def Ablation(hyper=None):
-    commands = []
-    if hyper:
-        commands = [add_parameter(command, hyper) for command in commands]
-    # 执行所有命令
-    for command in commands:
-        run_command(command, log_file)
     return True
 
 
 def Our_model(hyper=None):
-    commands = []
-
-    if hyper:
-        commands = [add_parameter(command, hyper) for command in commands]
-
-    # 执行所有命令
-    for command in commands:
-        run_command(command, log_file)
     return True
 
 
 ######################################################################################################
 # 在这里写执行顺序
 def experiment_run():
-
-    # hyper_dict = {'rank': [50, 64, 100, 128]}
-    # best_hyper = hyper_search('GINConfig', hyper_dict, grid_search=0, retrain=1)
-    # only_once_experiment('GINConfig', best_hyper)  # {'continue_train': 1}
-
-    # only_once_experiment('DAPPConfig')  # {'continue_train': 1}
-    # only_once_experiment('GraphIoTConfig')  # {'continue_train': 1}
-
+    Baselines()
     hyper_dict = {
-        'seq_method': ['gru'],  # 'lstm', 'self', 'external'
-        'bidirectional': [True],
-        'num_layers': [3],
-        'rank': [128],
+        'rank': [50],
         # 'continue_train': [True]
-        # 'try_exp': [i + 1 for i in range(7)],
+        'num_layers': [2],
+        # 'try_exp': [i + 1 for i in range(10)],
     }
     best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=1, retrain=1, debug=0)
     # only_once_experiment('TestConfig', best_hyper)

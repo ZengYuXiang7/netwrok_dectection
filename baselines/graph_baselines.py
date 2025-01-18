@@ -32,7 +32,7 @@ class GnnFamily(torch.nn.Module):
         self.readout_layer = torch.nn.Linear(self.rank, self.rank)
         self.classifier = torch.nn.Linear(self.rank * self.max_flow_length, num_classes)
 
-    def forward(self, graph, _, __):
+    def forward(self, graph, _):
         feats = graph.ndata['feats'].reshape(-1, 1)
         bs = len(feats) // self.max_flow_length
         feats = self.seq_encoder(feats)
@@ -82,7 +82,7 @@ def build_single_graph(seq, timestamp, config):
         if current_direction == previous_direction:
             if i == 0:
                 continue
-            graph = construct_edge_features(graph, i, i - 1, timestamp, config)
+            # graph = construct_edge_features(graph, i, i - 1, timestamp, config)
             graph = construct_edge_features(graph, i - 1, i, timestamp, config)
             # graph.add_edges(i, i - 1)
             # graph.add_edges(i - 1, i)

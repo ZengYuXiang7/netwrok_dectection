@@ -33,7 +33,8 @@ class BaseModelConfig:
 @dataclass
 class DatasetInfo:
     path: str = './datasets/'
-    dataset: str = 'IoT'
+    # dataset: str = 'IoT'
+    dataset: str = 'Medboit'
     train_size: int = 500
     density: float = 0.80
     eval_set: bool = True

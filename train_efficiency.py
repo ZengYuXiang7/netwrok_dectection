@@ -1,6 +1,6 @@
 # coding : utf-8
 # Author : yuxiang Zeng
-
+# 注意，这里的代码已经几乎完善，非必要不要改动（2025年1月17日19:47:38）
 
 def calculate_flops_params(model, sample_input, config):
     from thop import profile
@@ -16,9 +16,9 @@ def calculate_inference_time(model, sample_input, config):
     step = 100
     all_time = []
     for i in range(step):
-        a, b, c, _ = tuple([item.to(config.device) for item in sample_input])
+        inputs = [item.to(config.device) for item in sample_input][:-1]
         t1 = time()
-        model(a, b, c)
+        model(*inputs)  # 动态解包传递所有输入到模型
         t2 = time()
         all_time.append(t2 - t1)
     inference_time = np.mean(all_time)
@@ -49,7 +49,6 @@ def only_run():
     sample_inputs = next(iter(datamodule.train_loader))
     flops, params = calculate_flops_params(model, sample_inputs, config)
     inference_time = calculate_inference_time(model, sample_inputs, config)
-    # estimate_gpu_memory(model, sample_inputs, config)
     print(f"Flops: {flops:.0f}")
     print(f"Params: {params:.0f}")
     print(f"Inference time: {inference_time:.2f} ms")
@@ -65,7 +64,6 @@ def get_efficiency(config):
     sample_inputs = next(iter(datamodule.train_loader))
     flops, params = calculate_flops_params(model, sample_inputs, config)
     inference_time = calculate_inference_time(model, sample_inputs, config)
-    # estimate_gpu_memory(model, sample_inputs, config)
     return flops, params, inference_time
 
 

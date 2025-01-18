@@ -55,8 +55,8 @@ class Model(torch.nn.Module):
             raise ValueError(f"Unsupported model type: {config.model}")
 
 
-    def forward(self, time_stamp, seq_input, merge_info):
-        y = self.model(time_stamp, seq_input, merge_info)
+    def forward(self, time_stamp, seq_input):
+        y = self.model(time_stamp, seq_input)
         return y
 
     def setup_optimizer(self, config):
@@ -72,8 +72,8 @@ class Model(torch.nn.Module):
         t1 = time.time()
         for train_Batch in (dataModule.train_loader):
             # 这个写法能够直接免掉右边的一切，左边复制好就行
-            time_interval, seq_input, merge_info, label = tuple(item.to(self.config.device) for item in train_Batch)
-            preds = self.forward(time_interval, seq_input, merge_info)
+            time_interval, seq_input, label = tuple(item.to(self.config.device) for item in train_Batch)
+            preds = self.forward(time_interval, seq_input)
             loss = self.loss_function(preds, label)
             self.optimizer.zero_grad()
             loss.backward()
@@ -87,8 +87,8 @@ class Model(torch.nn.Module):
         dataloader = dataModule.valid_loader if mode == 'valid' and len(dataModule.valid_loader.dataset) != 0 else dataModule.test_loader
         preds, reals, val_loss = [], [], 0.
         for batch in (dataloader):
-            time_interval, seq_input, merge_info, label = tuple(item.to(self.config.device) for item in batch)
-            pred = self.forward(time_interval, seq_input, merge_info)
+            time_interval, seq_input, label = tuple(item.to(self.config.device) for item in batch)
+            pred = self.forward(time_interval, seq_input)
             if mode == 'valid':
                 val_loss += self.loss_function(pred, label)
             if self.config.classification:
@@ -182,8 +182,8 @@ def RunExperiments(log, config):
         except Exception as e:
             raise Exception
             log(f'Run {runId + 1} Error: {e}, This run will be skipped.')
-        except KeyboardInterrupt:
-            break
+        except KeyboardInterrupt as e:
+            raise KeyboardInterrupt
 
     log('*' * 20 + 'Experiment Results:' + '*' * 20)
     for key in metrics:

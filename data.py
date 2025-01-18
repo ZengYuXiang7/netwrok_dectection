@@ -26,73 +26,67 @@ class experiment:
 
     @staticmethod
     def load_data(config):
-        def get_all_flow(dataset):
-            try:
-                all_data = pickle.load(open(f'./datasets/flow/{dataset}.pickle', 'rb'))
-            except Exception as e:
-                datasets_path = os.path.join('./datasets', 'csv', dataset)
-                all_files = os.listdir(datasets_path)
-                all_csv_data = []
-                for i in range(len(all_files)):
-                    df = pd.read_csv(os.path.join(datasets_path, all_files[i]))
-                    all_csv_data.append(df)
-                all_data = []
-                time_interval = 10
-                for i in trange(len(all_csv_data)):
-                    all_data.append(csv_to_flow(all_csv_data[i], time_interval))
-                os.makedirs('./datasets/flow')
-                pickle.dump(all_data, open(f'./datasets/flow/{dataset}.pickle', 'wb'))
-            return all_data
         try:
-            all_x = pickle.load(open(f'./datasets/flow/{config.dataset}_all_x_{config.flow_length_limit}.pickle', 'rb'))
-            all_y = pickle.load(open(f'./datasets/flow/{config.dataset}_all_y_{config.flow_length_limit}.pickle', 'rb'))
-            dataset_info = pickle.load(open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'rb'))
+            all_interval = pickle.load(
+                open(f'./datasets/flow/{config.dataset}_all_interval_{config.flow_length_limit}.pickle', 'rb'))
+            all_seq = pickle.load(
+                open(f'./datasets/flow/{config.dataset}_all_seq_{config.flow_length_limit}.pickle', 'rb'))
+            all_labels = pickle.load(
+                open(f'./datasets/flow/{config.dataset}_all_labels_{config.flow_length_limit}.pickle', 'rb'))
+            # print(all_interval.shape, all_seq.shape, all_labels.shape)
+            all_x = np.concatenate([all_interval, all_seq], axis=-1)
+            # print(x.shape)
         except Exception as e:
-            print(e)
-            all_data = get_all_flow(config.dataset)
-            all_x, all_y = [], []
-            for i in range(len(all_data)):
-                for key, value in tqdm(all_data[i].items()):
-                    this_flow = []
-                    for item in value:
-                        this_flow.append([item[0], item[-1]])
-                    # filter the small flow
-                    if len(this_flow) < config.flow_length_limit:
-                        # print(len(this_flow))
-                        # exit()
+            all_flow = os.listdir(f'./datasets/flow/{config.dataset}')
+            all_interval, all_seq, all_labels = [], [], []
+            for i in trange(len(all_flow)):
+                try:
+                    df = pd.read_csv(os.path.join(f'./datasets/flow/{config.dataset}', all_flow[i]))
+                    direction = df['direction']
+                    timestamp = df['Timestamp']
+                    packet_length = df['pktlen'] * direction
+                    x = np.array(packet_length[:config.flow_length_limit])
+                    timestamp = np.array(timestamp[:config.flow_length_limit])
+                    interval = np.diff(timestamp) / 1e9
+                    interval = np.insert(interval, 0, 0)
+                    label = df['tag'][0]
+                    if len(df) == 0:
                         continue
-                    all_x.append(this_flow[:config.flow_length_limit])
-                    # print(len(all_x[-1]))
-                    # exit()
-                    all_y.append(i)
-            pickle.dump(all_x, open(f'./datasets/flow/{config.dataset}_all_x_{config.flow_length_limit}.pickle', 'wb'))
-            pickle.dump(all_y, open(f'./datasets/flow/{config.dataset}_all_y_{config.flow_length_limit}.pickle', 'wb'))
+                    if len(x) == config.flow_length_limit:
+                        all_interval.append(interval)
+                        all_seq.append(x)
+                        all_labels.append(label)
+                except:
+                    continue
+            all_interval = np.stack(all_interval)
+            all_interval /= np.max(all_interval)
+            all_seq = np.stack(all_seq)
+            all_labels = np.array(all_labels)
+            from sklearn.preprocessing import LabelEncoder
+            label_encoder = LabelEncoder()
+            all_labels = label_encoder.fit_transform(all_labels)
+            # print(all_interval.shape, all_seq.shape, all_labels.shape)
+            pickle.dump(all_interval,
+                        open(f'./datasets/flow/{config.dataset}_all_interval_{config.flow_length_limit}.pickle', 'wb'))
+            pickle.dump(all_seq,
+                        open(f'./datasets/flow/{config.dataset}_all_seq_{config.flow_length_limit}.pickle', 'wb'))
+            pickle.dump(all_labels,
+                        open(f'./datasets/flow/{config.dataset}_all_labels_{config.flow_length_limit}.pickle', 'wb'))
 
-            max_packet_length = 0
-            max_flow_length = 0
-            max_time_interval = 0
-            for i in range(len(all_x)):
-                max_flow_length = max(max_flow_length, len(all_x[i]))
-                for j in range(len(all_x[i])):
-                    max_packet_length = max(max_packet_length, abs(all_x[i][j][1]))
 
-                # find the max time interval value
-                seq_input = all_x[i]
-                seq_input = np.array(seq_input)
-                times_stamp = seq_input[:, 0]
-                time_interval = times_stamp[1:] - times_stamp[:-1]
-                max_time_interval = max(np.max(time_interval), max_time_interval)
-
-            # print(max_flow_length, max_packet_length)
-            dataset_info = {
-                'max_time_interval': max_time_interval, # 爲了防止 over fitting
-                'max_flow_length': max_flow_length,  # padding使用
-                'max_packet_length': max_packet_length,  # 包序列归一化
-                'num_classes': max(all_y) + 1,
-            }
-            print(dataset_info)
-            pickle.dump(dataset_info, open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'wb'))
-
+        all_info = {
+            'max_flow_length' : config.flow_length_limit,
+            'max_packet_length' : np.max(all_seq),
+            'num_classes' : np.max(all_labels) + 1,
+        }
+        pickle.dump(all_info, open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'wb'))
+        from sklearn.preprocessing import MinMaxScaler
+        data_scaler = MinMaxScaler()
+        # all_seq = data_scaler.fit_transform(all_seq)
+        print(all_seq.max(), all_seq.min())
+        all_x = np.concatenate([all_interval, all_seq], axis=-1).astype(np.float32)
+        all_y = all_labels
+        # print(x.shape, y.shape)
         return all_x, all_y
 
 
@@ -106,6 +100,7 @@ class DataModule:
         self.config = config
         self.path = config.path
         self.x, self.y = exper_type.load_data(config)
+        self.data_scaler = self.get_data_scaler(self.x, self.y)
         if config.debug:
             self.x, self.y = self.x[:300], self.y[:300]
         self.train_x, self.train_y, self.valid_x, self.valid_y, self.test_x, self.test_y, self.max_value = (
@@ -121,6 +116,14 @@ class DataModule:
             TensorDataset(test_x, test_y, 'test', config)
         )
 
+    def get_data_scaler(self, x, y):
+        # from sklearn.preprocessing import MinMaxScaler
+        # data_scaler = MinMaxScaler()
+        # seq = x[:, self.config.flow_length_limit:]
+        # data_scaler.fit(seq)
+        # return data_scaler
+        return True
+
     def preprocess_data(self, x, y, config):
 
         return x, y
@@ -129,28 +132,22 @@ class DataModule:
         x, y = self.preprocess_data(x, y, config)
         indices = np.random.permutation(len(x))
         x, y = x[indices], y[indices]
-
         if not config.classification:
             max_value = y.max()
             y /= max_value
         else:
             max_value = 1
-
         train_size = int(len(x) * config.density)
         if config.eval_set:
             valid_size = int(len(x) * 0.10)
         else:
             valid_size = 0
-
         train_x = x[:train_size]
         train_y = y[:train_size]
-
         valid_x = x[train_size:train_size + valid_size]
         valid_y = y[train_size:train_size + valid_size]
-
         test_x = x[train_size + valid_size:]
         test_y = y[train_size + valid_size:]
-
         return train_x, train_y, valid_x, valid_y, test_x, test_y, max_value
 
 
@@ -181,15 +178,14 @@ class DataModule:
 
 
 class TensorDataset(torch.utils.data.Dataset):
-    def __init__(self, all_x, all_y, mode, config):
+    def __init__(self, x, y, mode, config):
         self.config = config
-        self.all_x = all_x
-        self.all_y = all_y
+        self.x = x
+        self.y = y
         self.mode = mode
         dataset_info = pickle.load(open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'rb'))
         self.max_packet_length = dataset_info['max_packet_length']
         self.max_flow_length = dataset_info['max_flow_length']
-        self.max_time_interval = dataset_info['max_time_interval']
         if self.config.model in ['gnn', 'dapp', 'graphiot']:
             try:
                 with open(f'./datasets/flow/{config.dataset}_{config.flow_length_limit}_{self.mode}_graph.pickle', 'rb') as f:
@@ -197,53 +193,44 @@ class TensorDataset(torch.utils.data.Dataset):
             except Exception as e:
                 print(e)
                 self.all_graph = []
-                for i in trange(len(all_x)):
-                    seq_input = self.all_x[i]
+                for i in trange(len(x)):
+                    seq_input = self.x[i]
                     seq_input = torch.tensor(seq_input)
-                    times_stamp = seq_input[:, 0]
-                    seq_input = seq_input[:, 1] / self.max_packet_length
-                    graph = build_single_graph(seq_input, times_stamp, self.config)
+                    time_interval = seq_input[:self.config.flow_length_limit]
+                    seq_input = seq_input[self.config.flow_length_limit:]
+                    seq_input /= self.max_packet_length
+                    graph = build_single_graph(seq_input, time_interval, self.config)
                     self.all_graph.append(graph)
                 with open(f'./datasets/flow/{config.dataset}_{config.flow_length_limit}_{self.mode}_graph.pickle', 'wb') as f:
                     pickle.dump(self.all_graph, f)
 
     def __len__(self):
-        return len(self.all_x)
+        return len(self.x)
 
     def __getitem__(self, idx):
-        seq_input = self.all_x[idx]
+        seq_input = self.x[idx]
         seq_input = torch.tensor(seq_input)
-        times_stamp = seq_input[:, 0]
-
-        # 做差分
-        time_interval = times_stamp[1:] - times_stamp[:-1]
-        time_interval = torch.cat([torch.tensor([0.0], dtype=time_interval.dtype), time_interval])
-        time_interval /= self.max_time_interval  # 2025年1月12日22:47:27
-
-        # 做包序列归一化
-        seq_input = seq_input[:, 1] / self.max_packet_length # 手动归一化 1514
-
-        merge_info = merge_features(seq_input, times_stamp)
-
+        time_interval = seq_input[:self.config.flow_length_limit]
+        seq_input = seq_input[self.config.flow_length_limit:]
+        seq_input /=  self.max_packet_length
         if self.config.model in ['gnn', 'dapp', 'graphiot']:
             time_interval = self.all_graph[idx]
             seq_input = torch.as_tensor([1.0])
-        label = self.all_y[idx]
-        return time_interval, seq_input, merge_info, label
+        label = self.y[idx]
+        return time_interval, seq_input, label
 
 
 import dgl
 def custom_collate_fn(batch, config):
     from torch.utils.data.dataloader import default_collate
-    time_interval, seq_input, merge_info, labels = zip(*batch)
+    time_interval, seq_input, labels = zip(*batch)
     if config.model in ['gnn', 'dapp', 'graphiot']:
         time_interval = dgl.batch(time_interval)
     else:
         time_interval = default_collate(time_interval)
-    merge_info = default_collate(merge_info)
     seq_input = default_collate(seq_input)
     label = torch.as_tensor(labels, dtype=torch.long if config.classification else torch.float32)
-    return time_interval, seq_input, merge_info, label
+    return time_interval, seq_input, label
 
 
 def get_dataloaders(train_set, valid_set, test_set, config):

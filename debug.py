@@ -36,7 +36,6 @@ def draw_one_plot(i, seq, label, save_dir='./figs'):
     plt.close()  # 关闭图像以释放内存
 
 
-
 if __name__ == '__main__':
     # Experiment Settings, logger, plotter
     from utils.config import get_config
@@ -55,22 +54,30 @@ if __name__ == '__main__':
     exper = experiment(config)
     datamodule = DataModule(exper, config)
 
-    dataset_info = pickle.load(open(f'./datasets/flow/{config.dataset}_info.pickle', 'rb'))
+    dataset_info = pickle.load(open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'rb'))
     max_packet_length = dataset_info['max_packet_length']
     max_flow_length = dataset_info['max_flow_length']
 
     import random
-    total_sequences = len(datamodule.train_set.all_x)
+    total_sequences = len(datamodule.train_set.x)
     indices = list(range(total_sequences))
     random.shuffle(indices)
-    for idx in trange(total_sequences, desc="Saving plots"):
+    # for idx in trange(total_sequences, desc="Saving plots"):
+    #     i = indices[idx]  # Get the shuffled index
+    #     seq_input = datamodule.train_set.x[i]
+    #     seq = seq_input[config.flow_length_limit:]
+    #     label = datamodule.train_set.y[i]
+    #     draw_one_plot(i, seq, label)
+
+    def f(idx):
         i = indices[idx]  # Get the shuffled index
-        seq_input = datamodule.train_set.all_x[i]
-        seq_input = np.array(seq_input)
-        stamp = seq_input[:, 0]
-        # seq = seq_input[:, 1] / max_packet_length  # Uncomment if normalization is needed
-        seq = seq_input[:, 1]
-        label = datamodule.train_set.all_y[i]
-        if len(seq) in [0, 1, 2]:
-            continue
+        seq_input = datamodule.train_set.x[i]
+        seq = seq_input[config.flow_length_limit:]
+        label = datamodule.train_set.y[i]
         draw_one_plot(i, seq, label)
+
+
+    import multiprocessing
+    with multiprocessing.Pool(processes=16) as pool:
+        for _ in tqdm(pool.imap(f, indices), total=len(indices)):
+            pass

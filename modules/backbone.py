@@ -21,17 +21,44 @@ class Backbone(torch.nn.Module):
         # First Step
         with open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'rb') as f:
             info = pickle.load(f)
-            max_flow_length = info['max_flow_length']
             num_classes = info['num_classes']
 
         # TimeStamp encoder
         self.time_transfer = torch.nn.Sequential(
-            torch.nn.Linear(max_flow_length, self.rank),
+            torch.nn.Linear(config.flow_length_limit, self.rank),
         )
 
         # Flow encoder
-        self.seq_encoder1 = SeqEncoder(1, config)
-        self.seq_encoder2 = SeqEncoder(1, config)
+        if config.try_exp == 1:
+            self.scales = [15, 10, 6, 5, 3, 1]  # 常规递减分布
+        elif config.try_exp == 3:
+            self.scales = [10, 6, 5, 3, 2, 1]  # 偏向小尺度的分布
+        elif config.try_exp == 5:
+            self.scales = [15, 10, 5, 3, 1]  # 更稀疏的分布
+        elif config.try_exp == 7:
+            self.scales = [15, 10, 6, 5, 1]  # 排除较小的2和3
+        elif config.try_exp == 8:
+            self.scales = [15, 10, 6, 3, 1]  # 适中范围的小尺度分布
+        elif config.try_exp == 9:
+            self.scales = [10, 6, 3, 2, 1]  # 最偏向小尺度的分布
+        elif config.try_exp == 10:
+            self.scales = [15, 10, 6, 5, 3, 2, 1]  # 最全面的分布
+
+        self.scales = [10, 6, 3, 2, 1]  # 最偏向小尺度的分布
+
+        self.patch_encoder = torch.nn.Sequential(
+            *[SeqEncoder(1, config.rank, config.flow_length_limit // self.scales[i], config.num_layers, config) for i in range(len(self.scales))]
+        )
+
+        self.fusion_layer = torch.nn.ModuleList()
+        for i in range(len(self.scales)):
+            self.fusion_layer.append(
+                torch.nn.Sequential(
+                    torch.nn.Linear(config.rank * 2, config.rank),
+                    torch.nn.ReLU(),
+                    torch.nn.Linear(config.rank, config.rank)
+                )
+            )
 
         final_input_dim = config.rank * 1
         self.predictor = Predictor(
@@ -42,36 +69,33 @@ class Backbone(torch.nn.Module):
             init_method='xavier'
         )
 
+    # def forward(self, time_interval, x):
+    #     # 编码时间间隔与流序列
+    #     # time_embeds = self.time_transfer(time_interval)
+    #     x = torch.abs(x)
+    #     patch_embedding = []
+    #     for i in range(len(self.scales)):
+    #         now_x = x[:, ::self.scales[i]]
+    #         patch_embedding.append(self.patch_encoder[i](now_x))
+    #     x = torch.stack(patch_embedding, dim=1)
+    #     x = torch.mean(x, dim=1)
+    #     y = self.predictor(x)
+    #     return y
 
-    def forward(self, time_interval, x, merge_info):
-        # 编码时间间隔与流序列
-        time_embeds = self.time_transfer(time_interval)
 
-        # 创建掩码
-        mask_positive = x > 0  # 正值掩码
-        mask_negative = x < 0  # 负值掩码
-        # 提取正值和负值，并保持形状
-        x1 = x.clone()
-        x1[~mask_positive] = 0  # 将非正值置为 0
-        x2 = x.clone()
-        x2[~mask_negative] = 0  # 将非负值置为 0
-        x2 = abs(x2)  # 将负值取绝对值
-
-        # 通过 single_direction 处理
-        x1 = self.seq_encoder1(x1)
-        x2 = self.seq_encoder2(x2)
-        x = x1 + x2
-
-        # seq_remain = seq_embeds - seq_season
-        # final_inputs = torch.stack([seq_remain, seq_embeds], dim=1)
-        # att_inputs = final_inputs
-        # att_outputs, _ = self.att_fusion(final_inputs, final_inputs, final_inputs)
-        # final_inputs = att_inputs + att_outputs
-        # final_inputs = final_inputs.reshape(final_inputs.shape[0], -1)
-        # final_inputs = 0.9 * x + 0.1 * time_embeds
-        final_inputs = x
-
-        # 特征融合
-        y = self.predictor(final_inputs)
-
+    def forward(self, time_interval, x):
+        x = torch.abs(x)
+        h_out = None
+        for i in range(len(self.scales)):
+            now_x = x[:, ::self.scales[i]]
+            now_patch_embedding = self.patch_encoder[i](now_x)
+            if i == 0:
+                h_out = now_patch_embedding
+            else:
+                now_patch_embedding = torch.cat((now_patch_embedding, h_out), dim=-1)
+                h_out = self.fusion_layer[i](now_patch_embedding)
+        x = h_out
+        y = self.predictor(x)
         return y
+
+

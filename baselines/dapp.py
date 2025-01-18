@@ -22,7 +22,7 @@ class DAPP(torch.nn.Module):
         self.dropout = torch.nn.Dropout(0.05)
         self.classifier = torch.nn.Linear(self.rank * self.order, num_classes)
 
-    def forward(self, graph, _, __):
+    def forward(self, graph, _):
         feats = graph.ndata['feats'].reshape(-1, 1)
         bs = len(feats) // self.max_flow_length
         feats = self.seq_encoder(feats)

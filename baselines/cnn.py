@@ -30,7 +30,7 @@ class CNN(torch.nn.Module):
         self.pool = nn.AdaptiveAvgPool1d(1)  # 自适应全局平均池化，降维
         self.fc = nn.Linear(hidden_size, num_classes)  # 全连接层
 
-    def forward(self, _, x, __):
+    def forward(self, _, x):
         # x: [batch_size, max_flow_length]
         x = x.unsqueeze(1)  # 扩展通道维度，形状变为 [batch_size, 1, max_flow_length]
 
