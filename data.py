@@ -3,19 +3,12 @@
 
 import torch
 import numpy as np
-from sphinx.builders.gettext import timestamp
-
 from baselines.graph_baselines import build_single_graph
-from modules.merge_tool import merge_features
 from utils.config import get_config
 from utils.logger import Logger
 from utils.plotter import MetricsPlotter
 from utils.utils import set_settings
-
-from torch.nn.utils.rnn import pad_sequence
-
 from tqdm import *
-from data_generator import csv_to_flow
 import os
 import pandas as pd
 import pickle
@@ -89,6 +82,60 @@ class experiment:
         # print(x.shape, y.shape)
         return all_x, all_y
 
+    def load_data2(self, config):
+        try:
+            all_interval = pickle.load(
+                open(f'./datasets/flow/{config.dataset}_all_interval_{config.flow_length_limit}_2.pickle', 'rb'))
+            all_seq = pickle.load(
+                open(f'./datasets/flow/{config.dataset}_all_seq_{config.flow_length_limit}_2.pickle', 'rb'))
+            all_labels = pickle.load(
+                open(f'./datasets/flow/{config.dataset}_all_labels_{config.flow_length_limit}_2.pickle', 'rb'))
+        except Exception as e:
+            __author__ = 'dk'
+            from flowcontainer.extractor import extract
+            import os
+            from utils.config import get_config
+            all_flow = os.listdir(f'./datasets/pcap/{config.dataset}')
+            all_interval, all_seq, all_labels = [], [], []
+            for i in trange(len(all_flow)):
+                add = f'./datasets/pcap/{config.dataset}/' + os.listdir(f'./datasets/pcap/{config.dataset}')[i]
+                result = extract(add, filter='(tcp or udp)')
+                print(add, len(result))
+                for key in result:
+                    value = result[key]
+                    # print('ip packets timestamps:', value.ip_timestamps)
+                    # print('ip packets lengths:', value.ip_lengths)
+                    if len(value.ip_timestamps) < config.flow_length_limit:
+                        continue
+                    time_stamp = value.ip_timestamps[:config.flow_length_limit]
+                    seq = value.ip_lengths[:config.flow_length_limit]
+                    interval = np.diff(time_stamp)
+                    interval = np.insert(interval, 0, 0)
+                    all_interval.append(interval)
+                    all_seq.append(seq)
+                    all_labels.append(i)
+            all_interval = np.stack(all_interval)
+            all_interval /= np.max(all_interval)
+            all_seq = np.stack(all_seq)
+            pickle.dump(all_interval,
+                        open(f'./datasets/flow/{config.dataset}_all_interval_{config.flow_length_limit}_2.pickle', 'wb'))
+            pickle.dump(all_seq,
+                        open(f'./datasets/flow/{config.dataset}_all_seq_{config.flow_length_limit}_2.pickle', 'wb'))
+            pickle.dump(all_labels,
+                        open(f'./datasets/flow/{config.dataset}_all_labels_{config.flow_length_limit}_2.pickle', 'wb'))
+        all_info = {
+            'max_flow_length': config.flow_length_limit,
+            'max_packet_length': np.max(all_seq),
+            'num_classes': np.max(all_labels) + 1,
+        }
+        all_labels = np.array(all_labels)
+        pickle.dump(all_info, open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'wb'))
+        print(np.max(all_interval), all_seq.max(), all_seq.min())
+        print(all_seq.shape, all_labels.shape)
+        all_x = np.concatenate([all_interval, all_seq], axis=-1).astype(np.float32)
+        all_y = all_labels
+        return all_x, all_y
+
 
     def get_pytorch_index(self, data):
         return torch.as_tensor(data)
@@ -99,7 +146,7 @@ class DataModule:
     def __init__(self, exper_type, config):
         self.config = config
         self.path = config.path
-        self.x, self.y = exper_type.load_data(config)
+        self.x, self.y = exper_type.load_data2(config)
         self.data_scaler = self.get_data_scaler(self.x, self.y)
         if config.debug:
             self.x, self.y = self.x[:300], self.y[:300]

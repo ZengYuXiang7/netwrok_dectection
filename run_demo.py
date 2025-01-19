@@ -15,18 +15,16 @@ from train_model import get_experiment_name
 def debug():
     return True
 
-def Baselines():
-    hyper_dict = {
-        'rank': [40, 50, 60],
-    }
-    best_hyper = hyper_search('MLPConfig', hyper_dict, retrain=0)
-    only_once_experiment('MLPConfig', best_hyper)
+def Baselines(hyper_dict):
 
-    best_hyper = hyper_search('LSTMConfig', hyper_dict, retrain=0)
-    only_once_experiment('LSTMConfig', best_hyper)
-
-    best_hyper = hyper_search('CNNConfig', hyper_dict, retrain=0)
-    only_once_experiment('CNNConfig', best_hyper)
+    # best_hyper = hyper_search('MLPConfig', hyper_dict, retrain=1)
+    # only_once_experiment('MLPConfig', best_hyper)
+    #
+    # best_hyper = hyper_search('LSTMConfig', hyper_dict, retrain=1)
+    # only_once_experiment('LSTMConfig', best_hyper)
+    #
+    # best_hyper = hyper_search('CNNConfig', hyper_dict, retrain=1)
+    # only_once_experiment('CNNConfig', best_hyper)
 
     best_hyper = hyper_search('GCNConfig', hyper_dict, grid_search=0, retrain=1)
     only_once_experiment('GCNConfig', best_hyper)  # {'continue_train': 1}
@@ -34,10 +32,13 @@ def Baselines():
     best_hyper = hyper_search('GATConfig', hyper_dict, grid_search=0, retrain=1)
     only_once_experiment('GATConfig', best_hyper)  # {'continue_train': 1}
 
-    # best_hyper = hyper_search('GINConfig', hyper_dict, grid_search=0, retrain=1)
-    # only_once_experiment('GINConfig', best_hyper)  # {'continue_train': 1}
+    best_hyper = hyper_search('GINConfig', hyper_dict, grid_search=0, retrain=1)
+    only_once_experiment('GINConfig', best_hyper)  # {'continue_train': 1}
+
     # only_once_experiment('DAPPConfig')  # {'continue_train': 1}
     # only_once_experiment('GraphIoTConfig')  # {'continue_train': 1}
+
+
     return True
 
 
@@ -52,14 +53,23 @@ def Our_model(hyper=None):
 ######################################################################################################
 # 在这里写执行顺序
 def experiment_run():
-    Baselines()
     hyper_dict = {
-        'rank': [50],
-        # 'continue_train': [True]
-        'num_layers': [2],
-        # 'try_exp': [i + 1 for i in range(10)],
+        'rank': [40, 50, 60],
+        'dataset': ['IoT']
     }
-    best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=1, retrain=1, debug=0)
+    Baselines(hyper_dict)
+    hyper_dict = {
+        'rank': [40, 50, 60],
+        'dataset': ['Medboit']
+    }
+    Baselines(hyper_dict)
+
+    # hyper_dict = {
+    #     'rank': [50],
+    #     'num_layers': [2],
+    #     # 'try_exp': [i + 1 for i in range(10)],
+    # }
+    # best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=1, retrain=1, debug=0)
     # only_once_experiment('TestConfig', best_hyper)
     return True
 
