@@ -10,7 +10,7 @@ class LoggerConfig:
 @dataclass
 class ExperimentConfig:
     seed: int = 0
-    rounds: int = 1
+    rounds: int = 2
     epochs: int = 200
     patience: int = 20
 

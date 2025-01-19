@@ -16,7 +16,10 @@ def debug():
     return True
 
 def Baselines(hyper_dict):
-
+    hyper_dict = {
+        'rank': [40, 50, 60],
+        'dataset': ['IoT']
+    }
     # best_hyper = hyper_search('MLPConfig', hyper_dict, retrain=1)
     # only_once_experiment('MLPConfig', best_hyper)
     #
@@ -53,23 +56,13 @@ def Our_model(hyper=None):
 ######################################################################################################
 # 在这里写执行顺序
 def experiment_run():
-    hyper_dict = {
-        'rank': [40, 50, 60],
-        'dataset': ['IoT']
-    }
-    Baselines(hyper_dict)
-    hyper_dict = {
-        'rank': [40, 50, 60],
-        'dataset': ['Medboit']
-    }
-    Baselines(hyper_dict)
 
-    # hyper_dict = {
-    #     'rank': [50],
-    #     'num_layers': [2],
-    #     # 'try_exp': [i + 1 for i in range(10)],
-    # }
-    # best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=1, retrain=1, debug=0)
+    hyper_dict = {
+        'rank': [50],
+        # 'num_layers': [2],
+        # 'try_exp': [i + 1 for i in range(4)],
+    }
+    best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=1, retrain=1, debug=0)
     # only_once_experiment('TestConfig', best_hyper)
     return True
 
