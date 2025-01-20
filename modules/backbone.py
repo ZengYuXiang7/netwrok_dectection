@@ -62,7 +62,7 @@ class Backbone(torch.nn.Module):
         # )
 
         self.dropout = torch.nn.Dropout(0.10)
-        self.att = torch.nn.MultiheadAttention(config.rank, 2, 0.10, batch_first=True)
+        self.att = torch.nn.MultiheadAttention(config.rank, config.n_heads, 0.10, batch_first=True)
         self.pos_embedding = torch.nn.Parameter(torch.randn(1, config.flow_length_limit // self.fragment_length + 1, config.rank))
         self.cls_token = torch.nn.Parameter(torch.randn(config.rank))
 

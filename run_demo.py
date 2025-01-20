@@ -58,11 +58,12 @@ def Our_model(hyper=None):
 def experiment_run():
 
     hyper_dict = {
-        'rank': [50],
-        # 'num_layers': [2],
+        'rank': [52,64,128],
+        'num_layers': [1,2,3],
+        'n_heads': [1, 2, 4, 8],
         # 'try_exp': [i + 1 for i in range(4)],
     }
-    best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=1, retrain=1, debug=0)
+    best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=0, retrain=1, debug=0)
     # only_once_experiment('TestConfig', best_hyper)
     return True
 
