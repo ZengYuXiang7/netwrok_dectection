@@ -82,6 +82,7 @@ class Backbone(torch.nn.Module):
         # )
 
         self.predictor = torch.nn.Sequential(
+            torch.nn.LayerNorm(final_input_dim),
             torch.nn.Linear(final_input_dim, num_classes)
         )
 
@@ -156,6 +157,8 @@ class Backbone(torch.nn.Module):
             fragment_embedding = self.patch_encoder[i](fragment)  # Process with the corresponding patch encoder
             fragment_embeddings.append(fragment_embedding)
         x = torch.stack(fragment_embeddings, dim=1)  # Sum aggregation of all the embeddings
+
+        
         cls_tokens = repeat(self.cls_token, 'd -> b d', b=b)
         x, ps = pack([cls_tokens, x], 'b * d')
         x += self.pos_embedding[:, :(n + 1)]

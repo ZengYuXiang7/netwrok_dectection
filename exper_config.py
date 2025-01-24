@@ -10,7 +10,7 @@ all_batch_size = 128
 class TestConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
     model: str = 'ours'
     bs: int = all_batch_size
-    rank: int = 50
+    rank: int = 64
     density: float = 0.8
     device: str = 'cuda'
     epochs: int = 500
@@ -20,7 +20,7 @@ class TestConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, T
     seq_method: str = 'gru'
     bidirectional: bool = True
     num_layers: int = 2
-    n_heads:int = 2
+    n_heads:int = 4
     try_exp: int = 1
 
 
