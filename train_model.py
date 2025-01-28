@@ -17,6 +17,7 @@ from baselines.graphiot import GraphIoT
 from baselines.lstm import LSTMModel
 from baselines.cnn import CNN
 from baselines.mlp import MLP
+from baselines.statistics import Statistics
 from modules.backbone import Backbone
 
 from utils.metrics import ErrorMetrics
@@ -51,6 +52,8 @@ class Model(torch.nn.Module):
             self.model = DAPP(config)
         elif config.model == 'graphiot':
             self.model = GraphIoT(config)
+        elif config.model == 'stat':
+            self.model = Statistics(config)
         else:
             raise ValueError(f"Unsupported model type: {config.model}")
 
@@ -134,7 +137,7 @@ def RunOnce(config, runId, log):
             if not config.classification:
                 log(f'MAE={results["MAE"]:.4f} RMSE={results["RMSE"]:.4f} NMAE={results["NMAE"]:.4f} NRMSE={results["NRMSE"]:.4f} time={sum_time:.1f} s ')
             else:
-                log(f'Acc={results["Acc"]:.4f} F1={results["F1"]:.4f} Precision={results["P"]:.4f} Recall={results["Recall"]:.4f} time={sum_time:.1f} s ')
+                log(f'Ac={results["AC"]:.4f} Pr={results["PR"]:.4f} Rc={results["RC"]:.4f} F1={results["F1"]:.4f} time={sum_time:.1f} s ')
             config.record = False
         except Exception as e:
             log.only_print(f'Error: {str(e)}')
@@ -152,7 +155,7 @@ def RunOnce(config, runId, log):
                 break
             train_loss, time_cost = model.train_one_epoch(datamodule)
             valid_error = model.evaluate_one_epoch(datamodule, 'valid')
-            monitor.track_one_epoch(epoch, model, valid_error, 'NRMSE' if not config.classification else 'Acc')
+            monitor.track_one_epoch(epoch, model, valid_error, 'NRMSE' if not config.classification else 'AC')
             log.show_epoch_error(runId, epoch, monitor, train_loss, valid_error, train_time)
             train_time.append(time_cost)
             log.plotter.append_epochs(train_loss, valid_error)

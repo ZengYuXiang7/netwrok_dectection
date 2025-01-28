@@ -25,41 +25,13 @@ class Backbone(torch.nn.Module):
             info = pickle.load(f)
             num_classes = info['num_classes']
 
-        # TimeStamp encoder
-        self.time_transfer = torch.nn.Sequential(
-            torch.nn.Linear(config.flow_length_limit, self.rank),
-        )
-
-        self.enc_embedding = torch.nn.Linear(1, config.rank, config)
-
         # Flow encoder
-        if config.try_exp == 1:
-            self.scales = [15, 10, 6, 5, 3, 1]  # 常规递减分布
-        elif config.try_exp == 3:
-            self.scales = [10, 6, 5, 3, 2, 1]  # 偏向小尺度的分布
-        elif config.try_exp == 5:
-            self.scales = [15, 10, 5, 3, 1]  # 更稀疏的分布
-        elif config.try_exp == 7:
-            self.scales = [15, 10, 6, 5, 1]  # 排除较小的2和3
-        elif config.try_exp == 8:
-            self.scales = [15, 10, 6, 3, 1]  # 适中范围的小尺度分布
-        elif config.try_exp == 9:
-            self.scales = [10, 6, 3, 2, 1]  # 最偏向小尺度的分布
-        elif config.try_exp == 10:
-            self.scales = [15, 10, 6, 5, 3, 2, 1]  # 最全面的分布
-
-        # self.scales = [6, 3, 2, 1]  # 最偏向小尺度的分布
-        self.scales = [1]  # 最偏向小尺度的分布
         self.fragment_length = 10  # Length of each fragment (e.g., 5)
         self.step_size = 10  # Step size to move the sliding window (e.g., 5)
 
         self.patch_encoder = torch.nn.Sequential(
-            # *[SeqEncoder(1, config.rank, config.flow_length_limit // self.scales[i], config.num_layers, config) for i in range(len(self.scales))]
             *[SeqEncoder(1, config.rank, self.fragment_length, config.num_layers, config) for i in range(config.flow_length_limit // self.fragment_length)]
         )
-        # self.patch_encoder.append(
-        #     SeqEncoder(1, config.rank, 30, config.num_layers, config)
-        # )
 
         self.dropout = torch.nn.Dropout(0.10)
         self.att = torch.nn.MultiheadAttention(config.rank, config.n_heads, 0.10, batch_first=True)
@@ -72,18 +44,9 @@ class Backbone(torch.nn.Module):
                 torch.nn.Linear(config.rank * 2, config.rank),
             )
 
-        final_input_dim = config.rank * 1
-        # self.predictor = Predictor(
-        #     input_dim=final_input_dim,
-        #     hidden_dim=config.rank,
-        #     output_dim=num_classes,
-        #     n_layer=3,
-        #     init_method='xavier'
-        # )
-
         self.predictor = torch.nn.Sequential(
-            torch.nn.LayerNorm(final_input_dim),
-            torch.nn.Linear(final_input_dim, num_classes)
+            torch.nn.LayerNorm(config.rank * 1),
+            torch.nn.Linear(config.rank * 1, num_classes)
         )
 
     # def forward(self, time_interval, x):

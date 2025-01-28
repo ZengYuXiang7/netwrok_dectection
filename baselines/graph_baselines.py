@@ -23,7 +23,7 @@ class GnnFamily(torch.nn.Module):
         elif config.graph_encoder == 'gat':
             self.layers = torch.nn.ModuleList([dgl.nn.pytorch.GATConv(self.rank, self.rank, config.heads, 0.10) for i in range(self.order)])
         elif config.graph_encoder == 'gin':
-            self.layers = torch.nn.ModuleList([dgl.nn.pytorch.GINConv(torch.nn.Linear(self.rank, self.rank), 'max')])
+            self.layers = torch.nn.ModuleList([dgl.nn.pytorch.GINConv(torch.nn.Linear(self.rank, self.rank), 'sum')])
         else:
             raise NotImplementedError
         self.norms = torch.nn.ModuleList([torch.nn.LayerNorm(self.rank) for _ in range(self.order)])

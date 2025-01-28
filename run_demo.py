@@ -12,40 +12,56 @@ from train_model import get_experiment_name
 
 ######################################################################################################
 # 在这里写执行实验逻辑
-def debug():
-    return True
 
-def Baselines(hyper_dict):
-    hyper_dict = {
-        'rank': [40, 50, 60],
-        'dataset': ['IoT']
+def Baselines():
+    # hyper_dict = {
+    #     'rank': [50],
+    #     # 'dataset': ['IoT']
+    #     'dataset': ['protocol']
+    # }
+    best_hyper = {
+        'rank': 50,
+        # 'dataset': 'protocol',
+        'dataset': 'Medboit',
+        # 'flow_length_limit': 20,
     }
-    # best_hyper = hyper_search('MLPConfig', hyper_dict, retrain=1)
-    # only_once_experiment('MLPConfig', best_hyper)
-    #
-    # best_hyper = hyper_search('LSTMConfig', hyper_dict, retrain=1)
-    # only_once_experiment('LSTMConfig', best_hyper)
-    #
-    # best_hyper = hyper_search('CNNConfig', hyper_dict, retrain=1)
-    # only_once_experiment('CNNConfig', best_hyper)
 
-    best_hyper = hyper_search('GCNConfig', hyper_dict, grid_search=0, retrain=1)
+    # best_hyper = hyper_search('StatisticsConfig', hyper_dict, retrain=1)
+    only_once_experiment('StatisticsConfig', best_hyper)  # {'continue_train': 1}
+
+    # best_hyper = hyper_search('MLPConfig', hyper_dict, retrain=1)
+    only_once_experiment('MLPConfig', best_hyper)
+
+    # best_hyper = hyper_search('LSTMConfig', hyper_dict, retrain=1)
+    only_once_experiment('LSTMConfig', best_hyper)
+
+    # best_hyper = hyper_search('CNNConfig', hyper_dict, retrain=1)
+    only_once_experiment('CNNConfig', best_hyper)
+
+    # best_hyper = hyper_search('GCNConfig', hyper_dict, retrain=1)
     only_once_experiment('GCNConfig', best_hyper)  # {'continue_train': 1}
 
-    best_hyper = hyper_search('GATConfig', hyper_dict, grid_search=0, retrain=1)
+    # best_hyper = hyper_search('GATConfig', hyper_dict, retrain=1)
     only_once_experiment('GATConfig', best_hyper)  # {'continue_train': 1}
 
-    best_hyper = hyper_search('GINConfig', hyper_dict, grid_search=0, retrain=1)
+    # best_hyper = hyper_search('GINConfig', hyper_dict, retrain=1)
     only_once_experiment('GINConfig', best_hyper)  # {'continue_train': 1}
 
-    # only_once_experiment('DAPPConfig')  # {'continue_train': 1}
-    # only_once_experiment('GraphIoTConfig')  # {'continue_train': 1}
+    # best_hyper = hyper_search('DAPPConfig', hyper_dict, retrain=1)
+    only_once_experiment('DAPPConfig', best_hyper)  # {'continue_train': 1}
 
+    # best_hyper = hyper_search('GraphIoTConfig', hyper_dict, retrain=1)
+    only_once_experiment('GraphIoTConfig', best_hyper)  # {'continue_train': 1}
 
     return True
 
 
-def Ablation(hyper=None):
+def Ablation():
+    hyper_dict = {
+        'dataset': ['IoT', 'Medboit', 'protocol'],
+        'ablation': [0, 1, 2, 3]
+    }
+    best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=0, retrain=1, debug=0)
     return True
 
 
@@ -56,15 +72,17 @@ def Our_model(hyper=None):
 ######################################################################################################
 # 在这里写执行顺序
 def experiment_run():
-
+    # Baselines()
     hyper_dict = {
-        'rank': [64],
+        'rank': [40],
         # 'num_layers': [2],
+        'dataset': ['Medboit'],
         # 'n_heads': [4],
         # 'try_exp': [i + 1 for i in range(4)],
     }
+    #
     best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=0, retrain=1, debug=0)
-    # only_once_experiment('TestConfig', best_hyper)
+    only_once_experiment('TestConfig', best_hyper)
     return True
 
 

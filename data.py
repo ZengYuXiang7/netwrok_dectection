@@ -3,7 +3,12 @@
 
 import torch
 import numpy as np
+from scapy.utils import rdpcap
+from sklearn.preprocessing import MinMaxScaler
+
 from baselines.graph_baselines import build_single_graph
+from baselines.statistics import get_flow_feature
+from datasets.pcap.protocol_raw.protocol import get_protocol, get_all_mapping
 from utils.config import get_config
 from utils.logger import Logger
 from utils.plotter import MetricsPlotter
@@ -17,112 +22,68 @@ class experiment:
     def __init__(self, config):
         self.config = config
 
-    @staticmethod
-    def load_data(config):
-        try:
-            all_interval = pickle.load(
-                open(f'./datasets/flow/{config.dataset}_all_interval_{config.flow_length_limit}.pickle', 'rb'))
-            all_seq = pickle.load(
-                open(f'./datasets/flow/{config.dataset}_all_seq_{config.flow_length_limit}.pickle', 'rb'))
-            all_labels = pickle.load(
-                open(f'./datasets/flow/{config.dataset}_all_labels_{config.flow_length_limit}.pickle', 'rb'))
-            # print(all_interval.shape, all_seq.shape, all_labels.shape)
-            all_x = np.concatenate([all_interval, all_seq], axis=-1)
-            # print(x.shape)
-        except Exception as e:
-            all_flow = os.listdir(f'./datasets/flow/{config.dataset}')
-            all_interval, all_seq, all_labels = [], [], []
-            for i in trange(len(all_flow)):
-                try:
-                    df = pd.read_csv(os.path.join(f'./datasets/flow/{config.dataset}', all_flow[i]))
-                    direction = df['direction']
-                    timestamp = df['Timestamp']
-                    packet_length = df['pktlen'] * direction
-                    x = np.array(packet_length[:config.flow_length_limit])
-                    timestamp = np.array(timestamp[:config.flow_length_limit])
-                    interval = np.diff(timestamp) / 1e9
-                    interval = np.insert(interval, 0, 0)
-                    label = df['tag'][0]
-                    if len(df) == 0:
-                        continue
-                    if len(x) == config.flow_length_limit:
-                        all_interval.append(interval)
-                        all_seq.append(x)
-                        all_labels.append(label)
-                except:
-                    continue
-            all_interval = np.stack(all_interval)
-            all_interval /= np.max(all_interval)
-            all_seq = np.stack(all_seq)
-            all_labels = np.array(all_labels)
-            from sklearn.preprocessing import LabelEncoder
-            label_encoder = LabelEncoder()
-            all_labels = label_encoder.fit_transform(all_labels)
-            # print(all_interval.shape, all_seq.shape, all_labels.shape)
-            pickle.dump(all_interval,
-                        open(f'./datasets/flow/{config.dataset}_all_interval_{config.flow_length_limit}.pickle', 'wb'))
-            pickle.dump(all_seq,
-                        open(f'./datasets/flow/{config.dataset}_all_seq_{config.flow_length_limit}.pickle', 'wb'))
-            pickle.dump(all_labels,
-                        open(f'./datasets/flow/{config.dataset}_all_labels_{config.flow_length_limit}.pickle', 'wb'))
+    def load_data(self, config):
+        # 定义文件路径
+        interval_path = f'./datasets/flow/{config.dataset}_all_interval_{config.flow_length_limit}'
+        seq_path = f'./datasets/flow/{config.dataset}_all_seq_{config.flow_length_limit}'
+        labels_path = f'./datasets/flow/{config.dataset}_all_labels_{config.flow_length_limit}'
+        if config.model == 'stat':
+            interval_path += 'stat.pickle'
+            seq_path += 'stat.pickle'
+            labels_path += 'stat.pickle'
+        else:
+            interval_path += '.pickle'
+            seq_path += '.pickle'
+            labels_path += '.pickle'
 
-
-        all_info = {
-            'max_flow_length' : config.flow_length_limit,
-            'max_packet_length' : np.max(all_seq),
-            'num_classes' : np.max(all_labels) + 1,
-        }
-        pickle.dump(all_info, open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'wb'))
-        from sklearn.preprocessing import MinMaxScaler
-        data_scaler = MinMaxScaler()
-        # all_seq = data_scaler.fit_transform(all_seq)
-        print(all_seq.max(), all_seq.min())
-        all_x = np.concatenate([all_interval, all_seq], axis=-1).astype(np.float32)
-        all_y = all_labels
-        # print(x.shape, y.shape)
-        return all_x, all_y
-
-    def load_data2(self, config):
-        try:
-            all_interval = pickle.load(
-                open(f'./datasets/flow/{config.dataset}_all_interval_{config.flow_length_limit}_2.pickle', 'rb'))
-            all_seq = pickle.load(
-                open(f'./datasets/flow/{config.dataset}_all_seq_{config.flow_length_limit}_2.pickle', 'rb'))
-            all_labels = pickle.load(
-                open(f'./datasets/flow/{config.dataset}_all_labels_{config.flow_length_limit}_2.pickle', 'rb'))
-        except Exception as e:
-            __author__ = 'dk'
+        # 检查文件是否存在
+        if os.path.exists(interval_path) and os.path.exists(seq_path) and os.path.exists(labels_path):
+            # 如果文件存在，加载数据
+            all_interval = pickle.load(open(interval_path, 'rb'))
+            all_seq = pickle.load(open(seq_path, 'rb'))
+            all_labels = pickle.load(open(labels_path, 'rb'))
+        else:
             from flowcontainer.extractor import extract
-            import os
             from utils.config import get_config
             all_flow = os.listdir(f'./datasets/pcap/{config.dataset}')
             all_interval, all_seq, all_labels = [], [], []
+            if config.dataset == 'protocol':
+                mapping = get_all_mapping()
             for i in trange(len(all_flow)):
                 add = f'./datasets/pcap/{config.dataset}/' + os.listdir(f'./datasets/pcap/{config.dataset}')[i]
+                if '.pcapng' in add:
+                    continue
                 result = extract(add, filter='(tcp or udp)')
                 print(add, len(result))
                 for key in result:
                     value = result[key]
-                    # print('ip packets timestamps:', value.ip_timestamps)
-                    # print('ip packets lengths:', value.ip_lengths)
                     if len(value.ip_timestamps) < config.flow_length_limit:
                         continue
                     time_stamp = value.ip_timestamps[:config.flow_length_limit]
-                    seq = value.ip_lengths[:config.flow_length_limit]
-                    interval = np.diff(time_stamp)
-                    interval = np.insert(interval, 0, 0)
-                    all_interval.append(interval)
+                    if config.model == 'stat':
+                        seq = get_flow_feature(value)
+                    else:
+                        seq = value.ip_lengths[:config.flow_length_limit]
+                    # interval = np.diff(time_stamp)
+                    # interval = np.insert(interval, 0, 0)
+                    all_interval.append(time_stamp)
                     all_seq.append(seq)
-                    all_labels.append(i)
+                    if config.dataset == 'protocol':
+                        # print(add.split('/')[-1])
+                        # print(mapping)
+                        label = mapping[add.split('/')[-1]]
+                        all_labels.append(label)
+                        # all_labels.append(i)
+                        # exit()
+                    else:
+                        all_labels.append(i)
+                # print('label:', label)
             all_interval = np.stack(all_interval)
             all_interval /= np.max(all_interval)
             all_seq = np.stack(all_seq)
-            pickle.dump(all_interval,
-                        open(f'./datasets/flow/{config.dataset}_all_interval_{config.flow_length_limit}_2.pickle', 'wb'))
-            pickle.dump(all_seq,
-                        open(f'./datasets/flow/{config.dataset}_all_seq_{config.flow_length_limit}_2.pickle', 'wb'))
-            pickle.dump(all_labels,
-                        open(f'./datasets/flow/{config.dataset}_all_labels_{config.flow_length_limit}_2.pickle', 'wb'))
+            pickle.dump(all_interval, open(interval_path, 'wb'))
+            pickle.dump(all_seq, open(seq_path, 'wb'))
+            pickle.dump(all_labels, open(labels_path, 'wb'))
         all_info = {
             'max_flow_length': config.flow_length_limit,
             'max_packet_length': np.max(all_seq),
@@ -130,9 +91,18 @@ class experiment:
         }
         all_labels = np.array(all_labels)
         pickle.dump(all_info, open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'wb'))
+        # 初始化 MinMaxScaler
+        if config.model == 'stat':
+            scaler = MinMaxScaler()
+            all_seq = scaler.fit_transform(all_seq)
         print(np.max(all_interval), all_seq.max(), all_seq.min())
         print(all_seq.shape, all_labels.shape)
-        all_x = np.concatenate([all_interval, all_seq], axis=-1).astype(np.float32)
+        # exit()
+        if config.model == 'stat':
+            all_x = all_seq.astype(np.float32)
+        else:
+            all_x = np.concatenate([all_interval, all_seq], axis=-1).astype(np.float32)
+
         all_y = all_labels
         return all_x, all_y
 
@@ -146,8 +116,7 @@ class DataModule:
     def __init__(self, exper_type, config):
         self.config = config
         self.path = config.path
-        self.x, self.y = exper_type.load_data2(config)
-        self.data_scaler = self.get_data_scaler(self.x, self.y)
+        self.x, self.y = exper_type.load_data(config)
         if config.debug:
             self.x, self.y = self.x[:300], self.y[:300]
         self.train_x, self.train_y, self.valid_x, self.valid_y, self.test_x, self.test_y, self.max_value = (
@@ -163,13 +132,6 @@ class DataModule:
             TensorDataset(test_x, test_y, 'test', config)
         )
 
-    def get_data_scaler(self, x, y):
-        # from sklearn.preprocessing import MinMaxScaler
-        # data_scaler = MinMaxScaler()
-        # seq = x[:, self.config.flow_length_limit:]
-        # data_scaler.fit(seq)
-        # return data_scaler
-        return True
 
     def preprocess_data(self, x, y, config):
 
@@ -209,16 +171,15 @@ class DataModule:
         valid_x, valid_y = [], []
         test_x, test_y = [], []
         for label, now_x in class_data.items():
-            flow = now_x
-            random.shuffle(flow)
-            train_size = int(len(flow) * config.density)
-            valid_size = int(len(flow) * 0.10) if config.eval_set else 0
-            train_x.extend(flow[:train_size])  # 同时保存 five 和 flow
-            train_y.extend([label] * train_size)
-            valid_x.extend(flow[train_size:train_size + valid_size])
-            valid_y.extend([label] * valid_size)
-            test_x.extend(flow[train_size + valid_size:])
-            test_y.extend([label] * (len(flow) - train_size - valid_size))
+            random.shuffle(now_x)
+            train_size = int(len(now_x) * config.density)
+            valid_size = int(len(now_x) * 0.10) if config.eval_set else 0
+            train_x.extend(now_x[:train_size])  # 同时保存 five 和 flow
+            train_y.extend([label] * len(now_x[:train_size]))
+            valid_x.extend(now_x[train_size:train_size + valid_size])
+            valid_y.extend([label] * len(now_x[train_size:train_size + valid_size]))
+            test_x.extend(now_x[train_size + valid_size:])
+            test_y.extend([label] * len(now_x[train_size + valid_size:]))
         # train_x, train_y, valid_x, valid_y, test_x, test_y = map(np.array, [train_x, train_y, valid_x, valid_y, test_x, test_y])
         max_value = 1
         return train_x, train_y, valid_x, valid_y, test_x, test_y, max_value
@@ -234,8 +195,11 @@ class TensorDataset(torch.utils.data.Dataset):
         self.max_packet_length = dataset_info['max_packet_length']
         self.max_flow_length = dataset_info['max_flow_length']
         if self.config.model in ['gnn', 'dapp', 'graphiot']:
+            address = f'./datasets/flow/{config.dataset}_{config.flow_length_limit}_{self.mode}_graph.pickle'
+            # if self.config.model == 'graphiot':
+            #     address = f'./datasets/flow/{config.dataset}_{config.flow_length_limit}_{self.mode}_graphiot.pickle'
             try:
-                with open(f'./datasets/flow/{config.dataset}_{config.flow_length_limit}_{self.mode}_graph.pickle', 'rb') as f:
+                with open(address, 'rb') as f:
                     self.all_graph = pickle.load(f)
             except Exception as e:
                 print(e)
@@ -248,21 +212,25 @@ class TensorDataset(torch.utils.data.Dataset):
                     seq_input /= self.max_packet_length
                     graph = build_single_graph(seq_input, time_interval, self.config)
                     self.all_graph.append(graph)
-                with open(f'./datasets/flow/{config.dataset}_{config.flow_length_limit}_{self.mode}_graph.pickle', 'wb') as f:
+                with open(address, 'wb') as f:
                     pickle.dump(self.all_graph, f)
 
     def __len__(self):
         return len(self.x)
 
     def __getitem__(self, idx):
-        seq_input = self.x[idx]
-        seq_input = torch.tensor(seq_input)
-        time_interval = seq_input[:self.config.flow_length_limit]
-        seq_input = seq_input[self.config.flow_length_limit:]
+        raw_input = self.x[idx]
+        raw_input = torch.tensor(raw_input)
+        time_interval = raw_input[:self.config.flow_length_limit]
+        seq_input = raw_input[self.config.flow_length_limit:]
         seq_input /=  self.max_packet_length
         if self.config.model in ['gnn', 'dapp', 'graphiot']:
             time_interval = self.all_graph[idx]
             seq_input = torch.as_tensor([1.0])
+        elif self.config.model == 'stat':
+            time_interval = torch.as_tensor([1.0])
+            seq_input = raw_input
+
         label = self.y[idx]
         return time_interval, seq_input, label
 

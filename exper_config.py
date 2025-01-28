@@ -67,6 +67,8 @@ class GCNConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, Tr
     flow_length_limit: int = 30
     graph_encoder: str = 'gcn'
     order: int = 3
+    rounds: int = 1
+
 
 @dataclass
 class GATConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
@@ -80,18 +82,20 @@ class GATConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, Tr
     graph_encoder: str = 'gat'
     order: int = 3
     heads: int = 2
+    rounds: int = 1
+
 
 @dataclass
 class GINConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
     model: str = 'gnn'
     bs: int = 64
-    rank: int = 64
+    rank: int = 50
     epochs: int = 500
     patience: int = 30
     verbose: int = 10
     flow_length_limit: int = 30
     graph_encoder: str = 'gin'
-    order: int = 3
+    order: int = 2
 
 @dataclass
 class DAPPConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
@@ -102,11 +106,24 @@ class DAPPConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, T
     patience: int = 30
     verbose: int = 10
     flow_length_limit: int = 30
+    order: int = 2
+
 
 
 @dataclass
 class GraphIoTConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
     model: str = 'graphiot'
+    rank: int = 64
+    epochs: int = 500
+    patience: int = 30
+    verbose: int = 10
+    bs: int = 64
+    flow_length_limit: int = 30
+    lr: float = 0.0025
+
+@dataclass
+class StatisticsConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
+    model: str = 'stat'
     rank: int = 64
     epochs: int = 500
     patience: int = 30

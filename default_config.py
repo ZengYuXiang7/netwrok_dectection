@@ -34,6 +34,7 @@ class BaseModelConfig:
 class DatasetInfo:
     path: str = './datasets/'
     dataset: str = 'IoT'
+    # dataset: str = 'protocol'
     # dataset: str = 'Medboit'
     train_size: int = 500
     density: float = 0.80

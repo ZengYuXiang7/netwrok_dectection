@@ -4,6 +4,30 @@ import torch.nn as nn
 from dgl.nn.pytorch import GINConv
 import pickle
 
+class MLP(torch.nn.Module):
+    def __init__(self,in_feats,out_feats):
+        super(MLP,self).__init__()
+        self.linear_layers = torch.nn.ModuleList()
+        self.layer = torch.nn.Sequential(
+            torch.nn.Linear(in_features=in_feats, out_features=out_feats),
+            torch.nn.Dropout(p=0.025),
+            torch.nn.ReLU(),
+            torch.nn.BatchNorm1d(out_feats),
+            torch.nn.Linear(in_features=in_feats, out_features=out_feats),
+            torch.nn.Dropout(p=0.025),
+            torch.nn.ReLU(),
+            torch.nn.BatchNorm1d(out_feats),
+            torch.nn.Linear(in_features=in_feats, out_features=out_feats),
+            torch.nn.Dropout(p=0.025),
+            torch.nn.ReLU(),
+            torch.nn.BatchNorm1d(out_feats),
+        )
+
+
+    def forward(self, x):
+        return self.layer(x)
+
+
 class GraphIoT(torch.nn.Module):
     def __init__(self, config):
         super(GraphIoT, self).__init__()
@@ -16,23 +40,17 @@ class GraphIoT(torch.nn.Module):
         self.rank = config.rank
         self.order = 3
         self.seq_encoder = torch.nn.Linear(1, self.rank)
-        self.layers = torch.nn.ModuleList([dgl.nn.pytorch.GINConv(torch.nn.Linear(self.rank, self.rank), 'sum')for _ in range(self.order)])
-        self.linears = torch.nn.ModuleList([torch.nn.Linear(self.rank, self.rank) for _ in range(self.order)])
-        self.norms = torch.nn.ModuleList([torch.nn.BatchNorm1d(self.rank) for _ in range(self.order)])
-        self.acts = torch.nn.ModuleList([torch.nn.ReLU() for _ in range(self.order)])
-        self.dropout = torch.nn.Dropout(0.025)
+        self.layers = torch.nn.ModuleList(
+            [dgl.nn.pytorch.GINConv(MLP(self.rank, self.rank), 'sum') for _ in range(self.order)]
+        )
         self.classifier = torch.nn.Linear(self.rank * self.order, num_classes)
 
-    def forward(self, graph, _, __):
+    def forward(self, graph, _):
         feats = graph.ndata['feats'].reshape(-1, 1)
         bs = len(feats) // self.max_flow_length
         feats = self.seq_encoder(feats)
         all_graph_readout = []
-        for i, (layer, linear, norm, act) in enumerate(zip(self.layers, self.linears, self.norms, self.acts)):
-            feats = linear(feats)
-            feats = norm(feats)
-            feats = act(feats)
-            feats = self.dropout(feats)
+        for i, layer in enumerate(self.layers):
             feats = layer(graph, feats)
             graph_readout = feats.reshape(bs, -1, self.rank)
             graph_readout = torch.sum(graph_readout, dim=1)

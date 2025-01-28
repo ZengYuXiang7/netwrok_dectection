@@ -33,6 +33,7 @@ class MLP(torch.nn.Module):
 
     def forward(self, _, x):
         # 前向传播
+        x = torch.abs(x)
         x = self.fc1(x)
         x = self.ln1(x)
         x = self.act1(x)
