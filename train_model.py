@@ -6,7 +6,6 @@ import time
 import pickle
 import collections
 
-from torchvision.models import ResNet
 from tqdm import *
 import numpy as np
 import torch
@@ -24,7 +23,7 @@ from utils.metrics import ErrorMetrics
 from utils.monitor import EarlyStopping
 from utils.trainer import get_loss_function, get_optimizer
 from utils.utils import set_seed
-from train_efficiency import get_efficiency
+from utils.efficiency import get_efficiency
 
 global log, config
 torch.set_default_dtype(torch.float32)
@@ -198,6 +197,9 @@ def RunExperiments(log, config):
         log(f"Inference time: {inference_time:.2f} ms")
     except Exception as e:
         log('Skip the efficiency calculation')
+
+    log.save_in_log(metrics)
+
     if config.record:
         log.save_result(metrics)
         log.plotter.record_metric(metrics)
@@ -209,7 +211,7 @@ def RunExperiments(log, config):
 def run(config):
     from utils.logger import Logger
     from utils.plotter import MetricsPlotter
-    from utils.utils import set_settings, set_seed
+    from utils.utils import set_settings
     set_settings(config)
     log_filename = get_experiment_name(config)
     plotter = MetricsPlotter(log_filename, config)

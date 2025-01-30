@@ -1,13 +1,20 @@
 # coding : utf-8
 # Author : yuxiang Zeng
+from concurrent.futures import as_completed
+import multiprocessing
+from concurrent.futures import ProcessPoolExecutor
 
 import torch
 import numpy as np
+from numpy.ma.core import repeat
 from scapy.utils import rdpcap
 from sklearn.preprocessing import MinMaxScaler
 
 from baselines.graph_baselines import build_single_graph
 from baselines.statistics import get_flow_feature
+from data_load.get_iot import get_iot
+from data_load.get_medboit import get_medboit
+from data_load.get_ustctfc import get_ustctfc, get_x_and_y
 from datasets.pcap.protocol_raw.protocol import get_protocol, get_all_mapping
 from utils.config import get_config
 from utils.logger import Logger
@@ -17,6 +24,9 @@ from tqdm import *
 import os
 import pandas as pd
 import pickle
+from flowcontainer.extractor import extract
+from utils.config import get_config
+
 
 class experiment:
     def __init__(self, config):
@@ -38,46 +48,54 @@ class experiment:
 
         # 检查文件是否存在
         if os.path.exists(interval_path) and os.path.exists(seq_path) and os.path.exists(labels_path):
-            # 如果文件存在，加载数据
             all_interval = pickle.load(open(interval_path, 'rb'))
             all_seq = pickle.load(open(seq_path, 'rb'))
             all_labels = pickle.load(open(labels_path, 'rb'))
         else:
-            from flowcontainer.extractor import extract
-            from utils.config import get_config
-            all_flow = os.listdir(f'./datasets/pcap/{config.dataset}')
+
             all_interval, all_seq, all_labels = [], [], []
             if config.dataset == 'protocol':
                 mapping = get_all_mapping()
-            for i in trange(len(all_flow)):
-                add = f'./datasets/pcap/{config.dataset}/' + os.listdir(f'./datasets/pcap/{config.dataset}')[i]
-                if '.pcapng' in add:
-                    continue
-                result = extract(add, filter='(tcp or udp)')
-                print(add, len(result))
+            elif config.dataset == 'ustctfc':
+                all_address, all_label = get_ustctfc()
+                # all_address, all_label = get_x_and_y(all_address, all_label)
+            elif config.dataset == 'IoT':
+                all_address, all_label = get_iot()
+            elif config.dataset == 'Medboit':
+                all_address, all_label = get_medboit()
+
+            # all_address, all_label = all_address[:20000], all_label[:20000]
+            # flow_limits = [10 for _ in range(len(all_address))]
+            # num_workers = min(multiprocessing.cpu_count(), len(all_address))  # 限制最大线程数
+            # with ProcessPoolExecutor(max_workers=num_workers) as executor:
+            #     future_to_index = {executor.submit(process_address, all_address[i], all_label[i], flow_limits[i]): i for i in range(len(all_address))}
+            #     results = []
+            #     for future in tqdm(as_completed(future_to_index), total=len(all_address)):
+            #         result = future.result()
+            #         if result is not None:
+            #             results.append(result)
+            #
+            # all_interval, all_seq, all_labels = zip(*results)
+            for i in trange(len(all_address)):
+                add = all_address[i]
+                result = extract(add, filter='tcp or udp')
+                print(all_address[i], len(result))
                 for key in result:
                     value = result[key]
-                    if len(value.ip_timestamps) < config.flow_length_limit:
+                    if len(value.lengths) < config.flow_length_limit:
                         continue
                     time_stamp = value.ip_timestamps[:config.flow_length_limit]
                     if config.model == 'stat':
                         seq = get_flow_feature(value)
                     else:
                         seq = value.ip_lengths[:config.flow_length_limit]
-                    # interval = np.diff(time_stamp)
-                    # interval = np.insert(interval, 0, 0)
                     all_interval.append(time_stamp)
                     all_seq.append(seq)
                     if config.dataset == 'protocol':
-                        # print(add.split('/')[-1])
-                        # print(mapping)
                         label = mapping[add.split('/')[-1]]
                         all_labels.append(label)
-                        # all_labels.append(i)
-                        # exit()
                     else:
-                        all_labels.append(i)
-                # print('label:', label)
+                        all_labels.append(all_label[i])
             all_interval = np.stack(all_interval)
             all_interval /= np.max(all_interval)
             all_seq = np.stack(all_seq)
@@ -97,12 +115,10 @@ class experiment:
             all_seq = scaler.fit_transform(all_seq)
         print(np.max(all_interval), all_seq.max(), all_seq.min())
         print(all_seq.shape, all_labels.shape)
-        # exit()
         if config.model == 'stat':
             all_x = all_seq.astype(np.float32)
         else:
             all_x = np.concatenate([all_interval, all_seq], axis=-1).astype(np.float32)
-
         all_y = all_labels
         return all_x, all_y
 

@@ -13,27 +13,29 @@ from train_model import get_experiment_name
 ######################################################################################################
 # 在这里写执行实验逻辑
 
-def Baselines():
+def Baselines(dataset):
     # hyper_dict = {
     #     'rank': [50],
     #     # 'dataset': ['IoT']
     #     'dataset': ['protocol']
     # }
     best_hyper = {
-        'rank': 50,
-        # 'dataset': 'protocol',
-        'dataset': 'Medboit',
-        # 'flow_length_limit': 20,
+        'rounds': 5,
+        'rank': 64,
+        'dataset': dataset,
+        'flow_length_limit': 20,
     }
-
-    # best_hyper = hyper_search('StatisticsConfig', hyper_dict, retrain=1)
-    only_once_experiment('StatisticsConfig', best_hyper)  # {'continue_train': 1}
+    # best_hyper = hyper_search('TestConfig', hyper_dict, retrain=1)
+    only_once_experiment('TestConfig', best_hyper)  # {'continue_train': 1}
 
     # best_hyper = hyper_search('MLPConfig', hyper_dict, retrain=1)
     only_once_experiment('MLPConfig', best_hyper)
 
     # best_hyper = hyper_search('LSTMConfig', hyper_dict, retrain=1)
     only_once_experiment('LSTMConfig', best_hyper)
+
+    # best_hyper = hyper_search('StatisticsConfig', hyper_dict, retrain=1)
+    only_once_experiment('StatisticsConfig', best_hyper)  # {'continue_train': 1}
 
     # best_hyper = hyper_search('CNNConfig', hyper_dict, retrain=1)
     only_once_experiment('CNNConfig', best_hyper)
@@ -58,10 +60,12 @@ def Baselines():
 
 def Ablation():
     hyper_dict = {
-        'dataset': ['IoT', 'Medboit', 'protocol'],
-        'ablation': [0, 1, 2, 3]
+        # 'dataset': ['IoT', 'Medboit', 'protocol'],
+        'dataset': ['Medboit', 'ustctfc'],
+        'ablation': [1, 2, 3],
+        'flow_length_limit': [20],
     }
-    best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=0, retrain=1, debug=0)
+    hyper_search('TestConfig', hyper_dict, grid_search=1, retrain=1)
     return True
 
 
@@ -72,17 +76,16 @@ def Our_model(hyper=None):
 ######################################################################################################
 # 在这里写执行顺序
 def experiment_run():
-    # Baselines()
+    # Baselines('Medboit')
+    # Baselines('ustctfc')
+    Ablation()
     hyper_dict = {
         'rank': [40],
-        # 'num_layers': [2],
         'dataset': ['Medboit'],
-        # 'n_heads': [4],
         # 'try_exp': [i + 1 for i in range(4)],
     }
-    #
-    best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=0, retrain=1, debug=0)
-    only_once_experiment('TestConfig', best_hyper)
+    # best_hyper = hyper_search('TestConfig', hyper_dict, grid_search=0, retrain=1, debug=0)
+    # only_once_experiment('TestConfig', best_hyper)
     return True
 
 
@@ -149,7 +152,7 @@ def hyper_search(exp_name, hyper_dict, grid_search=0, retrain=1, debug=0):
 
         # 根据任务类型选取关键指标
         if classification_task:
-            metric_name = 'Acc'
+            metric_name = 'AC'
         else:
             metric_name = 'MAE'
         best_value = np.mean(this_expr_metrics[metric_name])

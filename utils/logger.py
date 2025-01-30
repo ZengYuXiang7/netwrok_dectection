@@ -7,7 +7,7 @@ import time
 import logging
 import numpy as np
 
-from train_efficiency import get_efficiency
+from utils.efficiency import get_efficiency
 from utils.utils import makedir
 
 class Logger:
@@ -41,6 +41,13 @@ class Logger:
         if show_params:
             self.log(self.format_and_sort_config_dict(self.config.__dict__))
 
+    def save_in_log(self, metrics):
+        with open("./run.log", 'a') as f:
+            ans = ''
+            for key in metrics:
+                ans += f"{key} - {np.mean(metrics[key]):.4f}    "
+            f.write(ans + '\n')
+
     def save_result(self, metrics):
         import pickle
         makedir('./results/metrics/')
@@ -56,6 +63,7 @@ class Logger:
         address = f'./results/metrics/' + self.filename
         with open(address + '.pkl', 'wb') as f:
             pickle.dump(all_info, f)
+
 
     # 日志记录
     def log(self, string):

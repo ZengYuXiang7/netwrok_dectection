@@ -21,22 +21,6 @@ def set_settings(config):
     else:
         config.num_classes = 1
 
-    def find_closest_power_of_2(train_size, percentage=0.10):
-        # 计算目标 batch size
-        target_bs = int(train_size * percentage)
-
-        # 定义 2 的幂次序列
-        powers_of_2 = [2 ** i for i in range(1, 15)]  # 2, 4, 8, ..., 256
-
-        # 找到最接近的 2 的幂次
-        closest_bs = min(powers_of_2, key=lambda x: abs(x - target_bs))
-
-        return closest_bs
-
-    # 找到最接近的 batch size
-    # if config.train_size <= 10000:
-    #     config.bs = find_closest_power_of_2(config.train_size)
-
     # 检查操作系统
     if platform.system() == "Darwin":  # "Darwin" 是 macOS 的系统标识
         config.device = 'cpu' if config.device != 'mps' else 'mps'

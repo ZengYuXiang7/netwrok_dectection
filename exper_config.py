@@ -14,7 +14,7 @@ class TestConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, T
     density: float = 0.8
     device: str = 'cuda'
     epochs: int = 500
-    patience: int = 50
+    patience: int = 60
     verbose: int = 1
     flow_length_limit: int = 30
     seq_method: str = 'gru'

@@ -51,6 +51,7 @@ if __name__ == '__main__':
     set_seed(config.seed + 0)
     # Initialize the data and the model
     from data import experiment, DataModule
+    config.dataset = 'ustctfc'
     exper = experiment(config)
     datamodule = DataModule(exper, config)
 
@@ -76,8 +77,7 @@ if __name__ == '__main__':
         label = datamodule.train_set.y[i]
         draw_one_plot(i, seq, label)
 
-
     import multiprocessing
-    with multiprocessing.Pool(processes=16) as pool:
+    with multiprocessing.Pool(processes=24) as pool:
         for _ in tqdm(pool.imap(f, indices), total=len(indices)):
             pass
