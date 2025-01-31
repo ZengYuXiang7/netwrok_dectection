@@ -14,7 +14,7 @@ class MLP(torch.nn.Module):
             info = pickle.load(f)
             max_flow_length = info['max_flow_length']
             num_classes = info['num_classes']
-
+        self.config = config
         input_size = max_flow_length
         hidden_size = config.rank
 
@@ -31,7 +31,11 @@ class MLP(torch.nn.Module):
         self.ln3 = nn.LayerNorm(num_classes)  # 第三层 LayerNorm
         self.act3 = nn.ReLU()  # 第三层激活函数
 
-    def forward(self, _, x):
+        if config.stat:
+            self.feature_tf = torch.nn.Linear(39, config.rank)
+            self.fc = nn.Linear(hidden_size * 2, num_classes)  # 全连接层
+
+    def forward(self, flow_feature, x):
         # 前向传播
         x = torch.abs(x)
         x = self.fc1(x)
@@ -42,7 +46,13 @@ class MLP(torch.nn.Module):
         x = self.ln2(x)
         x = self.act2(x)
 
-        x = self.fc3(x)
-        x = self.ln3(x)
-        y = self.act3(x)
+        # 全连接层
+        if self.config.stat:
+            feature_embeds = self.feature_tf(flow_feature)
+            final_input = torch.cat((x, feature_embeds), 1)
+            y = self.fc(final_input)
+        else:
+            x = self.fc3(x)
+            x = self.ln3(x)
+            y = self.act3(x)
         return y

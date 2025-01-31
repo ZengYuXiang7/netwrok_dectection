@@ -32,7 +32,12 @@ class GnnFamily(torch.nn.Module):
         self.readout_layer = torch.nn.Linear(self.rank, self.rank)
         self.classifier = torch.nn.Linear(self.rank * self.max_flow_length, num_classes)
 
-    def forward(self, graph, _):
+        if config.stat:
+            self.feature_tf = torch.nn.Linear(39, config.rank)
+            self.graph_tf = torch.nn.Linear(self.rank * self.max_flow_length, self.rank)
+            self.classifier = torch.nn.Linear(self.rank * 2, num_classes)  # 全连接层
+
+    def forward(self, flow_feature, graph):
         feats = graph.ndata['feats'].reshape(-1, 1)
         bs = len(feats) // self.max_flow_length
         feats = self.seq_encoder(feats)
@@ -47,7 +52,14 @@ class GnnFamily(torch.nn.Module):
         # feats = feats.reshape(bs, -1, self.rank)
         # feats = torch.mean(feats, dim=1)
         feats = feats.reshape(bs, -1)
-        y = self.classifier(feats)
+
+        if self.config.stat:
+            feature_embeds = self.feature_tf(flow_feature)
+            graph_embeds = self.graph_tf(feats)
+            final_input = torch.cat((graph_embeds, feature_embeds), 1)
+            y = self.classifier(final_input)
+        else:
+            y = self.classifier(feats)
         return y
 
 

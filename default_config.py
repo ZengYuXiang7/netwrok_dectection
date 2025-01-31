@@ -28,6 +28,7 @@ class BaseModelConfig:
     model: str = 'ours'
     rank: int = 40
     retrain: bool = False
+    stat: bool = False
 
 
 @dataclass

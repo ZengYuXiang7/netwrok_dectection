@@ -4162,3 +4162,302 @@ Experiment Start!!!
 
 === Grid Search ===
 COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset Medboit --ablation 1 --flow_length_limit 20 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 1 --flow_length_limit 30 
+Experiment Start!!!
+
+=== Grid Search ===
+Experiment Start!!!
+AC - 0.8719    PR - 0.7989    RC - 0.7754    F1 - 0.7808    train_time - 45.2673    
+AC - 0.9087    PR - 0.8326    RC - 0.8179    F1 - 0.8233    train_time - 43.3842    
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 1 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 1, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.8718568665377175
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 2 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 2, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.9087282398452612
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 3 --flow_length_limit 30 --patience 20 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 1 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 1, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.9087282398452612
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 2 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 2, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.9087282398452612
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 3 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 3, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.9087282398452612
+Best combo: {'dataset': 'IoT', 'ablation': 1, 'flow_length_limit': 30, 'patience': 20}, Best metric: 0.9087282398452612
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 1 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 1, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.9087282398452612
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 2 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 2, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.9087282398452612
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 3 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 3, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.9087282398452612
+Best combo: {'dataset': 'IoT', 'ablation': 1, 'flow_length_limit': 30, 'patience': 20}, Best metric: 0.9087282398452612
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 1 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 1, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.9087282398452612
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 2 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 2, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.9087282398452612
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 3 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 3, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.9087282398452612
+Best combo: {'dataset': 'IoT', 'ablation': 1, 'flow_length_limit': 30, 'patience': 20}, Best metric: 0.9087282398452612
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 1 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 1, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.9087282398452612
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 2 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 2, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.9087282398452612
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 3 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 3, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.9087282398452612
+Best combo: {'dataset': 'IoT', 'ablation': 1, 'flow_length_limit': 30, 'patience': 20}, Best metric: 0.9087282398452612
+All commands executed successfully.
+
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 1 --flow_length_limit 30 --patience 20 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 1 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 1, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.9087282398452612
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 2 --flow_length_limit 30 --patience 20 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 1 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 1, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.9087282398452612
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 2 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 2, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.9087282398452612
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 3 --flow_length_limit 30 --patience 20 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 1 --flow_length_limit 30 --patience 20 
+Combo: {'dataset': 'IoT', 'ablation': 1, 'flow_length_limit': 30, 'patience': 20}, Metric= 0.9087282398452612
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 2 --flow_length_limit 30 --patience 20 
+Experiment Start!!!
+
+=== Grid Search ===
+COMMAND: python train_model.py --exp_name TestConfig --hyper_search 1 --retrain 1 --dataset IoT --ablation 1 --flow_length_limit 30 --patience 20 
+Experiment Start!!!
+Running at 2025-01-30 23:23: python train_model.py --exp_name TestConfig --retrain 0 --rounds 5 --rank 64 --dataset ustctfc --flow_length_limit 20
+Experiment Start!!!
+Running at 2025-01-30 23:28: python train_model.py --exp_name StatisticsConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20
+Experiment Start!!!
+Running at 2025-01-30 23:38: python train_model.py --exp_name CNNConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20
+Command failed, retrying in 3 seconds: python train_model.py --exp_name CNNConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20
+Experiment Start!!!
+Running at 2025-01-30 23:39: python train_model.py --exp_name CNNConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-30 23:40: python train_model.py --exp_name CNNConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8285    PR - 0.3337    RC - 0.3474    F1 - 0.3393    train_time - 17.7153    
+Running at 2025-01-30 23:40: python train_model.py --exp_name TestConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-30 23:41: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-30 23:41: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8447    PR - 0.3744    RC - 0.3775    F1 - 0.3750    train_time - 15.7847    
+Running at 2025-01-30 23:41: python train_model.py --exp_name TestConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-30 23:45: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:46: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:46: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:46: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-30 23:46: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:46: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:47: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-30 23:47: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:47: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:47: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:48: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:48: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-30 23:48: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:48: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:48: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:49: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-30 23:51: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:51: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-30 23:51: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-30 23:53: python train_model.py --exp_name GraphIoTConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GraphIoTConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:53: python train_model.py --exp_name GraphIoTConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name GraphIoTConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:53: python train_model.py --exp_name GraphIoTConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-30 23:54: python train_model.py --exp_name GraphIoTConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-30 23:55: python train_model.py --exp_name DAPPConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8641    PR - 0.4478    RC - 0.4492    F1 - 0.4484    train_time - 7.9769    
+Running at 2025-01-30 23:55: python train_model.py --exp_name TestConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8770    PR - 0.5053    RC - 0.4221    F1 - 0.4394    train_time - 14.5122    
+Running at 2025-01-30 23:55: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8447    PR - 0.3744    RC - 0.3775    F1 - 0.3750    train_time - 15.7847    
+Running at 2025-01-30 23:55: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:55: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:56: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:56: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-30 23:56: python train_model.py --exp_name DAPPConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.7638    PR - 0.4687    RC - 0.4727    F1 - 0.4353    train_time - 7.9769    
+Running at 2025-01-30 23:56: python train_model.py --exp_name TestConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-30 23:56: python train_model.py --exp_name DAPPConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8641    PR - 0.4478    RC - 0.4492    F1 - 0.4484    train_time - 8.0305    
+Running at 2025-01-30 23:57: python train_model.py --exp_name TestConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-30 23:59: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-30 23:59: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-31 00:00: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Retrying at 2025-01-31 00:00: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-31 00:00: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8867    PR - 0.4778    RC - 0.4590    F1 - 0.4624    train_time - 9.0843    
+Running at 2025-01-31 00:01: python train_model.py --exp_name TestConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-31 00:02: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8544    PR - 0.4478    RC - 0.4435    F1 - 0.4438    train_time - 3.1627    
+Running at 2025-01-31 00:02: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8867    PR - 0.4778    RC - 0.4590    F1 - 0.4624    train_time - 9.3025    
+Running at 2025-01-31 00:02: python train_model.py --exp_name StatisticsConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.9159    PR - 0.5029    RC - 0.4359    F1 - 0.4468    train_time - 16.5451    
+Running at 2025-01-31 00:03: python train_model.py --exp_name CNNConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8382    PR - 0.3896    RC - 0.3747    F1 - 0.3779    train_time - 6.1774    
+Running at 2025-01-31 00:03: python train_model.py --exp_name GCNConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8835    PR - 0.4598    RC - 0.4333    F1 - 0.4415    train_time - 21.3454    
+Running at 2025-01-31 00:04: python train_model.py --exp_name GATConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8835    PR - 0.4914    RC - 0.4568    F1 - 0.4696    train_time - 22.6515    
+Running at 2025-01-31 00:05: python train_model.py --exp_name GINConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8511    PR - 0.4132    RC - 0.4184    F1 - 0.4149    train_time - 7.3652    
+Running at 2025-01-31 00:05: python train_model.py --exp_name DAPPConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8641    PR - 0.4478    RC - 0.4492    F1 - 0.4484    train_time - 8.7003    
+Running at 2025-01-31 00:06: python train_model.py --exp_name GraphIoTConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8544    PR - 0.4487    RC - 0.4240    F1 - 0.4309    train_time - 5.4646    
+All commands executed successfully.
+
+Experiment Start!!!
+Running at 2025-01-31 00:10: python train_model.py --exp_name TestConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8867    PR - 0.5108    RC - 0.4259    F1 - 0.4439    train_time - 22.8637    
+Running at 2025-01-31 00:11: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8544    PR - 0.4478    RC - 0.4435    F1 - 0.4438    train_time - 3.1627    
+Running at 2025-01-31 00:11: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 1 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-31 00:12: python train_model.py --exp_name TestConfig --retrain 0 --rounds 10 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-31 00:16: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-31 00:17: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+Retrying at 2025-01-31 00:17: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+Retrying at 2025-01-31 00:17: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+Retrying at 2025-01-31 00:17: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+Retrying at 2025-01-31 00:18: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+Retrying at 2025-01-31 00:18: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+Retrying at 2025-01-31 00:18: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+Retrying at 2025-01-31 00:18: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+Command failed, retrying in 3 seconds: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+Retrying at 2025-01-31 00:18: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+Experiment Start!!!
+Running at 2025-01-31 00:20: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8447    PR - 0.5164    RC - 0.4773    F1 - 0.4847    train_time - 4.2067    
+Running at 2025-01-31 00:22: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 10 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8699    PR - 0.4874    RC - 0.4832    F1 - 0.4768    train_time - 8.7710    
+Running at 2025-01-31 00:25: python train_model.py --exp_name StatisticsConfig --retrain 0 --rounds 10 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8728    PR - 0.4624    RC - 0.4443    F1 - 0.4436    train_time - 8.7388    
+Running at 2025-01-31 00:28: python train_model.py --exp_name CNNConfig --retrain 0 --rounds 10 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8372    PR - 0.3963    RC - 0.3942    F1 - 0.3902    train_time - 9.3537    
+Running at 2025-01-31 00:31: python train_model.py --exp_name GCNConfig --retrain 0 --rounds 10 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.9010    PR - 0.5118    RC - 0.5002    F1 - 0.5023    train_time - 18.2972    
+Running at 2025-01-31 00:37: python train_model.py --exp_name GATConfig --retrain 0 --rounds 10 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.9081    PR - 0.5397    RC - 0.5081    F1 - 0.5146    train_time - 17.6020    
+Running at 2025-01-31 00:43: python train_model.py --exp_name DAPPConfig --retrain 0 --rounds 10 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8553    PR - 0.4589    RC - 0.4597    F1 - 0.4509    train_time - 11.9281    
+Running at 2025-01-31 00:47: python train_model.py --exp_name GraphIoTConfig --retrain 0 --rounds 10 --rank 64 --dataset ustctfc --flow_length_limit 20 --stat True
+AC - 0.8728    PR - 0.5041    RC - 0.5342    F1 - 0.5041    train_time - 17.9269
+
+
+Running at 2025-01-31 00:53: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+AC - 0.9691    PR - 0.6964    RC - 0.6257    F1 - 0.6384    train_time - 25.3880    
+Running at 2025-01-31 01:16: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+AC - 0.9767    PR - 0.7570    RC - 0.7106    F1 - 0.7251    train_time - 15.1214    
+Running at 2025-01-31 01:22: python train_model.py --exp_name StatisticsConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+AC - 0.9306    PR - 0.5951    RC - 0.5173    F1 - 0.5342    train_time - 16.0893    
+Running at 2025-01-31 01:27: python train_model.py --exp_name CNNConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+AC - 0.9723    PR - 0.6711    RC - 0.5890    F1 - 0.6085    train_time - 23.5188    
+Running at 2025-01-31 01:35: python train_model.py --exp_name GCNConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+AC - 0.9792    PR - 0.7746    RC - 0.7173    F1 - 0.7367    train_time - 37.6804    
+Running at 2025-01-31 01:48: python train_model.py --exp_name GATConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+AC - 0.9744    PR - 0.7904    RC - 0.6854    F1 - 0.7129    train_time - 72.4695    
+Running at 2025-01-31 02:07: python train_model.py --exp_name DAPPConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+AC - 0.8024    PR - 0.6065    RC - 0.4813    F1 - 0.5017    train_time - 17.3349    
+Running at 2025-01-31 02:14: python train_model.py --exp_name GraphIoTConfig --retrain 0 --rounds 10 --rank 64 --dataset Medboit --flow_length_limit 20 --stat True
+AC - 0.9429    PR - 0.7262    RC - 0.6657    F1 - 0.6723    train_time - 37.8586    
+All commands executed successfully.
+
+Experiment Start!!!
+Running at 2025-01-31 12:41: python train_model.py --exp_name MLPConfig --retrain 0 --rounds 3 --rank 64 --dataset IoT --flow_length_limit 30 --stat True
+AC - 0.8644    PR - 0.7909    RC - 0.7683    F1 - 0.7758    train_time - 37.9814    
+Running at 2025-01-31 12:41: python train_model.py --exp_name LSTMConfig --retrain 0 --rounds 3 --rank 64 --dataset IoT --flow_length_limit 30 --stat True
+AC - 0.9105    PR - 0.8495    RC - 0.8356    F1 - 0.8410    train_time - 38.8217    
+Running at 2025-01-31 12:41: python train_model.py --exp_name StatisticsConfig --retrain 0 --rounds 3 --rank 64 --dataset IoT --flow_length_limit 30 --stat True
+AC - 0.9088    PR - 0.9140    RC - 0.8666    F1 - 0.8796    train_time - 96.2017    
+Running at 2025-01-31 12:41: python train_model.py --exp_name CNNConfig --retrain 0 --rounds 3 --rank 64 --dataset IoT --flow_length_limit 30 --stat True
+AC - 0.9418    PR - 0.9048    RC - 0.8782    F1 - 0.8882    train_time - 76.3031    
+Running at 2025-01-31 12:42: python train_model.py --exp_name GCNConfig --retrain 0 --rounds 3 --rank 64 --dataset IoT --flow_length_limit 30 --stat True
+AC - 0.9186    PR - 0.8787    RC - 0.8637    F1 - 0.8700    train_time - 249.3290    
+Running at 2025-01-31 13:00: python train_model.py --exp_name GATConfig --retrain 0 --rounds 3 --rank 64 --dataset IoT --flow_length_limit 30 --stat True
+AC - 0.9174    PR - 0.8736    RC - 0.8582    F1 - 0.8644    train_time - 212.9547    
+Running at 2025-01-31 13:18: python train_model.py --exp_name DAPPConfig --retrain 0 --rounds 3 --rank 64 --dataset IoT --flow_length_limit 30 --stat True
+AC - 0.9387    PR - 0.8997    RC - 0.8904    F1 - 0.8930    train_time - 141.9366    
+Running at 2025-01-31 13:29: python train_model.py --exp_name GraphIoTConfig --retrain 0 --rounds 3 --rank 64 --dataset IoT --flow_length_limit 30 --stat True
+AC - 0.9231    PR - 0.8852    RC - 0.8735    F1 - 0.8740    train_time - 203.0214    
+All commands executed successfully.
+

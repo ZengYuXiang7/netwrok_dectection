@@ -20,13 +20,15 @@ def Baselines(dataset):
     #     'dataset': ['protocol']
     # }
     best_hyper = {
-        'rounds': 5,
+        'rounds': 3,
         'rank': 64,
         'dataset': dataset,
-        'flow_length_limit': 20,
+        'flow_length_limit': 30,
+        'stat': True,
     }
+
     # best_hyper = hyper_search('TestConfig', hyper_dict, retrain=1)
-    only_once_experiment('TestConfig', best_hyper)  # {'continue_train': 1}
+    # only_once_experiment('TestConfig', best_hyper)  # {'continue_train': 1}
 
     # best_hyper = hyper_search('MLPConfig', hyper_dict, retrain=1)
     only_once_experiment('MLPConfig', best_hyper)
@@ -47,7 +49,7 @@ def Baselines(dataset):
     only_once_experiment('GATConfig', best_hyper)  # {'continue_train': 1}
 
     # best_hyper = hyper_search('GINConfig', hyper_dict, retrain=1)
-    only_once_experiment('GINConfig', best_hyper)  # {'continue_train': 1}
+    # only_once_experiment('GINConfig', best_hyper)  # {'continue_train': 1}
 
     # best_hyper = hyper_search('DAPPConfig', hyper_dict, retrain=1)
     only_once_experiment('DAPPConfig', best_hyper)  # {'continue_train': 1}
@@ -61,9 +63,11 @@ def Baselines(dataset):
 def Ablation():
     hyper_dict = {
         # 'dataset': ['IoT', 'Medboit', 'protocol'],
-        'dataset': ['Medboit', 'ustctfc'],
+        # 'dataset': ['IoT', 'Medboit', 'ustctfc'],
+        'dataset': ['IoT'],
         'ablation': [1, 2, 3],
-        'flow_length_limit': [20],
+        'flow_length_limit': [30],
+        'patience': [20]
     }
     hyper_search('TestConfig', hyper_dict, grid_search=1, retrain=1)
     return True
@@ -76,9 +80,10 @@ def Our_model(hyper=None):
 ######################################################################################################
 # 在这里写执行顺序
 def experiment_run():
-    # Baselines('Medboit')
     # Baselines('ustctfc')
-    Ablation()
+    # Baselines('Medboit')
+    Baselines('IoT')
+    # # Ablation()
     hyper_dict = {
         'rank': [40],
         'dataset': ['Medboit'],

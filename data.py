@@ -28,32 +28,30 @@ from flowcontainer.extractor import extract
 from utils.config import get_config
 
 
+
 class experiment:
     def __init__(self, config):
         self.config = config
 
     def load_data(self, config):
         # 定义文件路径
+        flow_feature_path = f'./datasets/flow/{config.dataset}_all_flow_feature_{config.flow_length_limit}'
         interval_path = f'./datasets/flow/{config.dataset}_all_interval_{config.flow_length_limit}'
         seq_path = f'./datasets/flow/{config.dataset}_all_seq_{config.flow_length_limit}'
         labels_path = f'./datasets/flow/{config.dataset}_all_labels_{config.flow_length_limit}'
-        if config.model == 'stat':
-            interval_path += 'stat.pickle'
-            seq_path += 'stat.pickle'
-            labels_path += 'stat.pickle'
-        else:
-            interval_path += '.pickle'
-            seq_path += '.pickle'
-            labels_path += '.pickle'
+        interval_path += '.pickle'
+        seq_path += '.pickle'
+        labels_path += '.pickle'
+        flow_feature_path += '.pickle'
 
-        # 检查文件是否存在
-        if os.path.exists(interval_path) and os.path.exists(seq_path) and os.path.exists(labels_path):
-            all_interval = pickle.load(open(interval_path, 'rb'))
+        if os.path.exists(flow_feature_path) and os.path.exists(seq_path) and os.path.exists(labels_path):
+            all_flow_feature = pickle.load(open(flow_feature_path, 'rb'))
+            # all_interval = pickle.load(open(interval_path, 'rb'))
             all_seq = pickle.load(open(seq_path, 'rb'))
             all_labels = pickle.load(open(labels_path, 'rb'))
         else:
-
             all_interval, all_seq, all_labels = [], [], []
+            all_flow_feature = []
             if config.dataset == 'protocol':
                 mapping = get_all_mapping()
             elif config.dataset == 'ustctfc':
@@ -64,18 +62,6 @@ class experiment:
             elif config.dataset == 'Medboit':
                 all_address, all_label = get_medboit()
 
-            # all_address, all_label = all_address[:20000], all_label[:20000]
-            # flow_limits = [10 for _ in range(len(all_address))]
-            # num_workers = min(multiprocessing.cpu_count(), len(all_address))  # 限制最大线程数
-            # with ProcessPoolExecutor(max_workers=num_workers) as executor:
-            #     future_to_index = {executor.submit(process_address, all_address[i], all_label[i], flow_limits[i]): i for i in range(len(all_address))}
-            #     results = []
-            #     for future in tqdm(as_completed(future_to_index), total=len(all_address)):
-            #         result = future.result()
-            #         if result is not None:
-            #             results.append(result)
-            #
-            # all_interval, all_seq, all_labels = zip(*results)
             for i in trange(len(all_address)):
                 add = all_address[i]
                 result = extract(add, filter='tcp or udp')
@@ -85,10 +71,9 @@ class experiment:
                     if len(value.lengths) < config.flow_length_limit:
                         continue
                     time_stamp = value.ip_timestamps[:config.flow_length_limit]
-                    if config.model == 'stat':
-                        seq = get_flow_feature(value)
-                    else:
-                        seq = value.ip_lengths[:config.flow_length_limit]
+                    flow_feature = get_flow_feature(value)
+                    all_flow_feature.append(flow_feature)
+                    seq = value.ip_lengths[:config.flow_length_limit]
                     all_interval.append(time_stamp)
                     all_seq.append(seq)
                     if config.dataset == 'protocol':
@@ -96,10 +81,12 @@ class experiment:
                         all_labels.append(label)
                     else:
                         all_labels.append(all_label[i])
-            all_interval = np.stack(all_interval)
-            all_interval /= np.max(all_interval)
+            # all_interval = np.stack(all_interval)
+            # all_interval /= np.max(all_interval)
+            # pickle.dump(all_interval, open(interval_path, 'wb'))
+            all_flow_feature = np.stack(all_flow_feature)
             all_seq = np.stack(all_seq)
-            pickle.dump(all_interval, open(interval_path, 'wb'))
+            pickle.dump(all_flow_feature, open(flow_feature_path, 'wb'))
             pickle.dump(all_seq, open(seq_path, 'wb'))
             pickle.dump(all_labels, open(labels_path, 'wb'))
         all_info = {
@@ -110,15 +97,12 @@ class experiment:
         all_labels = np.array(all_labels)
         pickle.dump(all_info, open(f'./datasets/flow/{config.dataset}_info_{config.flow_length_limit}.pickle', 'wb'))
         # 初始化 MinMaxScaler
-        if config.model == 'stat':
-            scaler = MinMaxScaler()
-            all_seq = scaler.fit_transform(all_seq)
-        print(np.max(all_interval), all_seq.max(), all_seq.min())
-        print(all_seq.shape, all_labels.shape)
-        if config.model == 'stat':
-            all_x = all_seq.astype(np.float32)
-        else:
-            all_x = np.concatenate([all_interval, all_seq], axis=-1).astype(np.float32)
+        scaler = MinMaxScaler()
+        all_flow_feature = scaler.fit_transform(all_flow_feature).astype(np.float32)
+        print(np.max(all_flow_feature), all_flow_feature.max(), all_flow_feature.min())
+        print(np.max(all_seq), all_seq.max(), all_seq.min())
+        print(all_flow_feature.shape, all_seq.shape, all_labels.shape)
+        all_x = np.concatenate([all_flow_feature, all_seq], axis=-1).astype(np.float32)
         all_y = all_labels
         return all_x, all_y
 
@@ -223,8 +207,8 @@ class TensorDataset(torch.utils.data.Dataset):
                 for i in trange(len(x)):
                     seq_input = self.x[i]
                     seq_input = torch.tensor(seq_input)
-                    time_interval = seq_input[:self.config.flow_length_limit]
-                    seq_input = seq_input[self.config.flow_length_limit:]
+                    time_interval = seq_input[:-self.config.flow_length_limit]
+                    seq_input = seq_input[-self.config.flow_length_limit:]
                     seq_input /= self.max_packet_length
                     graph = build_single_graph(seq_input, time_interval, self.config)
                     self.all_graph.append(graph)
@@ -237,31 +221,26 @@ class TensorDataset(torch.utils.data.Dataset):
     def __getitem__(self, idx):
         raw_input = self.x[idx]
         raw_input = torch.tensor(raw_input)
-        time_interval = raw_input[:self.config.flow_length_limit]
-        seq_input = raw_input[self.config.flow_length_limit:]
+        flow_feature = raw_input[:-self.config.flow_length_limit]
+        seq_input = raw_input[-self.config.flow_length_limit:]
         seq_input /=  self.max_packet_length
         if self.config.model in ['gnn', 'dapp', 'graphiot']:
-            time_interval = self.all_graph[idx]
-            seq_input = torch.as_tensor([1.0])
-        elif self.config.model == 'stat':
-            time_interval = torch.as_tensor([1.0])
-            seq_input = raw_input
-
+            seq_input = self.all_graph[idx]
         label = self.y[idx]
-        return time_interval, seq_input, label
+        return flow_feature, seq_input, label
 
 
 import dgl
 def custom_collate_fn(batch, config):
     from torch.utils.data.dataloader import default_collate
-    time_interval, seq_input, labels = zip(*batch)
+    flow_feature, seq_input, labels = zip(*batch)
     if config.model in ['gnn', 'dapp', 'graphiot']:
-        time_interval = dgl.batch(time_interval)
+        seq_input = dgl.batch(seq_input)
     else:
-        time_interval = default_collate(time_interval)
-    seq_input = default_collate(seq_input)
+        seq_input = default_collate(seq_input)
+    flow_feature = default_collate(flow_feature)
     label = torch.as_tensor(labels, dtype=torch.long if config.classification else torch.float32)
-    return time_interval, seq_input, label
+    return flow_feature, seq_input, label
 
 
 def get_dataloaders(train_set, valid_set, test_set, config):

@@ -45,7 +45,12 @@ class GraphIoT(torch.nn.Module):
         )
         self.classifier = torch.nn.Linear(self.rank * self.order, num_classes)
 
-    def forward(self, graph, _):
+        if config.stat:
+            self.feature_tf = torch.nn.Linear(39, config.rank)
+            self.graph_tf = torch.nn.Linear(self.rank * self.order, self.rank)
+            self.classifier = torch.nn.Linear(self.rank * 2, num_classes)  # 全连接层
+
+    def forward(self, flow_feature, graph):
         feats = graph.ndata['feats'].reshape(-1, 1)
         bs = len(feats) // self.max_flow_length
         feats = self.seq_encoder(feats)
@@ -56,5 +61,12 @@ class GraphIoT(torch.nn.Module):
             graph_readout = torch.sum(graph_readout, dim=1)
             all_graph_readout.append(graph_readout)
         all_graph_readout = torch.cat(all_graph_readout, dim=-1)
-        y = self.classifier(all_graph_readout)
+
+        if self.config.stat:
+            feature_embeds = self.feature_tf(flow_feature)
+            graph_embeds = self.graph_tf(all_graph_readout)
+            final_input = torch.cat((graph_embeds, feature_embeds), 1)
+            y = self.classifier(final_input)
+        else:
+            y = self.classifier(all_graph_readout)
         return y

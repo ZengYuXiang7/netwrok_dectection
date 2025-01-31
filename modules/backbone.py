@@ -90,7 +90,7 @@ class Backbone(torch.nn.Module):
                 torch.nn.Linear(config.rank * 1, num_classes)
             )
 
-    def forward(self, _, x):
+    def forward(self, flow_feature, x):
         if self.config.ablation == 0:
             # print(x.max(), x.min())
             # x = torch.abs(x)

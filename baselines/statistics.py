@@ -24,7 +24,7 @@ class Statistics(torch.nn.Module):
         self.ln2 = nn.LayerNorm(num_classes)
         self.act2 = nn.ReLU()  # 第一层激活函数
 
-    def forward(self, _, x):
+    def forward(self, x, _):
         x = self.fc1(x)
         x = self.ln1(x)
         x = self.act1(x)

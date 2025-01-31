@@ -17,7 +17,7 @@ class CNN(torch.nn.Module):
 
         input_size = max_flow_length
         hidden_size = config.rank
-
+        self.config = config
         # 定义 CNN 网络
         self.conv1 = nn.Conv1d(in_channels=1, out_channels=hidden_size, kernel_size=3, padding=1)  # 第一层卷积
         self.ln1 = nn.LayerNorm(hidden_size)  # 第一层 LayerNorm
@@ -28,9 +28,17 @@ class CNN(torch.nn.Module):
         self.act2 = nn.ReLU()  # 第二层激活函数
 
         self.pool = nn.AdaptiveAvgPool1d(1)  # 自适应全局平均池化，降维
+
+        if config.stat:
+            self.feature = torch.nn.Linear(39, config.rank)
+
         self.fc = nn.Linear(hidden_size, num_classes)  # 全连接层
 
-    def forward(self, _, x):
+        if config.stat:
+            self.feature_tf = torch.nn.Linear(39, config.rank)
+            self.fc = nn.Linear(hidden_size * 2, num_classes)  # 全连接层
+
+    def forward(self, flow_feature, x):
         # x: [batch_size, max_flow_length]
         x = x.unsqueeze(1)  # 扩展通道维度，形状变为 [batch_size, 1, max_flow_length]
 
@@ -48,5 +56,10 @@ class CNN(torch.nn.Module):
         x = self.pool(x).squeeze(-1)  # 形状变为 [batch_size, hidden_size]
 
         # 全连接层
-        y = self.fc(x)  # 输出分类结果，形状为 [batch_size, num_classes]
+        if self.config.stat:
+            feature_embeds = self.feature_tf(flow_feature)
+            final_input = torch.cat((x, feature_embeds), 1)
+            y = self.fc(final_input)
+        else:
+            y = self.fc(x)  # 输出分类结果，形状为 [batch_size, num_classes]
         return y
